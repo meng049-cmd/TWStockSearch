@@ -9,6 +9,7 @@ from pathlib import Path
 import time
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -96,29 +97,40 @@ def main():
     previous = json.loads(path.read_text())
     stocks = {s['code']: s for s in previous.get('stocks', [])} if previous.get('mode') != 'demo' else {}
     today = dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).date()
-    days = 50 if not stocks else 8
+    cutoff = today - dt.timedelta(days=190)
+    needs_history = not stocks or not any(
+        h['date'] <= cutoff.isoformat() and all(h.get(k) is not None for k in ['open','high','low'])
+        for stock in stocks.values() for h in stock['history'])
+    days = 210 if needs_history else 8
     completed = 0
-    for date in [today - dt.timedelta(days=i) for i in range(days - 1, -1, -1)]:
-        if date.weekday() > 4:
-            continue
+    def fetch_day(date):
         price_obj = request('afterTrading/MI_INDEX', date, {'type': 'ALLBUT0999'})
         time.sleep(1)
         if price_obj is None:
+            return date, None, {}, {}
+        buys = {}
+        if date >= today - dt.timedelta(days=25):
+            buy_obj = request('fund/T86', date, {'selectType': 'ALLBUT0999'})
+            time.sleep(1)
+            if buy_obj is None:
+                raise RuntimeError(f'Institutional data not yet available for {date}; previous file retained')
+            buys = parse_buys(buy_obj)
+        print(f'Fetched {date}', flush=True)
+        return date, parse_prices(price_obj), buys, parse_bars(price_obj)
+    dates = [today - dt.timedelta(days=i) for i in range(days - 1, -1, -1)
+             if (today - dt.timedelta(days=i)).weekday() < 5]
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        results = list(executor.map(fetch_day, dates))
+    for date, prices, buys, bars in results:
+        if prices is None:
             continue
-        buy_obj = request('fund/T86', date, {'selectType': 'ALLBUT0999'})
-        time.sleep(1)
-        if buy_obj is None:
-            raise RuntimeError(f'Institutional data not yet available for {date}; previous file retained')
-        prices, buys = parse_prices(price_obj), parse_buys(buy_obj)
-        bars = parse_bars(price_obj)
         for code, (name, close) in prices.items():
             stock = stocks.setdefault(code, {'code': code, 'name': name, 'group': '', 'history': []})
             stock['name'] = name
             records = {h['date']: h for h in stock['history']}
-            records[date.isoformat()] = {'date': date.isoformat(), 'close': close, **buys.get(code, {}), **bars.get(code, {})}
-            stock['history'] = sorted(records.values(), key=lambda h: h['date'])[-60:]
+            records[date.isoformat()] = {**records.get(date.isoformat(), {}), 'date': date.isoformat(), 'close': close, **buys.get(code, {}), **bars.get(code, {})}
+            stock['history'] = sorted(records.values(), key=lambda h: h['date'])[-260:]
         completed += 1
-        print(f'Fetched {date}: {len(prices)} stocks', flush=True)
     if not completed:
         raise RuntimeError('No official trading days retrieved; previous file retained')
     result = {'mode': 'live', 'updatedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
