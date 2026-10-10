@@ -1,4 +1,4 @@
-"""Fetch TAIFEX stock-futures underlyings. Official response validation is pending network access."""
+"""Fetch TAIFEX stock-futures underlyings. Validated against the official SSFLists schema."""
 import datetime as dt
 import json
 import os
@@ -6,23 +6,27 @@ from pathlib import Path
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = 'https://openapi.taifex.com.tw/v1/SingleStockFuturesTradingInfo'
-CODE_FIELDS = ('UnderlyingSecurityCode', 'StockCode', 'SecurityCode', '標的證券代號', '證券代號', '股票代號', '股票代碼', '標的證券代碼')
+SOURCE = 'https://openapi.taifex.com.tw/v1/SSFLists'
+ORDINARY_TYPES = {'上市普通股標的證券', '上櫃普通股標的證券'}
 
 def parse_codes(rows):
     if not isinstance(rows, list) or not rows:
         raise ValueError('Empty or unexpected official stock-futures response')
     codes = set()
     for row in rows:
-        if not isinstance(row, dict):
-            raise ValueError('Unexpected official stock-futures row')
-        values = {str(row[key]).strip() for key in CODE_FIELDS if key in row}
-        if len(values) != 1:
-            raise ValueError('Unrecognized or ambiguous underlying security code fields')
-        code = values.pop()
-        if len(code) != 4 or not code.isdigit():
-            raise ValueError('Unsupported underlying code format; preserve previous list')
+        if not isinstance(row, dict) or any(field not in row for field in ['StockCode','Type','Contract']):
+            raise ValueError('Official SSFLists schema changed; preserve previous list')
+        code, kind = str(row['StockCode']).strip(), str(row['Type']).strip()
+        if kind == '上市ETF標的證券':
+            continue
+        # Official debt ETF rows currently have an empty Type and six-character codes.
+        if kind == '' and code.startswith('0') and len(code) == 6 and code[:-1].isdigit() and code[-1] == 'B':
+            continue
+        if kind not in ORDINARY_TYPES or len(code) != 4 or not code.isdigit():
+            raise ValueError('Unsupported underlying type/code; preserve previous list')
         codes.add(code)
+    if not codes:
+        raise ValueError('No ordinary stock underlyings in official response')
     return sorted(codes)
 
 def main(force=False):
