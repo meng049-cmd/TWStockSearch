@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import re
 import urllib.request
+from hotness import WEIGHTS, rank_groups, rank_hotstocks
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPANIES = 'https://openapi.twse.com.tw/v1/opendata/t187ap03_L'
@@ -35,6 +36,7 @@ def main():
     latest = max(h['date'] for stock in stocks for h in stock['history'])
     stocks = {s['code']:s for s in stocks if s['history'] and max(h['date'] for h in s['history'])==latest}
     company_map = {str(c['公司代號']).strip():c for c in companies}
+    hotstocks = rank_hotstocks(list(stocks.values()), company_map, latest)
     groups = {}
     for code, stock in stocks.items():
         company = company_map.get(code)
@@ -66,9 +68,18 @@ def main():
         codes=set(group['codes'])
         group['articles']=[a for a in values if codes.intersection(a.get('codes',[]))]
         group['articles'].sort(key=lambda a:a.get('publishedAt') or a.get('checkedAt',''),reverse=True)
-    result={'updatedAt':checked,'quoteDate':latest,'method':'依最後交易日族群成交金額排序；族群採官方產業分類，不代表社群熱度。',
-            'groups':sorted(groups.values(),key=lambda g:g['turnover'],reverse=True),'articles':values,'sources':sources}
-    temp=path.with_suffix('.tmp');temp.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':')));os.replace(temp,path)
+    result={'version':2,'updatedAt':checked,'quoteDate':latest,
+            'method':'V2 盤後交易活躍度：族群分數＝成交金額百分位 50%＋前 5 檔可排名股票平均熱度 50%。非盤中資金速度或淨流入。',
+            'ranking':{'weights':WEIGHTS,'eligibleCount':sum(r['score'] is not None for r in hotstocks.values()),
+                       'universe':'最後交易日有行情及完整指標的上市公司；缺資料不排名；百分位每日重算，非獲利機率。'},
+            'hotstocks':hotstocks,'groups':rank_groups(list(groups.values()),hotstocks),'articles':values,'sources':sources}
+    v2_path = ROOT/'data/themes-v2.json'
+    temp=v2_path.with_suffix('.tmp');temp.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':')));os.replace(temp,v2_path)
+    legacy = {'updatedAt':checked,'quoteDate':latest,
+              'method':'依最後交易日族群成交金額排序；族群採官方產業分類，不代表社群熱度。',
+              'groups':sorted(({k:g[k] for k in ['name','codes','turnover','articles','sources']} for g in groups.values()),key=lambda g:g['turnover'],reverse=True),
+              'articles':values,'sources':sources}
+    temp=path.with_suffix('.tmp');temp.write_text(json.dumps(legacy,ensure_ascii=False,separators=(',',':')));os.replace(temp,path)
     print(f'Synced {len(groups)} industry groups and {len(values)} reference items; quote date {latest}')
 
 if __name__=='__main__':
