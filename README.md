@@ -36,3 +36,7 @@
 本機預覽：`python3 -m http.server 8000`。驗證：`python3 -m unittest discover -s scripts -p 'test_*.py'`。實際更新：`python3 scripts/update_data.py`、`python3 scripts/sync_sources.py`。只使用 Python 標準函式庫，無需憑證或額外套件。
 
 第二版新增資料檔 `data/themes-v2.json`，原 `data/themes.json` 仍保留相容格式。詳細公式、權重、指標資料不足處理及排名範圍見版本文件與網頁計算依據。
+
+## 股票期貨篩選草稿
+
+`v2-stock-futures-filter` 分支加入不限／有／無股票期貨標的按鈕，沿用族群內篩選並顯示股期標記。`data/stock-futures.json` 是期交所名單快照，目標每 4 小時同步；其接口及實際欄位尚待官方回應核對，現在沒有真實名單，所以有／無選項停用。測試中的示例名單僅用於驗證篩選邏輯，不作為網站資料。尚未合併至 main 或發布主站。網路開放後需驗證 `python3 scripts/sync_stock_futures.py --force`，核對官方標的清單，再合併發布。
