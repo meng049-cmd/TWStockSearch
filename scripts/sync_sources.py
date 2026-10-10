@@ -1,0 +1,75 @@
+"""Hourly official industry and disclosure sync, without secrets or external packages."""
+import datetime as dt
+import json
+import os
+from pathlib import Path
+import re
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[1]
+COMPANIES = 'https://openapi.twse.com.tw/v1/opendata/t187ap03_L'
+ANNOUNCEMENTS = 'https://openapi.twse.com.tw/v1/opendata/t187ap04_L'
+INDUSTRIES = dict(zip(
+ ['01','02','03','04','05','06','08','09','10','11','12','14','15','16','17','18','20','21','22','23','24','25','26','27','28','29','30','31','35','36','37','38','91'],
+ ['水泥','食品','塑膠','紡織纖維','電機機械','電器電纜','玻璃陶瓷','造紙','鋼鐵','橡膠','汽車','建材營造','航運','觀光餐旅','金融保險','貿易百貨','其他','化學','生技醫療','油電燃氣','半導體','電腦及週邊設備','光電','通信網路','電子零組件','電子通路','資訊服務','其他電子','綠能環保','數位雲端','運動休閒','居家生活','存託憑證']))
+
+def get(url, is_json=True):
+    req = urllib.request.Request(url, headers={'User-Agent':'TWStockSearch/1.0'})
+    with urllib.request.urlopen(req, timeout=30) as response:
+        return json.load(response) if is_json else response.read().decode('utf-8')
+
+def roc_date(value):
+    value = re.sub(r'\D','',str(value))
+    if len(value) != 7:
+        raise ValueError('Unrecognized official ROC date')
+    return dt.date(int(value[:3])+1911,int(value[3:5]),int(value[5:7])).isoformat()
+
+def main():
+    companies = get(COMPANIES)
+    notices = get(ANNOUNCEMENTS)
+    now = dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+    checked = now.isoformat()
+    path = ROOT/'data/themes.json'
+    previous = json.loads(path.read_text()) if path.exists() else {}
+    stocks = json.loads((ROOT/'data/stocks.json').read_text())['stocks']
+    latest = max(h['date'] for stock in stocks for h in stock['history'])
+    stocks = {s['code']:s for s in stocks if s['history'] and max(h['date'] for h in s['history'])==latest}
+    company_map = {str(c['公司代號']).strip():c for c in companies}
+    groups = {}
+    for code, stock in stocks.items():
+        company = company_map.get(code)
+        if not company:
+            continue
+        industry = str(company['產業別']).strip()
+        name = INDUSTRIES.get(industry, '產業 '+industry)
+        group = groups.setdefault(name, {'name':name,'codes':[],'turnover':0,'articles':[],
+            'sources':[{'name':'證交所上市公司產業分類','url':COMPANIES},{'name':'證交所每日行情','url':'https://www.twse.com.tw/zh/trading/historical/mi-index.html'}]})
+        group['codes'].append(code)
+        bar = max(stock['history'],key=lambda h:h['date'])
+        group['turnover'] += bar.get('turnover',0)
+    articles = {a['id']:a for a in previous.get('articles',[]) if a.get('kind') == 'official' and a.get('id') and (a.get('publishedAt') or a.get('checkedAt',''))[:10] >= (now.date()-dt.timedelta(days=30)).isoformat()}
+    for row in notices:
+        code = str(row.get('公司代號','')).strip()
+        title = row.get('主旨 ',row.get('主旨','')).strip()
+        if not code or not title:
+            continue
+        date = roc_date(row['發言日期'])
+        timestamp = str(row.get('發言時間','')).zfill(6)
+        published = date+'T'+':'.join([timestamp[:2],timestamp[2:4],timestamp[4:6]])+'+08:00'
+        identity = code+'|'+published+'|'+title
+        articles[identity]={'id':identity,'code':code,'codes':[code],'title':title,'source':'公開資訊觀測站重大訊息',
+            'publishedAt':published,'url':ANNOUNCEMENTS,'body':row.get('說明',''),'kind':'official','checkedAt':checked}
+    sources=[{'name':'證交所上市公司資料','status':'ok','checkedAt':checked,'url':COMPANIES},
+             {'name':'公開資訊觀測站重大訊息','status':'ok','checkedAt':checked,'url':ANNOUNCEMENTS}]
+    values=list(articles.values())
+    for group in groups.values():
+        codes=set(group['codes'])
+        group['articles']=[a for a in values if codes.intersection(a.get('codes',[]))]
+        group['articles'].sort(key=lambda a:a.get('publishedAt') or a.get('checkedAt',''),reverse=True)
+    result={'updatedAt':checked,'quoteDate':latest,'method':'依最後交易日族群成交金額排序；族群採官方產業分類，不代表社群熱度。',
+            'groups':sorted(groups.values(),key=lambda g:g['turnover'],reverse=True),'articles':values,'sources':sources}
+    temp=path.with_suffix('.tmp');temp.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':')));os.replace(temp,path)
+    print(f'Synced {len(groups)} industry groups and {len(values)} reference items; quote date {latest}')
+
+if __name__=='__main__':
+    main()
