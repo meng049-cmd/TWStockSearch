@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>台股盤後選股筆記</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color:#18332e;background:#f3f6f2;line-height:1.65}
+*{box-sizing:border-box}body{margin:0}
+.wrap{max-width:1200px;margin:auto;padding:28px}
+header{background:#153f35;color:#fff}
+header h1{font-size:clamp(28px,5vw,44px);margin:12px 0}
+header p{color:#c8dbd4}
+nav{display:flex;gap:24px}nav a{color:#fff;text-decoration:none}
+.tag{font-size:12px;letter-spacing:2px;color:#448770}
+header .tag{color:#b9d9ca}
+section{margin-bottom:38px}
+.status,.panel,.card{background:white;border:1px solid #dce5dd;border-radius:14px;padding:22px}
+.status,.heading{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.heading{margin:16px 0}.actions{display:flex;gap:10px;flex-wrap:wrap}
+button,.button,select,input:not([type=checkbox]){
+font:inherit;border:1px solid #c6d5ca;border-radius:7px;
+padding:8px 12px;background:#fff;color:#18332e}
+button,.button{cursor:pointer}
+button:hover,.button:hover{background:#edf4ee}
+.button{display:inline-block}
+.filters{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:650;margin-bottom:10px}
+fieldset label{display:block}
+input[type=checkbox]{accent-color:#28654b;margin-right:8px}
+h2{margin:8px 0;font-size:25px}h3{margin:24px 0 12px}
+.note{font-size:13px;color:#64776d}
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid #dce5dd;background:white}
+table{width:100%;border-collapse:collapse;white-space:nowrap;text-align:right}
+th,td{padding:14px;border-bottom:1px solid #edf0ec}
+th{background:#e9f0e9}
+th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+th button{border:0;padding:0;background:none;font-weight:bold}
+td small{display:block;color:#728178}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card h3{margin:0 0 8px}
+.card a{color:#28654b;overflow-wrap:anywhere}
+.card p{margin:8px 0}
+.pill{display:inline-block;background:#e8f1e9;border-radius:20px;padding:3px 10px;font-size:12px;margin:3px}
+.up{color:#a54537}.down{color:#287354}
+.empty{padding:32px;color:#64776d;text-align:center}
+footer{font-size:12px;color:#64776d}
+summary{cursor:pointer;font-weight:bold}
+@media(max-width:700px){
+.wrap{padding:20px 14px}
+.status,.heading{align-items:flex-start;flex-direction:column}
+.filters{gap:18px}h2{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<span class="tag">TW STOCK · AFTER HOURS</span>
+<h1>台股盤後選股筆記</h1>
+<p>用交易數據找方向，用公開來源核對觀點。</p>
+<nav>
+<a href="#screen">條件選股</a>
+<a href="#themes">熱門族群</a>
+<a href="#sources">資料來源</a>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+<section class="status">
+<div>
+<strong id="mode">載入資料中</strong>
+<p id="status" role="status" aria-live="polite"></p>
+</div>
+<div class="actions">
+<button id="refresh">重新載入</button>
+<button id="demo">查看示範</button>
+<label class="button">匯入 JSON
+<input id="import" type="file" accept=".json,application/json" hidden>
+</label>
+<button id="downloadPage">下載本網頁</button>
+<button id="export">下載資料範本</button>
+</div>
+</section>
+
+<section id="screen">
+<div class="heading">
+<div>
+<span class="tag">SCREENER</span>
+<h2>找到符合條件的股票</h2>
+</div>
+<label>搜尋
+<input id="search" placeholder="股票代號、名稱或族群">
+</label>
+</div>
+
+<div class="panel filters">
+<fieldset>
+<legend>最後交易日收盤價站上</legend>
+<label><input type="checkbox" id="close10">10 日均線</label>
+<label><input type="checkbox" id="close20">20 日均線</label>
+</fieldset>
+
+<fieldset>
+<legend>5 日均線高於</legend>
+<label><input type="checkbox" id="ma10">10 日均線</label>
+<label><input type="checkbox" id="ma20">20 日均線</label>
+</fieldset>
+
+<fieldset>
+<legend>最近一週法人買量增加</legend>
+<label><input type="checkbox" id="foreign">外資
+<select id="foreignPct" aria-label="外資增加門檻"></select>
+</label>
+<label><input type="checkbox" id="trust">投信
+<select id="trustPct" aria-label="投信增加門檻"></select>
+</label>
+</fieldset>
+
+<label>條件組合
+<select id="match">
+<option value="all">全部勾選條件皆符合</option>
+<option value="any">任一勾選條件符合</option>
+</select>
+</label>
+<button id="reset">清除篩選</button>
+</div>
+
+<p class="note">
+均線採簡單平均；週增幅＝最近 5 個交易日買進股數合計 ÷
+前 5 個交易日合計 − 1。買進股數並非買賣超。
+基期為零或資料不足時不通過該條件。
+</p>
+
+<div class="heading">
+<strong id="count"></strong>
+<span class="note">可點表頭排序</span>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th><button data-sort="code">股票</button></th>
+<th>族群</th>
+<th><button data-sort="close">收盤</button></th>
+<th><button data-sort="ma5">MA5</button></th>
+<th><button data-sort="ma10">MA10</button></th>
+<th><button data-sort="ma20">MA20</button></th>
+<th><button data-sort="foreign">外資週增幅</button></th>
+<th><button data-sort="trust">投信週增幅</button></th>
+<th>交易日</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+</section>
+
+<section id="themes">
+<span class="tag">THEMES & REFERENCES</span>
+<h2>熱門族群與參考文章</h2>
+<p class="note">
+依匯入資料中的去重文章數排序，並非全市場熱度。
+沒有已核對文章時，不推測熱門族群。
+</p>
+<div id="groups" class="grid"></div>
+</section>
+
+<section id="sources">
+<span class="tag">OFFICIAL & COMMUNITY</span>
+<h2>來源清單</h2>
+<h3>官方資料入口</h3>
+<p class="note">
+收盤與完整法人數據於盤後公布；其他來源依申報、週、月或季更新。
+官方入口不等於已接通 API。
+</p>
+<div id="official" class="grid"></div>
+
+<h3>社群公開入口</h3>
+<p class="note">
+Facebook 與 PTT 保留為人工核對入口，未實作自動文章抓取。
+登入或存取限制可能影響文章取得。
+</p>
+<div id="social" class="grid"></div>
+</section>
+
+<details class="panel">
+<summary>如何更新與發布</summary>
+<p>
+本單檔版可直接開啟及匯入資料。
+若需自動更新，還須安裝另附專案中的 GitHub Actions 更新腳本，
+產生 data/stocks.json；單獨上傳此 HTML 不會自動抓取官方行情。
+官方抓取目前尚未成功驗證。
+</p>
+<p>
+網頁每 5 分鐘重新載入儲存庫資料；這不是盤中即時行情。
+上櫃資料與社群文章目前須人工匯入。
+其他官方入口可供核對，尚未接入自動篩選。
+</p>
+<p>
+匯入 JSON 僅儲存在目前分頁，關閉或重新載入後還原。
+若要永久更新，將 JSON 上傳到儲存庫 data/stocks.json。
+</p>
+</details>
+</main>
+
+<footer class="wrap">
+資料僅供研究；請核對官方公告與資料日期。
+<span id="checked"></span>
+</footer>
+
+<script id="initialData" type="application/json">
+{
+  "updatedAt": null,
+  "mode": "live",
+  "stocks": [],
+  "groups": [],
+  "notice": "尚無實際行情。請匯入已核對資料，或點選「查看示範」。"
+}
+</script>
+
+<script>
+let originalPage='';
+document.addEventListener('DOMContentLoaded',()=>{
+  const copy=document.documentElement.cloneNode(true);
+  for(const id of [
+    'official','social','groups','rows','foreignPct','trustPct'
+  ]) copy.querySelector('#'+id).replaceChildren();
+  originalPage='<!doctype html>\n'+copy.outerHTML;
+});
+document.getElementById('downloadPage').onclick=()=>{
+  const blob=new Blob([originalPage],{
+    type:'text/html;charset=utf-8'
+  });
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='index.html';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+</script>
+
+<script>
+(function(root){
+  function mean(values,n){
+    if(values.length<n)return null;
+    const v=values.slice(-n);
+    return v.every(x=>Number.isFinite(x)&&x>0)
+      ? v.reduce((a,b)=>a+b,0)/n
+      : null;
+  }
+
+  function increase(rows,key){
+    if(rows.length<10)return null;
+    const v=rows.slice(-10).map(x=>x[key]);
+    if(!v.every(x=>Number.isFinite(x)&&x>=0))return null;
+    const old=v.slice(0,5).reduce((a,b)=>a+b,0);
+    return old>0
+      ? (v.slice(5).reduce((a,b)=>a+b,0)/old-1)*100
+      : null;
+  }
+
+  function metrics(stock){
+    const rows=[...stock.history].sort(
+      (a,b)=>a.date.localeCompare(b.date)
+    );
+    const prices=rows.map(x=>x.close);
+    return {
+      ...stock,
+      close:rows.at(-1)?.close??null,
+      date:rows.at(-1)?.date??'',
+      ma5:mean(prices,5),
+      ma10:mean(prices,10),
+      ma20:mean(prices,20),
+      foreign:increase(rows,'foreignBuy'),
+      trust:increase(rows,'trustBuy')
+    };
+  }
+
+  function matches(s,f){
+    const checks=[];
+    for(const [enabled,a,b] of [
+      [f.close10,s.close,s.ma10],
+      [f.close20,s.close,s.ma20],
+      [f.ma10,s.ma5,s.ma10],
+      [f.ma20,s.ma5,s.ma20]
+    ]){
+      if(enabled){
+        checks.push(
+          Number.isFinite(a)&&Number.isFinite(b)&&a>b
+        );
+      }
+    }
+    if(f.foreign){
+      checks.push(
+        Number.isFinite(s.foreign)&&s.foreign>=f.foreignPct
+      );
+    }
+    if(f.trust){
+      checks.push(
+        Number.isFinite(s.trust)&&s.trust>=f.trustPct
+      );
+    }
+    return !checks.length || (
+      f.match==='any'
+        ? checks.some(Boolean)
+        : checks.every(Boolean)
+    );
+  }
+
+  function validate(data){
+    if(!data ||
+       !Array.isArray(data.stocks) ||
+       !Array.isArray(data.groups)){
+      throw Error('JSON 必須包含 stocks 與 groups 陣列');
+    }
+    if(data.stocks.length>10000||data.groups.length>1000){
+      throw Error('資料筆數過多');
+    }
+    const codes=new Set();
+    for(const s of data.stocks){
+      if(typeof s.code!=='string' ||
+         typeof s.name!=='string' ||
+         !Array.isArray(s.history) ||
+         codes.has(s.code)){
+        throw Error('股票代號、名稱、歷史資料或重複代號有誤');
+      }
+      codes.add(s.code);
+      const dates=new Set();
+      for(const h of s.history){
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(h.date) ||
+           dates.has(h.date) ||
+           !Number.isFinite(h.close) ||
+           h.close<=0){
+          throw Error('日期重複或行情資料格式錯誤');
+        }
+        dates.add(h.date);
+        for(const k of ['foreignBuy','trustBuy']){
+          if(h[k]!=null &&
+             (!Number.isFinite(h[k])||h[k]<0)){
+            throw Error('法人買量必須是非負數');
+          }
+        }
+      }
+    }
+    for(const g of data.groups){
+      if(typeof g.name!=='string' ||
+         !Array.isArray(g.articles) ||
+         !Array.isArray(g.codes)){
+        throw Error('族群資料格式有誤');
+      }
+      for(const a of g.articles){
+        if(!a ||
+           typeof a.title!=='string' ||
+           typeof a.url!=='string'){
+          throw Error('文章需包含標題及網址');
+        }
+      }
+    }
+    return data;
+  }
+
+  root.StockCore={mean,increase,metrics,matches,validate};
+})(window);
+</script>
+
+<script>
+const $=id=>document.getElementById(id);
+let data={stocks:[],groups:[]};
+let sortKey='code';
+let descending=false;
+let loading=false;
+let manual=false;
+
+const official=[
+  ['臺灣證券交易所','https://www.twse.com.tw/',
+   '上市收盤與法人買量 · 盤後 · 需另裝更新腳本'],
+  ['櫃買中心','https://www.tpex.org.tw/',
+   '上櫃行情與法人 · 盤後 · 待串接'],
+  ['公開資訊觀測站','https://mops.twse.com.tw/',
+   '營收、財報、重大訊息 · 依申報'],
+  ['集保結算所','https://www.tdcc.com.tw/',
+   '股權分散 · 每週'],
+  ['期貨交易所','https://www.taifex.com.tw/',
+   '期貨與法人部位 · 依報表'],
+  ['中央銀行','https://www.cbc.gov.tw/',
+   '匯率、利率 · 按日或定期'],
+  ['主計總處','https://www.dgbas.gov.tw/',
+   'CPI、GDP · 月／季'],
+  ['財政部','https://www.mof.gov.tw/',
+   '進出口統計 · 月'],
+  ['經濟部','https://www.moea.gov.tw/',
+   '外銷訂單、工業生產 · 月'],
+  ['金管會','https://www.fsc.gov.tw/',
+   '政策及監理 · 隨公告']
+];
+
+const social=[
+  ['雙寶爸投資筆記','https://www.facebook.com/baby2father/'],
+  ['股市小黑','https://www.facebook.com/592LDS/'],
+  ['無聊詹','https://www.facebook.com/BoringChanStock/'],
+  ['股魚','https://www.facebook.com/stocksardine/'],
+  ['PTT Stock 板','https://www.ptt.cc/bbs/Stock/index.html']
+];
+
+function el(tag,text,cls){
+  const n=document.createElement(tag);
+  if(text!=null)n.textContent=text;
+  if(cls)n.className=cls;
+  return n;
+}
+
+function link(title,url){
+  const a=el('a',title);
+  try{
+    const u=new URL(url);
+    if(!['http:','https:'].includes(u.protocol))throw Error();
+    a.href=u.href;
+    a.target='_blank';
+    a.rel='noopener noreferrer';
+  }catch{
+    a.removeAttribute('href');
+  }
+  return a;
+}
+
+for(const [id,list] of [
+  ['official',official],['social',social]
+]){
+  for(const [name,url,desc] of list){
+    const card=el('article',null,'card');
+    card.append(
+      link(name,url),
+      el('p',desc||'公開參考入口 · 尚未自動抓取','note')
+    );
+    $(id).append(card);
+  }
+}
+
+for(const id of ['foreignPct','trustPct']){
+  for(const v of [5,10,15,20,25,30]){
+    const o=el('option',`至少 ${v}%`);
+    o.value=v;
+    $(id).append(o);
+  }
+}
+
+function render(){
+  const filters={
+    match:$('match').value,
+    foreignPct:+$('foreignPct').value,
+    trustPct:+$('trustPct').value
+  };
+  for(const k of [
+    'close10','close20','ma10','ma20','foreign','trust'
+  ])filters[k]=$(k).checked;
+
+  const query=$('search').value.trim().toLowerCase();
+  const all=data.stocks.map(StockCore.metrics);
+  const dates=all.map(s=>s.date).filter(Boolean).sort();
+  const latest=dates.at(-1);
+
+  const rows=all.filter(s=>
+    s.date===latest &&
+    StockCore.matches(s,filters) &&
+    `${s.code} ${s.name} ${s.group||''}`
+      .toLowerCase().includes(query)
+  );
+
+  rows.sort((a,b)=>{
+    const x=a[sortKey],y=b[sortKey];
+    if(x==null)return y==null?0:1;
+    if(y==null)return -1;
+    return (
+      typeof x==='number'
+        ? x-y
+        : String(x).localeCompare(String(y),'zh-TW')
+    )*(descending?-1:1);
+  });
+
+  $('rows').replaceChildren();
+
+  for(const s of rows){
+    const tr=el('tr');
+    const td=el('td',s.code);
+    td.append(el('small',s.name));
+    tr.append(td,el('td',s.group||'未分類'));
+
+    for(const k of [
+      'close','ma5','ma10','ma20','foreign','trust'
+    ]){
+      const value=s[k];
+      const isPercent=['foreign','trust'].includes(k);
+      const text=value==null
+        ? '資料不足'
+        : value.toLocaleString('zh-TW',{
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+          })+(isPercent?'%':'');
+      const cls=isPercent&&value!=null
+        ? (value>=0?'up':'down')
+        : '';
+      tr.append(el('td',text,cls));
+    }
+
+    tr.append(el('td',s.date));
+    $('rows').append(tr);
+  }
+
+  if(!rows.length){
+    const tr=el('tr');
+    const td=el('td',
+      all.length
+        ? '沒有符合條件的股票。'
+        : '尚無行情資料。請匯入資料或查看示範。',
+      'empty'
+    );
+    td.colSpan=9;
+    tr.append(td);
+    $('rows').append(tr);
+  }
+
+  $('count').textContent=
+    `符合 ${rows.length} 檔／共 ${all.length} 檔`+
+    (latest?' · '+latest:'')+
+    (all.some(s=>s.date!==latest)
+      ? '（已排除日期較舊的股票）'
+      : '');
+
+  $('groups').replaceChildren();
+
+  const groups=data.groups.map(g=>({
+    ...g,
+    articles:[
+      ...new Map(g.articles.map(a=>[a.url,a])).values()
+    ]
+  })).filter(g=>g.articles.length)
+    .sort((a,b)=>b.articles.length-a.articles.length);
+
+  for(const g of groups){
+    const card=el('article',null,'card');
+    card.append(
+      el('h3',g.name),
+      el('p',`${g.articles.length} 篇參考文章`,'note')
+    );
+    for(const code of g.codes){
+      card.append(el('span',code,'pill'));
+    }
+    for(const a of g.articles){
+      const p=el('p');
+      p.append(
+        link(a.title,a.url),
+        el('small',
+          ` ${a.source||''} ${a.publishedAt||'日期未提供'}`,
+          'note'
+        )
+      );
+      card.append(p);
+    }
+    $('groups').append(card);
+  }
+
+  if(!groups.length){
+    $('groups').append(el('p',
+      '尚無已核對的參考文章，暫不排列熱門族群。',
+      'empty'
+    ));
+  }
+
+  $('mode').textContent=data.mode==='demo'
+    ? '示範模式 · 以下不是實際行情'
+    : manual
+      ? '匯入資料 · 僅本分頁'
+      : '實際資料模式';
+
+  $('status').textContent=
+    `${data.notice||''} `+
+    (data.updatedAt
+      ? '資料更新：'+data.updatedAt
+      : '尚無更新時間');
+
+  $('checked').textContent=
+    ` · 本頁載入時間 ${new Date().toLocaleString('zh-TW')}`;
+}
+
+async function load(){
+  if(location.protocol==='file:'){
+    data=StockCore.validate(JSON.parse(
+      $('initialData').textContent
+    ));
+    manual=false;
+    render();
+    return;
+  }
+
+  if(loading)return;
+  loading=true;
+  $('refresh').disabled=true;
+
+  try{
+    const r=await fetch(
+      `data/stocks.json?t=${Date.now()}`,
+      {cache:'no-store'}
+    );
+    if(!r.ok)throw Error(`HTTP ${r.status}`);
+    data=StockCore.validate(await r.json());
+    manual=false;
+    render();
+  }catch(e){
+    if(!data.stocks.length&&!manual){
+      data=StockCore.validate(JSON.parse(
+        $('initialData').textContent
+      ));
+      render();
+    }
+    $('status').textContent=
+      `未能載入 data/stocks.json：${e.message}。`+
+      '可匯入 JSON 或查看示範；已有資料會保留。';
+  }finally{
+    loading=false;
+    $('refresh').disabled=false;
+  }
+}
+
+function demo(){
+  const stocks=[
+    ['2330','範例半導體 A','半導體',100],
+    ['2317','範例電子 B','電子',70],
+    ['2603','範例航運 C','航運',45]
+  ].map(([code,name,group,base],idx)=>{
+    const history=[];
+    for(let i=0;i<30;i++){
+      const date=new Date(Date.UTC(2026,0,1+i));
+      if([0,6].includes(date.getUTCDay()))continue;
+      history.push({
+        date:date.toISOString().slice(0,10),
+        close:base+i*(idx===1?-.3:.5),
+        foreignBuy:10000+(i>=23?6000:0),
+        trustBuy:5000+(i>=23?1000:0)
+      });
+    }
+    return {code,name,group,history};
+  });
+
+  return {
+    mode:'demo',
+    updatedAt:null,
+    notice:'示範數據僅用來操作介面，並非真實價格或交易日。',
+    stocks,
+    groups:[]
+  };
+}
+
+$('demo').onclick=()=>{
+  data=demo();
+  manual=true;
+  render();
+};
+
+$('refresh').onclick=load;
+
+$('reset').onclick=()=>{
+  for(const k of [
+    'close10','close20','ma10','ma20','foreign','trust'
+  ])$(k).checked=false;
+  $('search').value='';
+  render();
+};
+
+for(const id of [
+  'close10','close20','ma10','ma20','foreign','trust',
+  'foreignPct','trustPct','match','search'
+]){
+  $(id).addEventListener(
+    id==='search'?'input':'change',
+    render
+  );
+}
+
+for(const b of document.querySelectorAll('[data-sort]')){
+  b.onclick=()=>{
+    descending=sortKey===b.dataset.sort
+      ? !descending
+      : false;
+    sortKey=b.dataset.sort;
+    render();
+  };
+}
+
+$('import').onchange=async e=>{
+  const file=e.target.files[0];
+  if(!file)return;
+  try{
+    if(file.size>30*1024*1024){
+      throw Error('檔案上限 30 MB');
+    }
+    const parsed=StockCore.validate(
+      JSON.parse(await file.text())
+    );
+    data=parsed;
+    manual=true;
+    render();
+  }catch(err){
+    $('status').textContent=`匯入失敗：${err.message}`;
+  }finally{
+    e.target.value='';
+  }
+};
+
+$('export').onclick=()=>{
+  const sample=demo();
+  sample.groups=[{
+    name:'範例族群（請替換）',
+    codes:['2330'],
+    articles:[{
+      title:'請填入已核對文章標題',
+      url:'https://www.twse.com.tw/',
+      source:'範例來源',
+      publishedAt:'2026-01-01'
+    }]
+  }];
+
+  const url=URL.createObjectURL(new Blob(
+    [JSON.stringify(sample,null,2)],
+    {type:'application/json'}
+  ));
+  const a=el('a');
+  a.href=url;
+  a.download='stocks-template.json';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+
+load();
+setInterval(()=>{
+  if(!manual&&!document.hidden)load();
+},300000);
+</script>
+</body>
+</html>
