@@ -30,7 +30,7 @@
 4. 核對修改內容後，點 **Merge pull request → Confirm merge**。這一步才把第二版切換成公開主站。暫時不要刪除第二版分支。
 5. 到 **Actions** 查看 **Publish website** 最新執行綠勾。若沒有新執行，選 Publish website → Run workflow → 分支選 `main`。
 6. 網頁部署成功後，開啟原網址 `https://meng049-cmd.github.io/TWStockSearch/`，強制重新整理，應看到 `V2`、熱度分數與新篩選門檻。
-7. 到 **Actions → Update official stock data → Run workflow**，分支選 `main`，驗證第二版同步成功；後續每小時自動更新族群，交易日 18:30 更新行情。請以工作流程紀錄及資料日期核對，排程可能延遲。
+7. 到 **Actions → Update official stock data → Run workflow**，分支選 `main`，驗證第二版同步成功；後續每小時同步重大訊息並重算族群，公司基本資料每 4 小時更新，交易日 18:30 更新行情。請以工作流程紀錄及資料日期核對，排程可能延遲。
 
 第二版分支上的手動工作流程只更新分支資料，不部署覆蓋主站；正式部署只允許 main。
 

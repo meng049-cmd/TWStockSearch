@@ -1,4 +1,4 @@
-"""Hourly official industry and disclosure sync, without secrets or external packages."""
+"""Separate four-hour company and hourly disclosure sync, without secrets or external packages."""
 import datetime as dt
 import json
 import os
@@ -25,10 +25,37 @@ def roc_date(value):
         raise ValueError('Unrecognized official ROC date')
     return dt.date(int(value[:3])+1911,int(value[3:5]),int(value[5:7])).isoformat()
 
-def main():
+def company_snapshot(path, now, force=False):
+    """Reuse the persisted snapshot within each four-hour UTC/Taipei window."""
+    cached = None
+    if path.exists():
+        try:
+            cached = json.loads(path.read_text())
+            fetched = dt.datetime.fromisoformat(cached['checkedAt'])
+            if (not force and fetched.tzinfo is not None and fetched <= now
+                    and int(fetched.timestamp()) // 14400 == int(now.timestamp()) // 14400
+                    and cached.get('url') == COMPANIES and cached.get('companies')):
+                return cached['companies'], cached['checkedAt']
+        except (ValueError, KeyError, TypeError):
+            pass
     companies = get(COMPANIES)
-    notices = get(ANNOUNCEMENTS)
+    fields = ['公司代號', '產業別', '已發行普通股數或TDR原股發行股數', '出表日期']
+    if not isinstance(companies, list) or not companies or any(
+            not isinstance(row, dict) or any(field not in row for field in fields) for row in companies):
+        raise RuntimeError('Official company schema changed; previous snapshot retained')
+    companies = [{field: row[field] for field in fields} for row in companies]
+    snapshot = {'url': COMPANIES, 'checkedAt': now.isoformat(), 'companies': companies}
+    temp = path.with_suffix('.tmp')
+    temp.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(',', ':')))
+    os.replace(temp, path)
+    return companies, snapshot['checkedAt']
+
+
+def main(force_companies=False):
     now = dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+    companies, company_checked = company_snapshot(ROOT/'data/company-profile.json', now,
+        force=force_companies or os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch')
+    notices = get(ANNOUNCEMENTS)
     checked = now.isoformat()
     path = ROOT/'data/themes.json'
     previous = json.loads(path.read_text()) if path.exists() else {}
@@ -61,8 +88,8 @@ def main():
         identity = code+'|'+published+'|'+title
         articles[identity]={'id':identity,'code':code,'codes':[code],'title':title,'source':'公開資訊觀測站重大訊息',
             'publishedAt':published,'url':ANNOUNCEMENTS,'body':row.get('說明',''),'kind':'official','checkedAt':checked}
-    sources=[{'name':'證交所上市公司資料','status':'ok','checkedAt':checked,'url':COMPANIES},
-             {'name':'公開資訊觀測站重大訊息','status':'ok','checkedAt':checked,'url':ANNOUNCEMENTS}]
+    sources=[{'name':'證交所上市公司資料','status':'ok','checkedAt':company_checked,'refreshEveryHours':4,'url':COMPANIES},
+             {'name':'公開資訊觀測站重大訊息','status':'ok','checkedAt':checked,'refreshEveryHours':1,'url':ANNOUNCEMENTS}]
     values=list(articles.values())
     for group in groups.values():
         codes=set(group['codes'])
@@ -83,4 +110,7 @@ def main():
     print(f'Synced {len(groups)} industry groups and {len(values)} reference items; quote date {latest}')
 
 if __name__=='__main__':
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--refresh-companies', action='store_true', help='Force refresh the four-hour company snapshot')
+    main(parser.parse_args().refresh_companies)
