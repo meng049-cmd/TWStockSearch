@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r assets data /tmp/site/
+          cp -r data /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: /tmp/site
