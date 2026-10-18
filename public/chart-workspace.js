@@ -1,0 +1,46 @@
+'use strict';
+(function(){
+ const lib=globalThis.LightweightCharts,M=globalThis.MarketChartModel;
+ if(!lib||!M){const status=$('chartEngineStatus');if(status)status.textContent='簡易圖表模式';return;}
+ const charts=new Map(),palette=['#138577','#c17b47','#5578ca','#a572aa','#789b44','#508fa8'];
+ let batching=false,syncing=false,crossSync=false,viewport=null,renderError=false;
+ const old={render,draw,indicator:drawIndicator,compare:renderComparison,apply:applyRange,axis:axisWindow,controls:updateTimeControls};
+ function dispose(){for(const x of charts.values())x.chart.remove();charts.clear();}
+ function currentWindow(){return viewport||old.axis();}
+ axisWindow=currentWindow;
+ function setWindow(value){const next=M.clamp(value,appliedStart,appliedEnd);if(viewport&&viewport.start===next.start&&viewport.end===next.end){controls();comparisonStatus();return;}viewport=next;syncing=true;try{for(const x of charts.values())x.chart.timeScale().setVisibleRange({from:viewport.start,to:viewport.end});}finally{syncing=false;}controls();comparisonStatus();}
+ function controls(){if(!data.length){old.controls();return;}const w=currentWindow(),total=M.calendar(appliedStart,appliedEnd).length,span=Math.round((Date.parse(w.end)-Date.parse(w.start))/M.DAY)+1;const pan=$('timePan');pan.max=String(Math.max(0,total-span));pan.value=String(Math.max(0,Math.round((Date.parse(w.start)-Date.parse(appliedStart))/M.DAY)));pan.disabled=span>=total;$('timeZoomIn').disabled=span<=2;$('timeZoomOut').disabled=span>=total;$('timeReset').disabled=false;const count=data.filter(r=>r.date>=w.start&&r.date<=w.end).length;$('timeWindow').textContent=`${w.start} ～ ${w.end} · ${count} 筆已存行情 · 拖曳平移／滾輪縮放`;$('chartFoot').textContent=`已套用 ${appliedStart} ～ ${appliedEnd}；觀察日 ${data[selected]?.date||'—'}`;}
+ updateTimeControls=controls;
+ function chart(id,height){const el=$(id);el.replaceChildren();const host=document.createElement('div');host.className='financial-chart-host';host.style.height=height+'px';el.append(host);
+  const c=lib.createChart(host,{autoSize:true,width:Math.max(200,el.clientWidth||800),height,layout:{background:{type:'solid',color:'#ffffff'},textColor:'#536579',fontSize:13,attributionLogo:true},grid:{vertLines:{color:'#f0f3f7'},horzLines:{color:'#eef2f6'}},rightPriceScale:{minimumWidth:82,borderColor:'#e2e8f0'},timeScale:{borderColor:'#e2e8f0',fixLeftEdge:true,fixRightEdge:true,timeVisible:false,secondsVisible:false},localization:{locale:'zh-TW',dateFormat:'yyyy-MM-dd'},crosshair:{mode:lib.CrosshairMode.Normal},handleScroll:{mouseWheel:false,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:{time:true,price:true}}});
+  const entry={chart:c,host,primary:null,lookup:new Map()};charts.set(id,entry);
+  c.timeScale().subscribeVisibleTimeRangeChange(r=>{if(syncing||!r)return;setWindow({start:M.iso(r.from),end:M.iso(r.to)});});
+  c.subscribeClick(p=>{const date=M.iso(p.time),index=data.findIndex(r=>r.date===date);if(index>=0)select(index);});
+  c.subscribeCrosshairMove(p=>{if(crossSync)return;crossSync=true;try{const date=M.iso(p.time);for(const other of charts.values()){if(other===entry)continue;const v=other.lookup.get(date);if(date&&other.primary&&M.valid(v))other.chart.setCrosshairPosition(v,date,other.primary);else other.chart.clearCrosshairPosition();}const r=data.find(r=>r.date===date);$('chartHover').textContent=r?`${r.date}　開 ${fmt(r.open,2)}　高 ${fmt(r.high,2)}　低 ${fmt(r.low,2)}　收 ${fmt(r.close,2)}　量 ${fmt(r.volume)}`:'移動游標比較數值，點選日期更新盤後結論';}finally{crossSync=false;}});
+  return entry;
+ }
+ function emptyMessage(entry,text){const message=document.createElement('div');message.className='chart-data-empty';message.textContent=text;entry.host.append(message);}
+ function add(entry,type,options,points){const series=entry.chart.addSeries(type,options);series.setData(points);if(!entry.primary){entry.primary=series;entry.lookup=new Map(points.filter(p=>M.valid(p.value??p.close)).map(p=>[p.time,p.value??p.close]));}return series;}
+ function comparisonStatus(){if(!charts.has('compareChart'))return;const items=instruments.filter(i=>compareIds.has(i.id)),w=currentWindow(),result=M.comparison(items,w.start,w.end,$('compareMetric').value);const last=result.common.at(-1);$('commonSignals').textContent=`同步時間軸 ${w.start} ～ ${w.end}；共同行情 ${result.common.length} 個交易日。${last?'最後共同日 '+last+'。':'此視窗沒有共同行情。'}價格指數固定以已套用區間的首個共同交易日為100；縮放不重設基期。`;
+ }
+ function upgrade(){if(!data.length)return;try{renderError=false;const dates=M.calendar(appliedStart,appliedEnd);syncing=true;
+   const price=chart('chart',350);add(price,lib.CandlestickSeries,{upColor:'#db6372',downColor:'#168e75',borderVisible:false,wickUpColor:'#db6372',wickDownColor:'#168e75'},M.points(data,dates,null,'candle'));
+   for(const [key,color,on] of [['ma5','#cc941f',$('ma5').checked],['ma20','#5578ca',$('ma20').checked]])if(on)add(price,lib.LineSeries,{color,lineWidth:2,lastValueVisible:false,priceLineVisible:false},M.points(data,dates,key));
+   const volume=chart('subchart',150);add(volume,lib.HistogramSeries,{color:'#138577',priceFormat:{type:'volume'},lastValueVisible:false,priceLineVisible:false},M.points(data,dates,sub,sub==='volume'?'volume':'macd'));
+   if(!data.some(r=>M.valid(r[sub])))emptyMessage(volume,'此區間尚未取得'+(sub==='foreign'?'外資':sub==='margin'?'融資':'成交量')+'資料；不以零代替。');
+   const indicator=chart('indicatorChart',230),cfg=M.configs[$('indicatorChartType').value];if(cfg){for(const [key,title,color]of cfg.lines){const line=add(indicator,lib.LineSeries,{title,color,lineWidth:2,priceLineVisible:false},M.points(data,dates,key));if(indicator.primary===line)for(const value of cfg.limits||[])line.createPriceLine({price:value,color:'#a3afbd',lineWidth:1,lineStyle:2,axisLabelVisible:false,title:''});}if(cfg.bars)add(indicator,lib.HistogramSeries,{priceLineVisible:false,lastValueVisible:false},M.points(data,dates,cfg.bars,'macd'));}
+   if(cfg&&!data.some(r=>cfg.lines.some(([key])=>M.valid(r[key]))))emptyMessage(indicator,'指標資料不足，請補齊歷史行情；不補造數值。');
+   const items=instruments.filter(i=>compareIds.has(i.id));if(items.length>=2){const result=M.comparison(items,appliedStart,appliedEnd,$('compareMetric').value);if(result.common.length>=2){const comparison=chart('compareChart',300);const legend=document.createElement('div');legend.className='compare-legend';legend.innerHTML=items.map((i,k)=>`<span style="color:${palette[k]}">● ${esc(i.name)} ${esc(i.contract)} ${esc(i.session)}</span>`).join('');$('compareChart').prepend(legend);result.series.forEach((s,k)=>add(comparison,lib.LineSeries,{title:s.item.name,color:palette[k],lineWidth:2,priceLineVisible:false},M.points(s.rows,dates,'value')));if(!result.series.some(s=>s.rows.some(r=>M.valid(r.value))))emptyMessage(comparison,'此指標沒有可比較數值；期貨不適用現股融資，缺資料不填零。');}}
+   const w=currentWindow();for(const e of charts.values())e.chart.timeScale().setVisibleRange({from:w.start,to:w.end});$('chartEngineStatus').textContent='TradingView Lightweight Charts 5.2.1';
+  }catch(e){renderError=true;dispose();batching=true;try{old.render();}finally{batching=false;}$('chartEngineStatus').textContent='已退回簡易圖表：'+e.message;console.error('Financial chart initialization failed',e);}finally{syncing=false;}controls();comparisonStatus();}
+ function batch(fn,args){if(batching)return fn(...args);batching=true;dispose();try{return fn(...args);}finally{batching=false;upgrade();}}
+ render=(...args)=>batch(old.render,args);draw=(...args)=>batch(old.draw,args);drawIndicator=(...args)=>batch(old.indicator,args);renderComparison=(...args)=>batch(old.compare,args);
+ applyRange=(...args)=>{viewport=null;return old.apply(...args);};
+ zoomTime=factor=>{if(data.length)setWindow(M.zoom(currentWindow(),factor,appliedStart,appliedEnd));};
+ $('timeZoomIn').onclick=()=>zoomTime(.7);$('timeZoomOut').onclick=()=>zoomTime(1.5);$('timeReset').onclick=()=>{viewport=null;chartStart=0;chartSize=null;$('range').value='all';setWindow({start:appliedStart,end:appliedEnd});};
+ $('timePan').oninput=e=>{const w=currentWindow(),span=Date.parse(w.end)-Date.parse(w.start),start=Date.parse(appliedStart)+Number(e.target.value)*M.DAY;setWindow({start:new Date(start).toISOString().slice(0,10),end:new Date(start+span).toISOString().slice(0,10)});};
+ const rangeChange=$('range').onchange;$('range').onchange=(...args)=>{viewport=null;return rangeChange(...args);};
+ const previousSelect=select;select=index=>{if(index<0||index>=data.length)return;const date=data[index].date,w=currentWindow();if(date<w.start||date>w.end){const span=Date.parse(w.end)-Date.parse(w.start),left=Math.max(Date.parse(appliedStart),Math.min(Date.parse(date)-span/2,Date.parse(appliedEnd)-span));viewport={start:new Date(left).toISOString().slice(0,10),end:new Date(left+span).toISOString().slice(0,10)};}previousSelect(index);};
+ globalThis.TurningChartWorkspace={getWindow:currentWindow,setWindow,chartCount:()=>charts.size,failed:()=>renderError};
+ if(data.length)render();
+})();
