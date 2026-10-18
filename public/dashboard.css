@@ -12,3 +12,5 @@ main{margin-left:256px;padding:0 clamp(22px,2.4vw,52px) 28px;max-width:none}head
 .date-bar{margin-top:12px;padding:14px 20px}.date-bar .query-row{margin:0;align-items:center}.date-bar label{font-size:13px}.date-bar #appliedRange{font-size:12px}.date-bar .download-link{margin-left:auto;font-size:12px}@media(max-width:620px){.date-bar{padding:14px}.date-bar .query-row{gap:10px}.date-bar input[type=date]{max-width:145px}.date-bar .download-link{margin:0;width:100%}}
 
 .chart-data-empty{position:absolute;inset:24px 92px 42px 16px;z-index:2;display:grid;place-items:center;text-align:center;color:#75869b;font-size:14px;line-height:1.9;pointer-events:none;background:#ffffffb8;border-radius:8px}
+
+.sync-status{padding:14px 18px;margin-top:12px;border-left:3px solid var(--teal)}#syncProgress{font-size:14px;line-height:1.9;color:#476278}#syncProgress p{font-size:13px}#syncProgress details{margin:10px 0}#syncCancel{margin-top:10px;font-size:13px}.sync-status[hidden]{display:none}@media(max-width:620px){.sync-status{padding:12px 14px}#syncProgress{font-size:13px}}

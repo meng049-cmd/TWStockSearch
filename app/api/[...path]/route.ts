@@ -1,5 +1,5 @@
 import {searchCatalog} from '@/lib/search';
-import {backfillReference,db,state,save,validateInstrument,catalog,refresh,fetchInstrument,fetchRows,validBar} from '@/lib/market';
+import {syncBatch,backfillReference,db,state,save,validateInstrument,catalog,refresh,fetchInstrument,fetchRows,validBar} from '@/lib/market';
 import seeds from '@/lib/seed.json';
 export const dynamic='force-dynamic';
 const json=(x:any,status=200)=>Response.json(x,{status,headers:{'Cache-Control':'no-store'}});
@@ -13,6 +13,7 @@ export async function GET(req:Request){try{let u=new URL(req.url),p=u.pathname;
  return json({error:'找不到此操作'},404);
  }catch(e:any){return json({error:e.message},502)}}
 export async function POST(req:Request){try{const u=new URL(req.url);const origin=req.headers.get('origin');if(origin&&origin!==u.origin)return json({error:'不允許跨來源寫入'},403);if(Number(req.headers.get('content-length'))>2500000)return json({error:'檔案太大'},413);const p=u.pathname;const text=await req.text();if(text.length>2500000)return json({error:'檔案太大'},413);const body=text?JSON.parse(text):{};
+ if(p==='/api/sync')return json(await syncBatch(body));
  if(p==='/api/history')return json(await backfillReference(body));
  if(p==='/api/bootstrap'){let result=[];for(const i of seeds)result.push(await save(i,i.rows,'TWSE seed',null,'ignore'));return json({result})}
  if(p==='/api/preview'){const i=validateInstrument(body.instrument);if(!Array.isArray(body.rows)||body.rows.length>5000||body.rows.some((r:any)=>!validBar(r)))throw Error('資料欄位無效');const old=await db().prepare('SELECT date FROM bars WHERE instrument=?').bind(i.id).all<any>();const dates=new Set(old.results.map((r:any)=>r.date));return json({added:body.rows.filter((r:any)=>!dates.has(r.date)).length,overlap:body.rows.filter((r:any)=>dates.has(r.date)).length})}

@@ -13,7 +13,7 @@
 >
 > 價量、成交量、動能與跨股票／期貨比較必須使用相同的已套用日期起訖、縮放與平移視窗。缺歷史資料應說明與補入有效官方資料，不虛構 K 棒。不要只改日期標籤。
 >
-> 桌面保留圖表與側欄，較窄視窗轉單欄，手機提供足夠點擊區與可捲動資料表。修改後執行 scripts/test-client.cjs、test-market.cjs、test-search.cjs、test-indicators.cjs、test-daily-summary.cjs、test-chart-model.cjs、test-chart-workspace.cjs 與 npm run build。回報實際驗證範圍。
+> 桌面保留圖表與側欄，較窄視窗轉單欄，手機提供足夠點擊區與可捲動資料表。修改後執行 scripts/test-client.cjs、test-market.cjs、test-search.cjs、test-indicators.cjs、test-daily-summary.cjs、test-chart-model.cjs、test-chart-workspace.cjs、test-sync-plan.cjs、test-sync.cjs、test-import-sync.cjs 與 npm run build。回報實際驗證範圍。
 
 ## 資料與發布
 

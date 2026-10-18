@@ -21,7 +21,7 @@
  }
  function emptyMessage(entry,text){const message=document.createElement('div');message.className='chart-data-empty';message.textContent=text;entry.host.append(message);}
  function add(entry,type,options,points){const series=entry.chart.addSeries(type,options);series.setData(points);if(!entry.primary){entry.primary=series;entry.lookup=new Map(points.filter(p=>M.valid(p.value??p.close)).map(p=>[p.time,p.value??p.close]));}return series;}
- function comparisonStatus(){if(!charts.has('compareChart'))return;const items=instruments.filter(i=>compareIds.has(i.id)),w=currentWindow(),result=M.comparison(items,w.start,w.end,$('compareMetric').value);const last=result.common.at(-1);$('commonSignals').textContent=`同步時間軸 ${w.start} ～ ${w.end}；共同行情 ${result.common.length} 個交易日。${last?'最後共同日 '+last+'。':'此視窗沒有共同行情。'}價格指數固定以已套用區間的首個共同交易日為100；縮放不重設基期。`;
+ function comparisonStatus(){if(!charts.has('compareChart'))return;const items=instruments.filter(i=>compareIds.has(i.id)),w=currentWindow(),result=M.comparison(items,w.start,w.end,$('compareMetric').value);const last=result.common.at(-1);$('commonSignals').textContent=`同步時間軸 ${w.start} ～ ${w.end}；共同行情 ${result.common.length} 個交易日。${last?'最後共同日 '+last+'。':'此視窗沒有共同行情。'}價格指數固定以已套用區間的首個共同交易日為100；縮放不重設基期。 ${result.series.map(s=>{const missing=s.rows.filter(r=>!M.valid(r.value)).length;return s.item.name+'：'+(s.item.kind==='future'&&$('compareMetric').value==='margin'?'現股融資不適用':s.item.kind==='future'&&$('compareMetric').value==='foreign'?'期貨法人尚未接入':missing?'此視窗缺 '+missing+' 筆指標':'此視窗指標可用');}).join('；')}`;
  }
  function upgrade(){if(!data.length)return;try{renderError=false;const dates=M.calendar(appliedStart,appliedEnd);syncing=true;
    const price=chart('chart',350);add(price,lib.CandlestickSeries,{upColor:'#db6372',downColor:'#168e75',borderVisible:false,wickUpColor:'#db6372',wickDownColor:'#168e75'},M.points(data,dates,null,'candle'));
@@ -41,6 +41,7 @@
  $('timePan').oninput=e=>{const w=currentWindow(),span=Date.parse(w.end)-Date.parse(w.start),start=Date.parse(appliedStart)+Number(e.target.value)*M.DAY;setWindow({start:new Date(start).toISOString().slice(0,10),end:new Date(start+span).toISOString().slice(0,10)});};
  const rangeChange=$('range').onchange;$('range').onchange=(...args)=>{viewport=null;return rangeChange(...args);};
  const previousSelect=select;select=index=>{if(index<0||index>=data.length)return;const date=data[index].date,w=currentWindow();if(date<w.start||date>w.end){const span=Date.parse(w.end)-Date.parse(w.start),left=Math.max(Date.parse(appliedStart),Math.min(Date.parse(date)-span/2,Date.parse(appliedEnd)-span));viewport={start:new Date(left).toISOString().slice(0,10),end:new Date(left+span).toISOString().slice(0,10)};}previousSelect(index);};
+ $('compareMetric').onchange=()=>renderComparison();$('indicatorChartType').onchange=()=>drawIndicator();$('ma5').onchange=$('ma20').onchange=()=>draw();
  globalThis.TurningChartWorkspace={getWindow:currentWindow,setWindow,chartCount:()=>charts.size,failed:()=>renderError};
  if(data.length)render();
 })();
