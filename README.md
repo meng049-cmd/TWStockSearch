@@ -1,46 +1,126 @@
-# 第二版：盤後熱門股
+# vinext-starter
 
-第二版已合併至 `main`；比較與發布步驟見 [docs/version-2.md](docs/version-2.md)。本次擴充五年歷史仍屬第二版，第三版預留盤中資金速度。
+A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
 
-# TWStockSearch — 台股盤後資訊頁
+## Prerequisites
 
-官方來源版本：熱門族群 → 選取族群 → 條件篩選 → 股票報價與日 K 線。Facebook 與 PTT 已移除。
+- Node.js `>=22.13.0`
+- Portable: Windows, macOS, or Linux; no Bash required
+- Managed Linux: managed Linux runtime with Bash, `flock`, `curl`, `sha256sum`, and GNU `timeout`
+- Git is required only for publishing
 
-## 发布 GitHub Pages
+## Sites Lifecycle
 
-將所有檔案合併至 `main`，到 **Settings → Pages → Source** 選 **GitHub Actions**。到 **Actions → Publish website** 手動執行發布；到 **Update official stock data** 可手動更新官方資料。工作流程也會每小時執行；首次須在 GitHub 啟用 Actions 並允許工作流程寫入儲存庫。
+The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
 
-`index.html` 是單檔介面，但仍依賴 `data/stocks.json`、`data/themes-v2.json`、`data/history/股票代號.json`、更新腳本及 workflow；單獨上傳 HTML 不會取得即時資料。網頁有「複製網頁程式碼」與「下載本網頁」按鈕，這兩個功能只匯出介面，不包含資料與排程。
+Run `node <plugin-root>/scripts/configure-execution-profile.mjs` only when the profile is unknown for the current checkout and environment. Profile changes do not alter tracked source or require reinstalling otherwise-valid dependencies; restart an existing preview to use the new selection. Do not commit or upload `.sites-runtime/`.
 
-## 資料與更新
+This starter does not use `wrangler.jsonc`.
 
-- 每 4 小時取得證交所上市公司基本資料（產業分類與發行股數），全天每小時取得上市公司重大訊息；族群採官方產業分類，按族群成交金額與前 5 檔成員熱度綜合排序，不是社群熱度排名。
-- 族群下列出官方分類、行情来源与实际取得的公司公告；点选公告可查看说明及其官方资料集链接。官方资料集不是每篇公告的专属链接。
-- 官方重大訊息資料集不涵蓋全部新聞或歷史公告；從每次取得的公告累積近 30 日資料，不能保證每個族群都有新公告。
-- 股票條件僅作用於選取族群的成員；未選族群時不列股票。週買量增加以前 5 個交易日為基期，對比最近 5 個交易日買進股數合計，非買賣超。
-- 交易日台灣時間 18:30 更新證交所上市盘后行情。首次回補最後交易日起至少五年的官方日資料；之後更新近 8 個日曆日。回補可從忽略的 `.cache/twse` 暫存接續，來源失敗不發布半套行情。排程可能延遲，並非盤中即時報價。
-- 顯示盤後收盤、漲跌幅、成交量及開高低；僅用實際取得的開高低收畫 K 棒，不補造歷史數據，不還原權息。可以連到官方行情入口核對。
-- 目前不含上櫃股票。10 個官方入口中，實際串接的只有證交所行情／法人／產業分類與公開資訊觀測站重大訊息；其他入口僅供參考。
-- 公司基本資料快照保存於 `data/company-profile.json`，按台灣時間 00／04／08／12／16／20 點所在時段更新（排程於每小時 30 分執行）；其餘小時讀取快照，不重查公司接口。手動工作流程或 `python3 scripts/sync_sources.py --refresh-companies` 可立即更新。
-- 來源區預設只顯示實際串接的公司基本資料、重大訊息、行情與法人；其餘 7 個官方入口收合為人工參考連結，未自動抓取。
-- 每筆資料顯示其來源與更新时间；來源或更新失败保留前次有效檔，GitHub Actions 中可查看错误原因。
+`install:ci` runs `npm ci` once against the shared lockfile, disables parent-workspace discovery, and includes required dev/optional dependencies despite production/omit settings. Sharp defaults to prebuilt binaries unless explicitly configured otherwise. Do not overlap installers.
 
-## 已驗證
+- **Portable:** Preserve host HOME, npm cache, registry, proxy, temporary paths, retry/concurrency settings, and lifecycle-script policy. Use `--prefer-offline --no-audit --no-fund`.
+- **Managed Linux:** Use the existing project-local HOME/cache/tmp setup and Linux install lock, tarball preflight, and timeout. Restore the image-seeded npm cache only when its lockfile hash matches; retain network fallback. Builds keep their existing timeout. These helpers are not invoked by the portable profile.
 
-已回補 1,224 個交易日，台積電日資料涵蓋 2021-09-24 至 2026-10-08；逐檔核對 1,124 份歷史檔。五年日資料按股票分檔儲存在 `data/history/`；首頁行情僅保留最近 30 個交易日，足以計算均線、法人週增幅與第二版活躍度。點選股票才下載其完整歷史檔。日／週／月線可切換，提供五年／三年／一年／半年／三個月／全部範圍、放大縮小、滾輪縮放、歷史位置滑桿及逐根行情。週／月線由日線聚合，首尾週／月可能未完整，未還原權息。新上市或缺歷史的股票會依實際日期標示未滿五年。
+`scripts/sites-env.mjs` preserves the caller's HOME, npm cache, proxy, XDG, and temporary-directory configuration while defaulting Wrangler and Miniflare state to the checkout. If npm reports an unwritable cache, select a writable path with `npm_config_cache` for that install. The `dev` and `start` scripts also keep Wrangler logs inside the checkout. Generated `.sites-runtime/` and `.wrangler/` directories are disposable and ignored by Git.
 
-分鐘／小時圖依使用者選擇接入 TradingView 外部圖表（1／5／15／30 分鐘、1／2／4 小時）。其行情來源與延遲、股票／週期／歷史範圍可用性由供應商及帳號／訂閱決定。開發環境目前仍阻擋 TradingView 網域，因此僅驗證載入設定、切換與失敗提示，不能宣稱盤中圖內容已成功驗證。外部圖可使用自己的工具列與手勢縮放；本頁的官方 K 線縮放按鈕不操作跨來源圖表。
+On portable, `npm run dev` uses `vinext dev` with HMR, starting at port 5173. Vinext records the running server in ignored `.vinext/` state, rejects an ordinary duplicate launch, and recovers stale state after a stopped process; exactly simultaneous starts can race. Pass `--port <port>` or `--hostname <host>` after `npm run dev --` when needed; keep portable previews on loopback.
 
-本頁熱門族群採官方產業分類，以最後交易日成交金額與成員活躍度綜合排序，不代表社群聲量或推薦買進。
+For browser QA on managed Linux, use `sites-preview start`. The project's dev script runs Vite and accepts the supervisor's `--host 0.0.0.0 --port 4173 --strictPort` arguments. The internal browser uses `http://terminal.local:4173/`; it is not a user-facing URL. The supervisor owns the preview lifecycle. The ignored local profile survives the supervisor's cleared process environment.
 
-本機預覽：`python3 -m http.server 8000`。驗證：`python3 -m unittest discover -s scripts -p 'test_*.py'`。實際更新：`python3 scripts/update_data.py`、`python3 scripts/sync_sources.py`。只使用 Python 標準函式庫，無需憑證或額外套件。
+The portable profile simulates ChatGPT sign-in only for loopback development requests. Visit `/signin-with-chatgpt?return_to=/` to sign in as `local_seedy` (`seedy@sites.test`, display name `Seedy`) and `/signout-with-chatgpt?return_to=/` to sign out. The development cookie preserves that identity across server restarts. Mock auth is disabled in the managed-linux profile and is not included in production builds; hosted authentication remains dispatch-owned.
 
-第二版新增資料檔 `data/themes-v2.json`，原 `data/themes.json` 仍保留相容格式。詳細公式、權重、指標資料不足處理及排名範圍見版本文件與網頁計算依據。
+The Worker uses `vinext/server/fetch-handler`, including Vinext's config-aware image handling. After building, `npm start` runs that Worker locally through Wrangler on `127.0.0.1`, sharing `.wrangler/state` with dev preview and local D1 migrations; it does not deploy the site or simulate sign-in. Use the URL printed by the server. Pass `npm start -- --port <port>` to select a different built-preview port.
 
-## 股票期貨篩選（仍為第二版）
+Local previews use Miniflare's placeholder `Request.cf` metadata without a network lookup. Set `CLOUDFLARE_CF_FETCH_ENABLED=true` to opt into fetching preview metadata; this setting does not change hosted request metadata.
 
-新增不限／有／無股票期貨標的按鈕，作用於所選族群，沿用均線、法人與熱門指標門檻，清除條件會回到不限。表格顯示有／無標記；報價與 K 線仍為股票行情，不是期貨契約報價。
+Local tool usage metrics are disabled by default. Set `WRANGLER_SEND_METRICS=true` to opt in.
 
-期交所官方 `https://openapi.taifex.com.tw/v1/SSFLists` 已核對官方 Swagger 的 StockCode、Type、Contract 欄位及實際回應。2026-10-11 驗證時取得 320 筆契約資料，去除 ETF、依股票代號合併標準／小型契約後為 249 檔普通股標的（含上市、上櫃；本站股票宇宙仍為上市）。與官方網站股票期貨標的清單交叉核對通過。
+## Included Shape
 
-`data/stock-futures.json` 保存名單與實際取得時間，`scripts/sync_stock_futures.py` 每四小時更新。手動工作流程或 `python3 scripts/sync_stock_futures.py --force` 可立即更新；更新失敗保留前次有效檔，不妨礙其他來源更新。沒有有效名單時停用有／無選項，缺資料不判定為無。篩選已用真實名單測試，來源區列為實際串接項目。
+- edit site code under `app/`
+- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
+- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
+- `vite.config.ts` simulates declared bindings for local development
+- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
+- `db/schema.ts` starts intentionally empty
+- `@cloudflare/workers-types` provides Worker types; `cloudflare-env.d.ts` declares optional `DB`/`BUCKET` bindings—update these declarations if binding names change
+- `examples/d1/` contains an optional D1 example surface
+- `drizzle.config.ts` supports local migration generation when needed
+
+## Workspace Auth Headers
+
+Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+
+The user ID is stable for the same user on the same Site and different across Sites. Use it as the durable user key; use email and name for display or contact purposes.
+
+SIWC-authenticated workspace sites may also receive `oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty `name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by `oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+
+Treat the full name as optional and fall back to email when it is absent:
+
+```tsx
+import { headers } from "next/headers";
+
+export default async function Home() {
+  const requestHeaders = await headers();
+  const userId = requestHeaders.get("oai-authenticated-user-id");
+  const email = requestHeaders.get("oai-authenticated-user-email");
+  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
+  const fullName =
+    encodedFullName &&
+    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
+      "percent-encoded-utf-8"
+      ? decodeURIComponent(encodedFullName)
+      : null;
+
+  const displayName = fullName ?? email;
+  // ...
+}
+```
+
+## Optional Dispatch-Owned ChatGPT Sign-In
+
+Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs optional or required ChatGPT sign-in:
+
+- Use `getChatGPTUser()` for optional signed-in UI.
+- Use the returned `userId` as the stable user key for user-owned records; do not use email as a durable identifier.
+- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send anonymous visitors through Sign in with ChatGPT.
+- In a Server Component, start sign-in with `<a href={chatGPTSignInPath(returnTo)} target="_top">`. The auth helper module is server-only; do not import it into a Client Component.
+- Do not use `fetch`, XHR, a client-side router, or a framework link that can prefetch the sign-in route. SIWC must start as a top-level navigation.
+- Never request the AuthAPI authorization endpoint directly. The dispatch-owned `/signin-with-chatgpt` route must start the SIWC flow.
+- Use `chatGPTSignOutPath(returnTo)` for browser sign-out links or actions.
+- Pass a same-origin relative `returnTo` path for the destination after sign-in or sign-out. The helper validates and safely encodes it.
+- Mark protected pages with `export const dynamic = "force-dynamic"` because they depend on per-request identity headers.
+
+Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the OAuth cookies, and identity header injection. Do not implement app routes for those reserved paths. Routes that do not import and call the helper remain anonymous-compatible.
+
+SIWC establishes identity only; it does not prove workspace membership. Use the Sites hosting platform's access policy controls for workspace-wide restrictions, or enforce explicit server-side membership or allowlist checks.
+
+Use SIWC for account pages, user-specific dashboards, saved records, and write actions tied to the current ChatGPT user. Leave public content anonymous.
+
+## Local D1 migrations
+
+For a D1-backed local preview, generate SQL with `npm run db:generate`. Build once through the Sites skill's build entrypoint (or `npm run build` for standalone use) to generate `dist/server/wrangler.json`, rebuilding if bindings change. From the project root, apply each pending migration in order:
+
+```sh
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_example.sql
+```
+
+Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
+
+## Diagnostic Commands
+
+- `npm run install:ci`: perform the one locked dependency install
+- `npm run dev`: start the Vite/Vinext development server
+- `npm run build`: build the deployable Sites artifact
+- `npm run start`: preview the built Worker locally with D1/R2 support
+- `npm run db:generate`: generate Drizzle migrations after schema changes
+
+When using the Sites plugin, follow its skill instructions for installation, builds, and publishing. These npm commands remain available for standalone use.
+
+The portable build runs Vinext directly without a host `timeout` command. The managed-linux build uses `scripts/build-verified.sh` and its existing `SITES_BUILD_TIMEOUT` setting.
+
+## Learn More
+
+- [vinext Documentation](https://github.com/cloudflare/vinext)
+- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)

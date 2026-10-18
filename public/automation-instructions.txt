@@ -1,0 +1,10 @@
+轉折研究室｜每日盤後更新（版本2）
+本站為 owner-private，必須保持原本存取設定。讀取 Sites get_site 取得目前網址與服務存取資訊，不要把 token 寫入檔案、命令列或日誌。
+每次工作：
+1. 用該 Site 的服務存取方式，POST /api/refresh，JSON body {}。服務 token 僅送往 get_site 回傳的同一 Site origin，使用 OAI-Sites-Authorization: Bearer，透過 stdin 傳入 HTTP 工具。
+2. GET /api/state，讀回 jobs 最新紀錄及各標的最新 date、source，確認寫入完成。
+3. updater 讀取證交所 STOCK_DAY_ALL、T86、MI_MARGN 與期交所 DailyMarketReportFut。資料庫保存已選標的，日期由來源決定，絕不能將前日數據改成今日。法人或融資未公布則留白，同日既有非空資料保留。
+4. 日盤與夜盤按交易量歸屬日、契約月份、TradingSession分開。期貨現股融資不適用；期貨法人尚未接入，不填零。
+5. 遇非交易日或來源仍為前一交易日，記錄實際資料日及「尚無新資料」，不虛構今日數據。14:00不保證所有盤後籌碼已公布。
+6. 失敗時最多重試一次，讀取 jobs 確認；仍失敗則回報原因。不得改變存取權限，不需重新發布網站，不要重新初始化或重建資料庫。
+網站路由已驗證後，正常工作只更新資料，不修改程式碼。
