@@ -1,0 +1,1482 @@
+{
+  "CAF": {
+    "name": "南亞期貨",
+    "underlyingCode": "1303",
+    "companyName": "南亞塑膠工業股份有限公司"
+  },
+  "CBF": {
+    "name": "中鋼期貨",
+    "underlyingCode": "2002",
+    "companyName": "中國鋼鐵股份有限公司"
+  },
+  "CCF": {
+    "name": "聯電期貨",
+    "underlyingCode": "2303",
+    "companyName": "聯華電子股份有限公司"
+  },
+  "CDF": {
+    "name": "台積電期貨",
+    "underlyingCode": "2330",
+    "companyName": "台灣積體電路製造股份有限公司"
+  },
+  "QFF": {
+    "name": "小型台積電期貨",
+    "underlyingCode": "2330",
+    "companyName": "台灣積體電路製造股份有限公司"
+  },
+  "CEF": {
+    "name": "富邦金期貨",
+    "underlyingCode": "2881",
+    "companyName": "富邦金融控股股份有限公司"
+  },
+  "CFF": {
+    "name": "台塑期貨",
+    "underlyingCode": "1301",
+    "companyName": "台灣塑膠工業股份有限公司"
+  },
+  "CGF": {
+    "name": "仁寶期貨",
+    "underlyingCode": "2324",
+    "companyName": "仁寶電腦工業股份有限公司"
+  },
+  "CHF": {
+    "name": "友達期貨",
+    "underlyingCode": "2409",
+    "companyName": "友達光電股份有限公司"
+  },
+  "CJF": {
+    "name": "華南金期貨",
+    "underlyingCode": "2880",
+    "companyName": "華南金融控股股份有限公司"
+  },
+  "CKF": {
+    "name": "國泰金期貨",
+    "underlyingCode": "2882",
+    "companyName": "國泰金融控股股份有限公司"
+  },
+  "CLF": {
+    "name": "兆豐金期貨",
+    "underlyingCode": "2886",
+    "companyName": "兆豐金融控股股份有限公司"
+  },
+  "CMF": {
+    "name": "台新新光金期貨",
+    "underlyingCode": "2887",
+    "companyName": "台新新光金融控股股份有限公司"
+  },
+  "CNF": {
+    "name": "中信金期貨",
+    "underlyingCode": "2891",
+    "companyName": "中國信託金融控股股份有限公司"
+  },
+  "CQF": {
+    "name": "統一期貨",
+    "underlyingCode": "1216",
+    "companyName": "統一企業股份有限公司"
+  },
+  "CRF": {
+    "name": "遠東新期貨",
+    "underlyingCode": "1402",
+    "companyName": "遠東新世紀股份有限公司"
+  },
+  "CSF": {
+    "name": "華新期貨",
+    "underlyingCode": "1605",
+    "companyName": "華新麗華股份有限公司"
+  },
+  "CUF": {
+    "name": "中環期貨",
+    "underlyingCode": "2323",
+    "companyName": "中環股份有限公司"
+  },
+  "CWF": {
+    "name": "佳世達期貨",
+    "underlyingCode": "2352",
+    "companyName": "佳世達科技股份有限公司"
+  },
+  "CXF": {
+    "name": "大同期貨",
+    "underlyingCode": "2371",
+    "companyName": "大同股份有限公司"
+  },
+  "CYF": {
+    "name": "南亞科期貨",
+    "underlyingCode": "2408",
+    "companyName": "南亞科技股份有限公司"
+  },
+  "CZF": {
+    "name": "長榮期貨",
+    "underlyingCode": "2603",
+    "companyName": "長榮海運股份有限公司"
+  },
+  "DAF": {
+    "name": "陽明期貨",
+    "underlyingCode": "2609",
+    "companyName": "陽明海運股份有限公司"
+  },
+  "DBF": {
+    "name": "華航期貨",
+    "underlyingCode": "2610",
+    "companyName": "中華航空股份有限公司"
+  },
+  "DCF": {
+    "name": "彰銀期貨",
+    "underlyingCode": "2801",
+    "companyName": "彰化商業銀行股份有限公司"
+  },
+  "DEF": {
+    "name": "永豐金期貨",
+    "underlyingCode": "2890",
+    "companyName": "永豐金融控股股份有限公司"
+  },
+  "DFF": {
+    "name": "台泥期貨",
+    "underlyingCode": "1101",
+    "companyName": "臺灣水泥股份有限公司"
+  },
+  "DGF": {
+    "name": "台化期貨",
+    "underlyingCode": "1326",
+    "companyName": "台灣化學纖維股份有限公司"
+  },
+  "DHF": {
+    "name": "鴻海期貨",
+    "underlyingCode": "2317",
+    "companyName": "鴻海精密工業股份有限公司"
+  },
+  "DIF": {
+    "name": "旺宏期貨",
+    "underlyingCode": "2337",
+    "companyName": "旺宏電子股份有限公司"
+  },
+  "DJF": {
+    "name": "華碩期貨",
+    "underlyingCode": "2357",
+    "companyName": "華碩電腦股份有限公司"
+  },
+  "QRF": {
+    "name": "小型華碩期貨",
+    "underlyingCode": "2357",
+    "companyName": "華碩電腦股份有限公司"
+  },
+  "DKF": {
+    "name": "廣達期貨",
+    "underlyingCode": "2382",
+    "companyName": "廣達電腦股份有限公司"
+  },
+  "DLF": {
+    "name": "中華電期貨",
+    "underlyingCode": "2412",
+    "companyName": "中華電信股份有限公司"
+  },
+  "DNF": {
+    "name": "玉山金期貨",
+    "underlyingCode": "2884",
+    "companyName": "玉山金融控股股份有限公司"
+  },
+  "DOF": {
+    "name": "元大金期貨",
+    "underlyingCode": "2885",
+    "companyName": "元大金融控股股份有限公司"
+  },
+  "DPF": {
+    "name": "第一金期貨",
+    "underlyingCode": "2892",
+    "companyName": "第一金融控股股份有限公司"
+  },
+  "DQF": {
+    "name": "群創期貨",
+    "underlyingCode": "3481",
+    "companyName": "群創光電股份有限公司"
+  },
+  "DSF": {
+    "name": "宏碁期貨",
+    "underlyingCode": "2353",
+    "companyName": "宏碁股份有限公司"
+  },
+  "DVF": {
+    "name": "聯發科期貨",
+    "underlyingCode": "2454",
+    "companyName": "聯發科技股份有限公司"
+  },
+  "PUF": {
+    "name": "小型聯發科期貨",
+    "underlyingCode": "2454",
+    "companyName": "聯發科技股份有限公司"
+  },
+  "DWF": {
+    "name": "潤泰全期貨",
+    "underlyingCode": "2915",
+    "companyName": "潤泰全球股份有限公司"
+  },
+  "DXF": {
+    "name": "緯創期貨",
+    "underlyingCode": "3231",
+    "companyName": "緯創資通股份有限公司"
+  },
+  "DYF": {
+    "name": "亞泥期貨",
+    "underlyingCode": "1102",
+    "companyName": "亞洲水泥股份有限公司"
+  },
+  "DZF": {
+    "name": "大成期貨",
+    "underlyingCode": "1210",
+    "companyName": "大成長城企業股份有限公司"
+  },
+  "EEF": {
+    "name": "國喬期貨",
+    "underlyingCode": "1312",
+    "companyName": "國喬石油化學股份有限公司"
+  },
+  "EGF": {
+    "name": "中石化期貨",
+    "underlyingCode": "1314",
+    "companyName": "中國石油化學工業開發股份有限公司"
+  },
+  "EHF": {
+    "name": "東陽期貨",
+    "underlyingCode": "1319",
+    "companyName": "東陽實業廠股份有限公司"
+  },
+  "EKF": {
+    "name": "南紡期貨",
+    "underlyingCode": "1440",
+    "companyName": "臺南紡織股份有限公司"
+  },
+  "EMF": {
+    "name": "東元期貨",
+    "underlyingCode": "1504",
+    "companyName": "東元電機股份有限公司"
+  },
+  "EOF": {
+    "name": "中砂期貨",
+    "underlyingCode": "1560",
+    "companyName": "中國砂輪企業股份有限公司"
+  },
+  "EPF": {
+    "name": "亞德客-KY期貨",
+    "underlyingCode": "1590",
+    "companyName": "亞德客國際集團"
+  },
+  "EYF": {
+    "name": "中纖期貨",
+    "underlyingCode": "1718",
+    "companyName": "中國人造纖維股份有限公司"
+  },
+  "EZF": {
+    "name": "台肥期貨",
+    "underlyingCode": "1722",
+    "companyName": "台灣肥料股份有限公司"
+  },
+  "FBF": {
+    "name": "東和鋼鐵期貨",
+    "underlyingCode": "2006",
+    "companyName": "東和鋼鐵企業股份有限公司"
+  },
+  "FEF": {
+    "name": "大成鋼期貨",
+    "underlyingCode": "2027",
+    "companyName": "大成不銹鋼工業股份有限公司"
+  },
+  "FFF": {
+    "name": "上銀期貨",
+    "underlyingCode": "2049",
+    "companyName": "上銀科技股份有限公司"
+  },
+  "QMF": {
+    "name": "小型上銀期貨",
+    "underlyingCode": "2049",
+    "companyName": "上銀科技股份有限公司"
+  },
+  "FGF": {
+    "name": "川湖期貨",
+    "underlyingCode": "2059",
+    "companyName": "川湖科技股份有限公司"
+  },
+  "SVF": {
+    "name": "小型川湖期貨",
+    "underlyingCode": "2059",
+    "companyName": "川湖科技股份有限公司"
+  },
+  "FKF": {
+    "name": "正新期貨",
+    "underlyingCode": "2105",
+    "companyName": "正新橡膠工業股份有限公司"
+  },
+  "FNF": {
+    "name": "裕隆期貨",
+    "underlyingCode": "2201",
+    "companyName": "裕隆汽車製造股份有限公司"
+  },
+  "FQF": {
+    "name": "光寶科期貨",
+    "underlyingCode": "2301",
+    "companyName": "光寶科技股份有限公司"
+  },
+  "FRF": {
+    "name": "台達電期貨",
+    "underlyingCode": "2308",
+    "companyName": "台達電子工業股份有限公司"
+  },
+  "RVF": {
+    "name": "小型台達電期貨",
+    "underlyingCode": "2308",
+    "companyName": "台達電子工業股份有限公司"
+  },
+  "FSF": {
+    "name": "金寶期貨",
+    "underlyingCode": "2312",
+    "companyName": "金寶電子工業股份有限公司"
+  },
+  "FTF": {
+    "name": "華通期貨",
+    "underlyingCode": "2313",
+    "companyName": "華通電腦股份有限公司"
+  },
+  "FVF": {
+    "name": "精英期貨",
+    "underlyingCode": "2331",
+    "companyName": "精英電腦股份有限公司"
+  },
+  "FWF": {
+    "name": "友訊期貨",
+    "underlyingCode": "2332",
+    "companyName": "友訊科技股份有限公司"
+  },
+  "FYF": {
+    "name": "台亞期貨",
+    "underlyingCode": "2340",
+    "companyName": "台亞半導體股份有限公司"
+  },
+  "FZF": {
+    "name": "華邦電期貨",
+    "underlyingCode": "2344",
+    "companyName": "華邦電子股份有限公司"
+  },
+  "GAF": {
+    "name": "聯強期貨",
+    "underlyingCode": "2347",
+    "companyName": "聯強國際股份有限公司"
+  },
+  "GCF": {
+    "name": "鴻準期貨",
+    "underlyingCode": "2354",
+    "companyName": "鴻準精密工業股份有限公司"
+  },
+  "GHF": {
+    "name": "技嘉期貨",
+    "underlyingCode": "2376",
+    "companyName": "技嘉科技股份有限公司"
+  },
+  "SLF": {
+    "name": "小型技嘉期貨",
+    "underlyingCode": "2376",
+    "companyName": "技嘉科技股份有限公司"
+  },
+  "GIF": {
+    "name": "微星期貨",
+    "underlyingCode": "2377",
+    "companyName": "微星科技股份有限公司"
+  },
+  "GJF": {
+    "name": "瑞昱期貨",
+    "underlyingCode": "2379",
+    "companyName": "瑞昱半導體股份有限公司"
+  },
+  "QGF": {
+    "name": "小型瑞昱期貨",
+    "underlyingCode": "2379",
+    "companyName": "瑞昱半導體股份有限公司"
+  },
+  "GKF": {
+    "name": "群光期貨",
+    "underlyingCode": "2385",
+    "companyName": "群光電子股份有限公司"
+  },
+  "GLF": {
+    "name": "正崴期貨",
+    "underlyingCode": "2392",
+    "companyName": "正崴精密工業股份有限公司"
+  },
+  "GMF": {
+    "name": "億光期貨",
+    "underlyingCode": "2393",
+    "companyName": "億光電子工業股份有限公司"
+  },
+  "GNF": {
+    "name": "凌陽期貨",
+    "underlyingCode": "2401",
+    "companyName": "凌陽科技股份有限公司"
+  },
+  "GOF": {
+    "name": "漢唐期貨",
+    "underlyingCode": "2404",
+    "companyName": "漢唐集成股份有限公司"
+  },
+  "UZF": {
+    "name": "小型漢唐期貨",
+    "underlyingCode": "2404",
+    "companyName": "漢唐集成股份有限公司"
+  },
+  "GRF": {
+    "name": "京元電子期貨",
+    "underlyingCode": "2449",
+    "companyName": "京元電子股份有限公司"
+  },
+  "VOF": {
+    "name": "小型京元電子期貨",
+    "underlyingCode": "2449",
+    "companyName": "京元電子股份有限公司"
+  },
+  "GUF": {
+    "name": "全新期貨",
+    "underlyingCode": "2455",
+    "companyName": "全新光電科技股份有限公司"
+  },
+  "GVF": {
+    "name": "飛宏期貨",
+    "underlyingCode": "2457",
+    "companyName": "飛宏科技股份有限公司"
+  },
+  "GWF": {
+    "name": "義隆期貨",
+    "underlyingCode": "2458",
+    "companyName": "義隆電子股份有限公司"
+  },
+  "GXF": {
+    "name": "可成期貨",
+    "underlyingCode": "2474",
+    "companyName": "可成科技股份有限公司"
+  },
+  "GYF": {
+    "name": "強茂期貨",
+    "underlyingCode": "2481",
+    "companyName": "強茂股份有限公司"
+  },
+  "GZF": {
+    "name": "兆赫期貨",
+    "underlyingCode": "2485",
+    "companyName": "兆赫電子股份有限公司"
+  },
+  "HAF": {
+    "name": "瑞軒期貨",
+    "underlyingCode": "2489",
+    "companyName": "瑞軒科技股份有限公司"
+  },
+  "HBF": {
+    "name": "華新科期貨",
+    "underlyingCode": "2492",
+    "companyName": "華新科技股份有限公司"
+  },
+  "HCF": {
+    "name": "宏達電期貨",
+    "underlyingCode": "2498",
+    "companyName": "宏達國際電子股份有限公司"
+  },
+  "HHF": {
+    "name": "中工期貨",
+    "underlyingCode": "2515",
+    "companyName": "中華工程股份有限公司"
+  },
+  "HIF": {
+    "name": "冠德期貨",
+    "underlyingCode": "2520",
+    "companyName": "冠德建設股份有限公司"
+  },
+  "HLF": {
+    "name": "興富發期貨",
+    "underlyingCode": "2542",
+    "companyName": "興富發建設股份有限公司"
+  },
+  "HOF": {
+    "name": "華固期貨",
+    "underlyingCode": "2548",
+    "companyName": "華固建設股份有限公司"
+  },
+  "HQF": {
+    "name": "新興期貨",
+    "underlyingCode": "2605",
+    "companyName": "新興航運股份有限公司"
+  },
+  "HSF": {
+    "name": "長榮航期貨",
+    "underlyingCode": "2618",
+    "companyName": "長榮航空股份有限公司"
+  },
+  "IAF": {
+    "name": "臺企銀期貨",
+    "underlyingCode": "2834",
+    "companyName": "臺灣中小企業銀行股份有限公司"
+  },
+  "IHF": {
+    "name": "農林期貨",
+    "underlyingCode": "2913",
+    "companyName": "台灣農林股份有限公司"
+  },
+  "IIF": {
+    "name": "晶豪科期貨",
+    "underlyingCode": "3006",
+    "companyName": "晶豪科技股份有限公司"
+  },
+  "IJF": {
+    "name": "大立光期貨",
+    "underlyingCode": "3008",
+    "companyName": "大立光電股份有限公司"
+  },
+  "OLF": {
+    "name": "小型大立光期貨",
+    "underlyingCode": "3008",
+    "companyName": "大立光電股份有限公司"
+  },
+  "IMF": {
+    "name": "亞光期貨",
+    "underlyingCode": "3019",
+    "companyName": "亞洲光學股份有限公司"
+  },
+  "IOF": {
+    "name": "聯詠期貨",
+    "underlyingCode": "3034",
+    "companyName": "聯詠科技股份有限公司"
+  },
+  "QHF": {
+    "name": "小型聯詠期貨",
+    "underlyingCode": "3034",
+    "companyName": "聯詠科技股份有限公司"
+  },
+  "IPF": {
+    "name": "智原期貨",
+    "underlyingCode": "3035",
+    "companyName": "智原科技股份有限公司"
+  },
+  "IQF": {
+    "name": "文曄期貨",
+    "underlyingCode": "3036",
+    "companyName": "文曄科技股份有限公司"
+  },
+  "IRF": {
+    "name": "欣興期貨",
+    "underlyingCode": "3037",
+    "companyName": "欣興電子股份有限公司"
+  },
+  "ITF": {
+    "name": "晶技期貨",
+    "underlyingCode": "3042",
+    "companyName": "台灣晶技股份有限公司"
+  },
+  "IXF": {
+    "name": "景碩期貨",
+    "underlyingCode": "3189",
+    "companyName": "景碩科技股份有限公司"
+  },
+  "IYF": {
+    "name": "新日興期貨",
+    "underlyingCode": "3376",
+    "companyName": "新日興股份有限公司"
+  },
+  "IZF": {
+    "name": "明泰期貨",
+    "underlyingCode": "3380",
+    "companyName": "明泰科技股份有限公司"
+  },
+  "JBF": {
+    "name": "創意期貨",
+    "underlyingCode": "3443",
+    "companyName": "創意電子股份有限公司"
+  },
+  "RWF": {
+    "name": "小型創意期貨",
+    "underlyingCode": "3443",
+    "companyName": "創意電子股份有限公司"
+  },
+  "JFF": {
+    "name": "嘉澤期貨",
+    "underlyingCode": "3533",
+    "companyName": "嘉澤端子工業股份有限公司"
+  },
+  "RFF": {
+    "name": "小型嘉澤期貨",
+    "underlyingCode": "3533",
+    "companyName": "嘉澤端子工業股份有限公司"
+  },
+  "JMF": {
+    "name": "健策期貨",
+    "underlyingCode": "3653",
+    "companyName": "健策精密工業股份有限公司"
+  },
+  "RGF": {
+    "name": "小型健策期貨",
+    "underlyingCode": "3653",
+    "companyName": "健策精密工業股份有限公司"
+  },
+  "JNF": {
+    "name": "TPK-KY期貨",
+    "underlyingCode": "3673",
+    "companyName": "TPK Holding Co.， Ltd."
+  },
+  "JPF": {
+    "name": "大聯大期貨",
+    "underlyingCode": "3702",
+    "companyName": "大聯大控股股份有限公司"
+  },
+  "JSF": {
+    "name": "和碩期貨",
+    "underlyingCode": "4938",
+    "companyName": "和碩聯合科技股份有限公司"
+  },
+  "JWF": {
+    "name": "長虹期貨",
+    "underlyingCode": "5534",
+    "companyName": "長虹建設股份有限公司"
+  },
+  "JXF": {
+    "name": "群益證期貨",
+    "underlyingCode": "6005",
+    "companyName": "群益金鼎證券股份有限公司"
+  },
+  "JZF": {
+    "name": "嘉聯益期貨",
+    "underlyingCode": "6153",
+    "companyName": "嘉聯益科技股份有限公司"
+  },
+  "KAF": {
+    "name": "瑞儀期貨",
+    "underlyingCode": "6176",
+    "companyName": "瑞儀光電股份有限公司"
+  },
+  "KBF": {
+    "name": "聯茂期貨",
+    "underlyingCode": "6213",
+    "companyName": "聯茂電子股份有限公司"
+  },
+  "KCF": {
+    "name": "力成期貨",
+    "underlyingCode": "6239",
+    "companyName": "力成科技股份有限公司"
+  },
+  "KDF": {
+    "name": "同欣電期貨",
+    "underlyingCode": "6271",
+    "companyName": "同欣電子工業股份有限公司"
+  },
+  "KEF": {
+    "name": "台表科期貨",
+    "underlyingCode": "6278",
+    "companyName": "台灣表面黏著科技股份有限公司"
+  },
+  "KFF": {
+    "name": "康舒期貨",
+    "underlyingCode": "6282",
+    "companyName": "康舒科技股份有限公司"
+  },
+  "KGF": {
+    "name": "啟碁期貨",
+    "underlyingCode": "6285",
+    "companyName": "啟碁科技股份有限公司"
+  },
+  "KIF": {
+    "name": "台虹期貨",
+    "underlyingCode": "8039",
+    "companyName": "台虹科技股份有限公司"
+  },
+  "KKF": {
+    "name": "達方期貨",
+    "underlyingCode": "8163",
+    "companyName": "達方電子股份有限公司"
+  },
+  "KLF": {
+    "name": "寶成期貨",
+    "underlyingCode": "9904",
+    "companyName": "寶成工業股份有限公司"
+  },
+  "KOF": {
+    "name": "宏全期貨",
+    "underlyingCode": "9939",
+    "companyName": "宏全國際股份有限公司"
+  },
+  "KPF": {
+    "name": "潤泰新期貨",
+    "underlyingCode": "9945",
+    "companyName": "潤泰創新國際股份有限公司"
+  },
+  "KSF": {
+    "name": "聚陽期貨",
+    "underlyingCode": "1477",
+    "companyName": "聚陽實業股份有限公司"
+  },
+  "SCF": {
+    "name": "小型聚陽期貨",
+    "underlyingCode": "1477",
+    "companyName": "聚陽實業股份有限公司"
+  },
+  "KUF": {
+    "name": "台玻期貨",
+    "underlyingCode": "1802",
+    "companyName": "台灣玻璃工業股份有限公司"
+  },
+  "KWF": {
+    "name": "廣宇期貨",
+    "underlyingCode": "2328",
+    "companyName": "廣宇科技股份有限公司"
+  },
+  "LBF": {
+    "name": "健鼎期貨",
+    "underlyingCode": "3044",
+    "companyName": "健鼎科技股份有限公司"
+  },
+  "LCF": {
+    "name": "台灣大期貨",
+    "underlyingCode": "3045",
+    "companyName": "台灣大哥大股份有限公司"
+  },
+  "LEF": {
+    "name": "玉晶光期貨",
+    "underlyingCode": "3406",
+    "companyName": "玉晶光電股份有限公司"
+  },
+  "QJF": {
+    "name": "小型玉晶光期貨",
+    "underlyingCode": "3406",
+    "companyName": "玉晶光電股份有限公司"
+  },
+  "LIF": {
+    "name": "台郡期貨",
+    "underlyingCode": "6269",
+    "companyName": "台郡科技股份有限公司"
+  },
+  "LMF": {
+    "name": "美利達期貨",
+    "underlyingCode": "9914",
+    "companyName": "美利達工業股份有限公司"
+  },
+  "LOF": {
+    "name": "合庫金期貨",
+    "underlyingCode": "5880",
+    "companyName": "合作金庫金融控股股份有限公司"
+  },
+  "LQF": {
+    "name": "英業達期貨",
+    "underlyingCode": "2356",
+    "companyName": "英業達股份有限公司"
+  },
+  "LRF": {
+    "name": "凱基金期貨",
+    "underlyingCode": "2883",
+    "companyName": "凱基金融控股股份有限公司"
+  },
+  "LTF": {
+    "name": "遠傳期貨",
+    "underlyingCode": "4904",
+    "companyName": "遠傳電信股份有限公司"
+  },
+  "LUF": {
+    "name": "臻鼎-KY期貨",
+    "underlyingCode": "4958",
+    "companyName": "臻鼎科技控股股份有限公司"
+  },
+  "LVF": {
+    "name": "中租-KY期貨",
+    "underlyingCode": "5871",
+    "companyName": "中租控股股份有限公司"
+  },
+  "LWF": {
+    "name": "儒鴻期貨",
+    "underlyingCode": "1476",
+    "companyName": "儒鴻企業股份有限公司"
+  },
+  "LXF": {
+    "name": "國巨期貨",
+    "underlyingCode": "2327",
+    "companyName": "國巨股份有限公司"
+  },
+  "QEF": {
+    "name": "小型國巨期貨",
+    "underlyingCode": "2327",
+    "companyName": "國巨股份有限公司"
+  },
+  "LYF": {
+    "name": "南電期貨",
+    "underlyingCode": "8046",
+    "companyName": "南亞電路板股份有限公司"
+  },
+  "QSF": {
+    "name": "小型南電期貨",
+    "underlyingCode": "8046",
+    "companyName": "南亞電路板股份有限公司"
+  },
+  "MBF": {
+    "name": "敬鵬期貨",
+    "underlyingCode": "2355",
+    "companyName": "敬鵬工業股份有限公司"
+  },
+  "MJF": {
+    "name": "致茂期貨",
+    "underlyingCode": "2360",
+    "companyName": "致茂電子股份有限公司"
+  },
+  "VDF": {
+    "name": "小型致茂期貨",
+    "underlyingCode": "2360",
+    "companyName": "致茂電子股份有限公司"
+  },
+  "MKF": {
+    "name": "美律期貨",
+    "underlyingCode": "2439",
+    "companyName": "美律實業股份有限公司"
+  },
+  "MQF": {
+    "name": "矽格期貨",
+    "underlyingCode": "6257",
+    "companyName": "矽格股份有限公司"
+  },
+  "MVF": {
+    "name": "百和期貨",
+    "underlyingCode": "9938",
+    "companyName": "台灣百和工業股份有限公司"
+  },
+  "MYF": {
+    "name": "精華期貨",
+    "underlyingCode": "1565",
+    "companyName": "精華光學股份有限公司"
+  },
+  "OMF": {
+    "name": "小型精華期貨",
+    "underlyingCode": "1565",
+    "companyName": "精華光學股份有限公司"
+  },
+  "NAF": {
+    "name": "穩懋期貨",
+    "underlyingCode": "3105",
+    "companyName": "穩懋半導體股份有限公司"
+  },
+  "QIF": {
+    "name": "小型穩懋期貨",
+    "underlyingCode": "3105",
+    "companyName": "穩懋半導體股份有限公司"
+  },
+  "NBF": {
+    "name": "璟德期貨",
+    "underlyingCode": "3152",
+    "companyName": "璟德電子工業股份有限公司"
+  },
+  "NCF": {
+    "name": "順達期貨",
+    "underlyingCode": "3211",
+    "companyName": "順達科技股份有限公司"
+  },
+  "VJF": {
+    "name": "小型順達期貨",
+    "underlyingCode": "3211",
+    "companyName": "順達科技股份有限公司"
+  },
+  "NDF": {
+    "name": "威剛期貨",
+    "underlyingCode": "3260",
+    "companyName": "威剛科技股份有限公司"
+  },
+  "NEF": {
+    "name": "欣銓期貨",
+    "underlyingCode": "3264",
+    "companyName": "欣銓科技股份有限公司"
+  },
+  "NGF": {
+    "name": "碩禾期貨",
+    "underlyingCode": "3691",
+    "companyName": "碩禾電子材料股份有限公司"
+  },
+  "NIF": {
+    "name": "晟德期貨",
+    "underlyingCode": "4123",
+    "companyName": "晟德大藥廠股份有限公司"
+  },
+  "NJF": {
+    "name": "榮剛期貨",
+    "underlyingCode": "5009",
+    "companyName": "榮剛材料科技股份有限公司"
+  },
+  "NLF": {
+    "name": "世界期貨",
+    "underlyingCode": "5347",
+    "companyName": "世界先進積體電路股份有限公司"
+  },
+  "NOF": {
+    "name": "中美晶期貨",
+    "underlyingCode": "5483",
+    "companyName": "中美矽晶製品股份有限公司"
+  },
+  "NQF": {
+    "name": "新普期貨",
+    "underlyingCode": "6121",
+    "companyName": "新普科技股份有限公司"
+  },
+  "NSF": {
+    "name": "頎邦期貨",
+    "underlyingCode": "6147",
+    "companyName": "頎邦科技股份有限公司"
+  },
+  "NUF": {
+    "name": "網家期貨",
+    "underlyingCode": "8044",
+    "companyName": "網路家庭國際資訊股份有限公司"
+  },
+  "NVF": {
+    "name": "元太期貨",
+    "underlyingCode": "8069",
+    "companyName": "元太科技工業股份有限公司"
+  },
+  "NWF": {
+    "name": "群聯期貨",
+    "underlyingCode": "8299",
+    "companyName": "群聯電子股份有限公司"
+  },
+  "QNF": {
+    "name": "小型群聯期貨",
+    "underlyingCode": "8299",
+    "companyName": "群聯電子股份有限公司"
+  },
+  "ODF": {
+    "name": "為升期貨",
+    "underlyingCode": "2231",
+    "companyName": "為升電裝工業股份有限公司"
+  },
+  "OEF": {
+    "name": "彩晶期貨",
+    "underlyingCode": "6116",
+    "companyName": "瀚宇彩晶股份有限公司"
+  },
+  "OHF": {
+    "name": "胡連期貨",
+    "underlyingCode": "6279",
+    "companyName": "胡連精密股份有限公司"
+  },
+  "OPF": {
+    "name": "智邦期貨",
+    "underlyingCode": "2345",
+    "companyName": "智邦科技股份有限公司"
+  },
+  "SEF": {
+    "name": "小型智邦期貨",
+    "underlyingCode": "2345",
+    "companyName": "智邦科技股份有限公司"
+  },
+  "OQF": {
+    "name": "樺漢期貨",
+    "underlyingCode": "6414",
+    "companyName": "樺漢科技股份有限公司"
+  },
+  "ORF": {
+    "name": "和大期貨",
+    "underlyingCode": "1536",
+    "companyName": "和大工業股份有限公司"
+  },
+  "OSF": {
+    "name": "榮成期貨",
+    "underlyingCode": "1909",
+    "companyName": "榮成紙業股份有限公司"
+  },
+  "OTF": {
+    "name": "聯亞期貨",
+    "underlyingCode": "3081",
+    "companyName": "聯亞光電工業股份有限公司"
+  },
+  "OUF": {
+    "name": "同致期貨",
+    "underlyingCode": "3552",
+    "companyName": "同致電子企業股份有限公司"
+  },
+  "OVF": {
+    "name": "台燿期貨",
+    "underlyingCode": "6274",
+    "companyName": "台燿科技股份有限公司"
+  },
+  "OWF": {
+    "name": "環球晶期貨",
+    "underlyingCode": "6488",
+    "companyName": "環球晶圓股份有限公司"
+  },
+  "PBF": {
+    "name": "小型環球晶期貨",
+    "underlyingCode": "6488",
+    "companyName": "環球晶圓股份有限公司"
+  },
+  "OXF": {
+    "name": "精測期貨",
+    "underlyingCode": "6510",
+    "companyName": "中華精測科技股份有限公司"
+  },
+  "OYF": {
+    "name": "小型精測期貨",
+    "underlyingCode": "6510",
+    "companyName": "中華精測科技股份有限公司"
+  },
+  "OZF": {
+    "name": "日月光投控期貨",
+    "underlyingCode": "3711",
+    "companyName": "日月光投資控股股份有限公司"
+  },
+  "VPF": {
+    "name": "小型日月光投控期貨",
+    "underlyingCode": "3711",
+    "companyName": "日月光投資控股股份有限公司"
+  },
+  "PAF": {
+    "name": "原相期貨",
+    "underlyingCode": "3227",
+    "companyName": "原相科技股份有限公司"
+  },
+  "PCF": {
+    "name": "智擎期貨",
+    "underlyingCode": "4162",
+    "companyName": "智擎生技製藥股份有限公司"
+  },
+  "PDF": {
+    "name": "泰博期貨",
+    "underlyingCode": "4736",
+    "companyName": "泰博科技股份有限公司"
+  },
+  "PEF": {
+    "name": "台半期貨",
+    "underlyingCode": "5425",
+    "companyName": "台灣半導體股份有限公司"
+  },
+  "PGF": {
+    "name": "台灣高鐵期貨",
+    "underlyingCode": "2633",
+    "companyName": "台灣高速鐵路股份有限公司"
+  },
+  "PHF": {
+    "name": "祥碩期貨",
+    "underlyingCode": "5269",
+    "companyName": "祥碩科技股份有限公司"
+  },
+  "PNF": {
+    "name": "小型祥碩期貨",
+    "underlyingCode": "5269",
+    "companyName": "祥碩科技股份有限公司"
+  },
+  "PIF": {
+    "name": "力旺期貨",
+    "underlyingCode": "3529",
+    "companyName": "力旺電子股份有限公司"
+  },
+  "RSF": {
+    "name": "小型力旺期貨",
+    "underlyingCode": "3529",
+    "companyName": "力旺電子股份有限公司"
+  },
+  "PJF": {
+    "name": "台光電期貨",
+    "underlyingCode": "2383",
+    "companyName": "台光電子材料股份有限公司"
+  },
+  "SFF": {
+    "name": "小型台光電期貨",
+    "underlyingCode": "2383",
+    "companyName": "台光電子材料股份有限公司"
+  },
+  "PKF": {
+    "name": "信昌電期貨",
+    "underlyingCode": "6173",
+    "companyName": "信昌電子陶瓷股份有限公司"
+  },
+  "PLF": {
+    "name": "合晶期貨",
+    "underlyingCode": "6182",
+    "companyName": "合晶科技股份有限公司"
+  },
+  "PMF": {
+    "name": "大江期貨",
+    "underlyingCode": "8436",
+    "companyName": "大江生醫股份有限公司"
+  },
+  "PPF": {
+    "name": "宣德期貨",
+    "underlyingCode": "5457",
+    "companyName": "宣德科技股份有限公司"
+  },
+  "PQF": {
+    "name": "金居期貨",
+    "underlyingCode": "8358",
+    "companyName": "金居開發股份有限公司"
+  },
+  "PRF": {
+    "name": "宏捷科期貨",
+    "underlyingCode": "8086",
+    "companyName": "宏捷科技股份有限公司"
+  },
+  "PSF": {
+    "name": "神達期貨",
+    "underlyingCode": "3706",
+    "companyName": "神達控股股份有限公司"
+  },
+  "PTF": {
+    "name": "雙鴻期貨",
+    "underlyingCode": "3324",
+    "companyName": "雙鴻科技股份有限公司"
+  },
+  "ULF": {
+    "name": "小型雙鴻期貨",
+    "underlyingCode": "3324",
+    "companyName": "雙鴻科技股份有限公司"
+  },
+  "PVF": {
+    "name": "緯穎期貨",
+    "underlyingCode": "6669",
+    "companyName": "緯穎科技服務股份有限公司"
+  },
+  "PWF": {
+    "name": "小型緯穎期貨",
+    "underlyingCode": "6669",
+    "companyName": "緯穎科技服務股份有限公司"
+  },
+  "PXF": {
+    "name": "鈊象期貨",
+    "underlyingCode": "3293",
+    "companyName": "鈊象電子股份有限公司"
+  },
+  "PYF": {
+    "name": "小型鈊象期貨",
+    "underlyingCode": "3293",
+    "companyName": "鈊象電子股份有限公司"
+  },
+  "PZF": {
+    "name": "信驊期貨",
+    "underlyingCode": "5274",
+    "companyName": "信驊科技股份有限公司"
+  },
+  "QAF": {
+    "name": "小型信驊期貨",
+    "underlyingCode": "5274",
+    "companyName": "信驊科技股份有限公司"
+  },
+  "QBF": {
+    "name": "富采期貨",
+    "underlyingCode": "3714",
+    "companyName": "富采控股股份有限公司"
+  },
+  "QCF": {
+    "name": "裕民期貨",
+    "underlyingCode": "2606",
+    "companyName": "裕民航運股份有限公司"
+  },
+  "QDF": {
+    "name": "台勝科期貨",
+    "underlyingCode": "3532",
+    "companyName": "台塑勝高科技股份有限公司"
+  },
+  "QKF": {
+    "name": "永豐餘期貨",
+    "underlyingCode": "1907",
+    "companyName": "永豐餘投資控股股份有限公司"
+  },
+  "QLF": {
+    "name": "精材期貨",
+    "underlyingCode": "3374",
+    "companyName": "精材科技股份有限公司"
+  },
+  "QOF": {
+    "name": "長興期貨",
+    "underlyingCode": "1717",
+    "companyName": "長興材料工業股份有限公司"
+  },
+  "QPF": {
+    "name": "正隆期貨",
+    "underlyingCode": "1904",
+    "companyName": "正隆股份有限公司"
+  },
+  "QQF": {
+    "name": "僑威期貨",
+    "underlyingCode": "3078",
+    "companyName": "僑威科技股份有限公司"
+  },
+  "QTF": {
+    "name": "超豐期貨",
+    "underlyingCode": "2441",
+    "companyName": "超豐電子股份有限公司"
+  },
+  "QUF": {
+    "name": "南茂期貨",
+    "underlyingCode": "8150",
+    "companyName": "南茂科技股份有限公司"
+  },
+  "QVF": {
+    "name": "光罩期貨",
+    "underlyingCode": "2338",
+    "companyName": "台灣光罩股份有限公司"
+  },
+  "QWF": {
+    "name": "威盛期貨",
+    "underlyingCode": "2388",
+    "companyName": "威盛電子股份有限公司"
+  },
+  "QXF": {
+    "name": "萬海期貨",
+    "underlyingCode": "2615",
+    "companyName": "萬海航運股份有限公司"
+  },
+  "QYF": {
+    "name": "高端疫苗期貨",
+    "underlyingCode": "6547",
+    "companyName": "高端疫苗生物製劑股份有限公司"
+  },
+  "QZF": {
+    "name": "力積電期貨",
+    "underlyingCode": "6770",
+    "companyName": "力晶積成電子製造股份有限公司"
+  },
+  "RAF": {
+    "name": "奇鋐期貨",
+    "underlyingCode": "3017",
+    "companyName": "奇鋐科技股份有限公司"
+  },
+  "UHF": {
+    "name": "小型奇鋐期貨",
+    "underlyingCode": "3017",
+    "companyName": "奇鋐科技股份有限公司"
+  },
+  "RBF": {
+    "name": "中磊期貨",
+    "underlyingCode": "5388",
+    "companyName": "中磊電子股份有限公司"
+  },
+  "RCF": {
+    "name": "漢翔期貨",
+    "underlyingCode": "2634",
+    "companyName": "漢翔航空工業股份有限公司"
+  },
+  "RDF": {
+    "name": "中天期貨",
+    "underlyingCode": "4128",
+    "companyName": "中天生物科技股份有限公司"
+  },
+  "REF": {
+    "name": "新唐期貨",
+    "underlyingCode": "4919",
+    "companyName": "新唐科技股份有限公司"
+  },
+  "RJF": {
+    "name": "大亞期貨",
+    "underlyingCode": "1609",
+    "companyName": "大亞電線電纜股份有限公司"
+  },
+  "RKF": {
+    "name": "金像電期貨",
+    "underlyingCode": "2368",
+    "companyName": "金像電子股份有限公司"
+  },
+  "VGF": {
+    "name": "小型金像電期貨",
+    "underlyingCode": "2368",
+    "companyName": "金像電子股份有限公司"
+  },
+  "RLF": {
+    "name": "元晶期貨",
+    "underlyingCode": "6443",
+    "companyName": "元晶太陽能科技股份有限公司"
+  },
+  "RNF": {
+    "name": "合一期貨",
+    "underlyingCode": "4743",
+    "companyName": "合一生技股份有限公司"
+  },
+  "ROF": {
+    "name": "立端期貨",
+    "underlyingCode": "6245",
+    "companyName": "立端科技股份有限公司"
+  },
+  "RPF": {
+    "name": "寶雅期貨",
+    "underlyingCode": "5904",
+    "companyName": "寶雅國際股份有限公司"
+  },
+  "RRF": {
+    "name": "小型寶雅期貨",
+    "underlyingCode": "5904",
+    "companyName": "寶雅國際股份有限公司"
+  },
+  "RUF": {
+    "name": "世紀鋼期貨",
+    "underlyingCode": "9958",
+    "companyName": "世紀鋼鐵結構股份有限公司"
+  },
+  "SWF": {
+    "name": "小型世紀鋼期貨",
+    "underlyingCode": "9958",
+    "companyName": "世紀鋼鐵結構股份有限公司"
+  },
+  "SAF": {
+    "name": "美時期貨",
+    "underlyingCode": "1795",
+    "companyName": "美時化學製藥股份有限公司"
+  },
+  "SBF": {
+    "name": "華紙期貨",
+    "underlyingCode": "1905",
+    "companyName": "中華紙漿股份有限公司"
+  },
+  "SDF": {
+    "name": "中興電期貨",
+    "underlyingCode": "1513",
+    "companyName": "中興電工機械股份有限公司"
+  },
+  "SJF": {
+    "name": "神基期貨",
+    "underlyingCode": "3005",
+    "companyName": "神基控股股份有限公司"
+  },
+  "SKF": {
+    "name": "至上期貨",
+    "underlyingCode": "8112",
+    "companyName": "至上電子股份有限公司"
+  },
+  "SYF": {
+    "name": "家登期貨",
+    "underlyingCode": "3680",
+    "companyName": "家登精密工業股份有限公司"
+  },
+  "SZF": {
+    "name": "小型家登期貨",
+    "underlyingCode": "3680",
+    "companyName": "家登精密工業股份有限公司"
+  },
+  "UAF": {
+    "name": "士電期貨",
+    "underlyingCode": "1503",
+    "companyName": "士林電機廠股份有限公司"
+  },
+  "UBF": {
+    "name": "亞翔期貨",
+    "underlyingCode": "6139",
+    "companyName": "亞翔工程股份有限公司"
+  },
+  "VKF": {
+    "name": "小型亞翔期貨",
+    "underlyingCode": "6139",
+    "companyName": "亞翔工程股份有限公司"
+  },
+  "UCF": {
+    "name": "廣明期貨",
+    "underlyingCode": "6188",
+    "companyName": "廣明光電股份有限公司"
+  },
+  "UEF": {
+    "name": "上海商銀期貨",
+    "underlyingCode": "5876",
+    "companyName": "上海商業儲蓄銀行股份有限公司"
+  },
+  "UFF": {
+    "name": "台塑化期貨",
+    "underlyingCode": "6505",
+    "companyName": "台塑石化股份有限公司"
+  },
+  "UGF": {
+    "name": "達發期貨",
+    "underlyingCode": "6526",
+    "companyName": "達發科技股份有限公司"
+  },
+  "UIF": {
+    "name": "小型達發期貨",
+    "underlyingCode": "6526",
+    "companyName": "達發科技股份有限公司"
+  },
+  "UMF": {
+    "name": "世芯-KY期貨",
+    "underlyingCode": "3661",
+    "companyName": "世芯電子股份有限公司"
+  },
+  "UOF": {
+    "name": "小型世芯-KY期貨",
+    "underlyingCode": "3661",
+    "companyName": "世芯電子股份有限公司"
+  },
+  "UPF": {
+    "name": "保瑞期貨",
+    "underlyingCode": "6472",
+    "companyName": "保瑞藥業股份有限公司"
+  },
+  "UQF": {
+    "name": "小型保瑞期貨",
+    "underlyingCode": "6472",
+    "companyName": "保瑞藥業股份有限公司"
+  },
+  "UTF": {
+    "name": "一詮期貨",
+    "underlyingCode": "2486",
+    "companyName": "一詮精密工業股份有限公司"
+  },
+  "UUF": {
+    "name": "台灣虎航期貨",
+    "underlyingCode": "6757",
+    "companyName": "台灣虎航股份有限公司"
+  },
+  "UVF": {
+    "name": "旺矽期貨",
+    "underlyingCode": "6223",
+    "companyName": "旺矽科技股份有限公司"
+  },
+  "UWF": {
+    "name": "小型旺矽期貨",
+    "underlyingCode": "6223",
+    "companyName": "旺矽科技股份有限公司"
+  },
+  "UXF": {
+    "name": "華泰期貨",
+    "underlyingCode": "2329",
+    "companyName": "華泰電子股份有限公司"
+  },
+  "UYF": {
+    "name": "良維期貨",
+    "underlyingCode": "6290",
+    "companyName": "良維科技股份有限公司"
+  },
+  "VAF": {
+    "name": "華榮期貨",
+    "underlyingCode": "1608",
+    "companyName": "華榮電線電纜股份有限公司"
+  },
+  "VBF": {
+    "name": "燿華期貨",
+    "underlyingCode": "2367",
+    "companyName": "燿華電子股份有限公司"
+  },
+  "VCF": {
+    "name": "建準期貨",
+    "underlyingCode": "2421",
+    "companyName": "建準電機工業股份有限公司"
+  },
+  "VEF": {
+    "name": "貿聯-KY期貨",
+    "underlyingCode": "3665",
+    "companyName": "貿聯控股"
+  },
+  "VFF": {
+    "name": "小型貿聯-KY期貨",
+    "underlyingCode": "3665",
+    "companyName": "貿聯控股"
+  },
+  "VIF": {
+    "name": "研華期貨",
+    "underlyingCode": "2395",
+    "companyName": "研華股份有限公司"
+  },
+  "VLF": {
+    "name": "智通期貨",
+    "underlyingCode": "8932",
+    "companyName": "智通科創股份有限公司"
+  },
+  "VMF": {
+    "name": "華城期貨",
+    "underlyingCode": "1519",
+    "companyName": "華城電機股份有限公司"
+  },
+  "VNF": {
+    "name": "小型華城期貨",
+    "underlyingCode": "1519",
+    "companyName": "華城電機股份有限公司"
+  },
+  "VQF": {
+    "name": "中光電投控期貨",
+    "underlyingCode": "3718",
+    "companyName": "中光電投資控股股份有限公司"
+  }
+}

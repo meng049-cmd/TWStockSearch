@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');require('../research/chart-model.js');const M=globalThis.MarketChartModel;
+const dates=M.calendar('2026-01-01','2026-01-04');assert.equal(dates.length,4);assert.throws(()=>M.calendar('2026-01-02','2026-01-01'));
+const rows=[{date:'2026-01-02',open:10,high:12,low:9,close:11,volume:0,foreign:null,k:0},{date:'2026-01-04',open:11,high:13,low:10,close:12,volume:200,k:50}];
+const candles=M.points(rows,dates,null,'candle');assert.deepEqual(candles[0],{time:'2026-01-01'});assert.equal(candles[1].close,11);assert.deepEqual(candles[2],{time:'2026-01-03'});
+assert.equal(M.points(rows,dates,'volume','volume')[1].value,0);assert.equal(M.points(rows,dates,'k')[1].value,0);assert(!('value' in M.points(rows,dates,'foreign')[1]));
+const a={kind:'stock',name:'A',rows:[{date:'2026-01-01',close:10,volume:100,foreign:5},{date:'2026-01-02',close:20,volume:100,foreign:null}]},b={kind:'future',name:'B',rows:[{date:'2026-01-01',close:20,volume:20},{date:'2026-01-02',close:30,volume:30}]};
+let r=M.comparison([a,b],'2026-01-01','2026-01-04','price');assert.equal(r.common.length,2);assert.equal(r.series[0].rows[0].value,100);assert.equal(r.series[0].rows[1].value,200);assert.equal(r.series[1].rows[1].value,150);
+r=M.comparison([a,b],'2026-01-01','2026-01-04','foreign');assert.equal(r.series[0].rows[0].value,5);assert.equal(r.series[0].rows[1].value,null);assert.equal(r.series[1].rows[0].value,null);
+let w={start:'2026-01-01',end:'2026-10-16'};for(let n=0;n<100;n++){w=M.zoom(w,.7,'2026-01-01','2026-10-16');assert(w.start>='2026-01-01'&&w.end<='2026-10-16'&&w.start<=w.end);}for(let n=0;n<100;n++)w=M.zoom(w,1.5,'2026-01-01','2026-10-16');assert.deepEqual(w,{start:'2026-01-01',end:'2026-10-16'});
+assert.equal(M.iso({year:2026,month:1,day:2}),'2026-01-02');assert.deepEqual(M.clamp({start:'2025-01-01',end:'2027-01-01'},'2026-01-01','2026-10-16'),{start:'2026-01-01',end:'2026-10-16'});
+console.log('PASS: calendar bounds, absent candles, null/zero distinction, common-day normalization, future limitations and 200 zoom boundary cycles');

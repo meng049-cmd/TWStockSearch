@@ -1,0 +1,22 @@
+name: Check research integration
+on:
+  push:
+    branches: [main, 'feature/turning-lab-integration']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node --test scripts/test-pages-data.cjs
+      - run: node scripts/test-indicators.cjs && node scripts/test-daily-summary.cjs && node scripts/test-chart-model.cjs && node scripts/test-research-workspace.cjs
+      - run: python -m unittest discover -s scripts -p test_research.py
