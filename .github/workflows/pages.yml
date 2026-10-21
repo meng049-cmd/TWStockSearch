@@ -24,9 +24,10 @@ jobs:
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r data /tmp/site/
+          cp -r data assets research /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: /tmp/site
       - uses: actions/deploy-pages@v4
         id: deployment
+

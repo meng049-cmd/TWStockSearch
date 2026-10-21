@@ -37,11 +37,14 @@ jobs:
       - name: Sync stock-futures underlyings every four hours
         continue-on-error: true
         run: python scripts/sync_stock_futures.py
+      - name: Sync research net flows, margin and futures snapshots
+        continue-on-error: true
+        run: python scripts/sync_research.py
       - name: Commit data only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/stocks.json data/themes.json data/themes-v2.json data/company-profile.json data/stock-futures.json data/history
+          git add data/stocks.json data/themes.json data/themes-v2.json data/company-profile.json data/stock-futures.json data/history data/research-*.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update official daily stock data'
             git push
@@ -53,7 +56,7 @@ jobs:
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r data /tmp/site/
+          cp -r data assets research /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
@@ -61,3 +64,4 @@ jobs:
       - uses: actions/deploy-pages@v4
         if: github.ref == 'refs/heads/main'
         id: deployment
+

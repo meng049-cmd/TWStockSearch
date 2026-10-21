@@ -1,3 +1,7 @@
+# 整合投資研究面板
+
+已加入同站轉折研究工作區：技術指標、跨標的比較、CSV 匯入、研究筆記與備份還原。使用方法與資料口徑見 [整合說明](docs/research-integration.md)。
+
 # 第二版：盤後熱門股
 
 第二版已合併至 `main`；比較與發布步驟見 [docs/version-2.md](docs/version-2.md)。本次擴充五年歷史仍屬第二版，第三版預留盤中資金速度。
@@ -44,3 +48,4 @@
 期交所官方 `https://openapi.taifex.com.tw/v1/SSFLists` 已核對官方 Swagger 的 StockCode、Type、Contract 欄位及實際回應。2026-10-11 驗證時取得 320 筆契約資料，去除 ETF、依股票代號合併標準／小型契約後為 249 檔普通股標的（含上市、上櫃；本站股票宇宙仍為上市）。與官方網站股票期貨標的清單交叉核對通過。
 
 `data/stock-futures.json` 保存名單與實際取得時間，`scripts/sync_stock_futures.py` 每四小時更新。手動工作流程或 `python3 scripts/sync_stock_futures.py --force` 可立即更新；更新失敗保留前次有效檔，不妨礙其他來源更新。沒有有效名單時停用有／無選項，缺資料不判定為無。篩選已用真實名單測試，來源區列為實際串接項目。
+
