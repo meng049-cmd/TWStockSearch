@@ -50,7 +50,7 @@ def parse_margin(obj):
             for row in rows:
                 a, b = number(row[prev]), number(row[today])
                 if a is not None and b is not None:
-                    out[str(row[ci]).strip()] = {'marginChange': b-a}
+                    out[str(row[ci]).strip()] = {'marginChange': b-a, 'marginBalance': b, 'marginPrevious': a}
             return out
     raise ValueError('Official margin table missing')
 
@@ -89,7 +89,7 @@ def main():
         print('Research snapshot checked less than four hours ago')
         return
     snapshot = json.loads((ROOT/'data/stocks.json').read_text())
-    dates = sorted({h['date'] for s in snapshot['stocks'] for h in s['history']})[-20:]
+    dates = sorted({h['date'] for s in snapshot['stocks'] for h in s['history']})[-130:]
     warnings = []
     def day(date):
         result = {}
@@ -102,6 +102,7 @@ def main():
                     result.setdefault(code, {}).update({k:v for k,v in values.items() if v is not None})
             except Exception as exc:
                 warnings.append(f'{date} {name}：{exc}')
+        print(f'Research source checked {date}: {len(result)} stocks', flush=True)
         return date, result
     with ThreadPoolExecutor(max_workers=3) as pool:
         daily = dict(pool.map(day, dates))
@@ -149,7 +150,7 @@ def main():
         saved['errors'] = [f'期貨來源本次未更新，保留舊快照：{exc}']
         warnings.extend(saved['errors'])
     atomic(future_path, saved)
-    atomic(status_path, {'checkedAt': at, 'start': dates[0] if dates else None, 'end': dates[-1] if dates else None, 'changedStocks': changed, 'warnings': warnings, 'foreignDefinition': '外陸資（不含外資自營商）淨買賣超＋外資自營商淨買賣超，單位股', 'marginDefinition': '融資今日餘額－融資前日餘額，單位張'})
+    atomic(status_path, {'checkedAt': at, 'start': dates[0] if dates else None, 'end': dates[-1] if dates else None, 'changedStocks': changed, 'targetTradingDays':130, 'warnings': warnings, 'foreignDefinition': '外陸資（不含外資自營商）淨買賣超＋外資自營商淨買賣超，單位股', 'marginDefinition': '融資今日餘額－融資前日餘額，單位張'})
     print(f'Research: {changed} histories updated; {len(warnings)} source warnings')
 
 

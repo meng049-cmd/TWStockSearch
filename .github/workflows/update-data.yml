@@ -1,6 +1,11 @@
 name: Update official stock data
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_research.py
+      - .github/workflows/update-data.yml
   schedule:
     - cron: '30 * * * *'
 permissions:
@@ -19,6 +24,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -38,7 +45,6 @@ jobs:
         continue-on-error: true
         run: python scripts/sync_stock_futures.py
       - name: Sync research net flows, margin and futures snapshots
-        continue-on-error: true
         run: python scripts/sync_research.py
       - name: Commit data only
         run: |
@@ -47,6 +53,7 @@ jobs:
           git add data/stocks.json data/themes.json data/themes-v2.json data/company-profile.json data/stock-futures.json data/history data/research-*.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update official daily stock data'
+            git pull --rebase origin main
             git push
           fi
       - uses: actions/configure-pages@v5
