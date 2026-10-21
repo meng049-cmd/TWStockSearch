@@ -4,13 +4,15 @@
  if(!lib||!M){const status=$('chartEngineStatus');if(status)status.textContent='簡易圖表模式';return;}
  const charts=new Map(),palette=['#138577','#c17b47','#5578ca','#a572aa','#789b44','#508fa8'];
  let chartRows=[],intradayKey=null;
+ let interactionSource=null,interactionUntil=0;
+ window.addEventListener?.("pointerup",()=>{if(interactionSource)interactionUntil=Date.now()+250;});
  let batching=false,syncing=false,crossSync=false,viewport=null,renderError=false;
  const old={render,draw,indicator:drawIndicator,compare:renderComparison,apply:applyRange,axis:axisWindow,controls:updateTimeControls};
  function frame(){return ['W','M'].includes($('chartTimeframe')?.value)?$('chartTimeframe').value:'D';}
  function periodData(rows){return enrich(M.periodRows(rows,appliedStart,appliedEnd,frame())).filter(r=>r.date>=appliedStart&&r.date<=appliedEnd);}
  function compared(){return instruments.filter(i=>compareIds.has(i.id)).map(i=>({...i,rows:periodData(i.rows)}));}
  function reference(date,p,entry){const bar=chartRows.find(r=>r.date===date),row=data.find(r=>r.date===(bar?.sourceDate||date));globalThis.ChartReference?.show(row,p.point,entry.host,frame()==='D'?'當日':frame()==='W'?'週線期末交易日':'月線期末交易日');return row;}
- function dispose(){globalThis.ChartReference?.hide();for(const x of charts.values())x.chart.remove();charts.clear();}
+ function dispose(){interactionSource=null;interactionUntil=0;globalThis.ChartReference?.hide();for(const x of charts.values())x.chart.remove();charts.clear();}
  function currentWindow(){return viewport||old.axis();}
  axisWindow=currentWindow;
  function setWindow(value){const next=M.clamp(value,appliedStart,appliedEnd);if(viewport&&viewport.start===next.start&&viewport.end===next.end){controls();comparisonStatus();return;}viewport=next;syncing=true;try{for(const x of charts.values())x.chart.timeScale().setVisibleRange({from:viewport.start,to:viewport.end});}finally{syncing=false;}controls();comparisonStatus();}
@@ -19,7 +21,9 @@
  function chart(id,height){const el=$(id);el.replaceChildren();const host=document.createElement('div');host.className='financial-chart-host';host.style.height=height+'px';el.append(host);
   const css=getComputedStyle(document.documentElement),color=k=>css.getPropertyValue(k).trim();const c=lib.createChart(host,{autoSize:true,width:Math.max(200,el.clientWidth||800),height,layout:{background:{type:'solid',color:color('--panel')},textColor:color('--muted'),fontSize:13,attributionLogo:true},grid:{vertLines:{color:color('--line')},horzLines:{color:color('--line')}},rightPriceScale:{minimumWidth:82,borderColor:color('--line')},timeScale:{borderColor:color('--line'),fixLeftEdge:true,fixRightEdge:true,timeVisible:false,secondsVisible:false},localization:{locale:'zh-TW',dateFormat:'yyyy-MM-dd'},crosshair:{mode:lib.CrosshairMode.Normal},handleScroll:{mouseWheel:false,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:{time:true,price:true}}});
   const entry={chart:c,host,primary:null,lookup:new Map()};charts.set(id,entry);
-  c.timeScale().subscribeVisibleTimeRangeChange(r=>{if(syncing||!r)return;setWindow({start:M.iso(r.from),end:M.iso(r.to)});});
+  host.addEventListener("pointerdown",()=>{interactionSource=entry;interactionUntil=Infinity;});
+  host.addEventListener("wheel",()=>{interactionSource=entry;interactionUntil=Date.now()+600;},{passive:true});
+  c.timeScale().subscribeVisibleTimeRangeChange(r=>{if(syncing||!r||interactionSource!==entry||Date.now()>interactionUntil)return;setWindow({start:M.iso(r.from),end:M.iso(r.to)});});
   c.subscribeClick(p=>{const date=M.iso(p.time),bar=chartRows.find(r=>r.date===date),index=data.findIndex(r=>r.date===(bar?.sourceDate||date));if(index>=0){select(index);reference(date,p,charts.get(id)||entry);}});
   c.subscribeCrosshairMove(p=>{if(crossSync)return;crossSync=true;try{const date=M.iso(p.time);for(const other of charts.values()){if(other===entry)continue;const v=other.lookup.get(date);if(date&&other.primary&&M.valid(v))other.chart.setCrosshairPosition(v,date,other.primary);else other.chart.clearCrosshairPosition();}const r=reference(date,p,entry);$('chartHover').textContent=r?`${r.date}　開 ${fmt(r.open,2)}　高 ${fmt(r.high,2)}　低 ${fmt(r.low,2)}　收 ${fmt(r.close,2)}　量 ${fmt(r.volume)}`:'移動游標比較數值，點選日期更新盤後結論';}finally{crossSync=false;}});
   return entry;
