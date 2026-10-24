@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#08111f">
   <meta name="description" content="TWStockSearch App：用最少步驟查看盤後評分、趨勢與籌碼結論。">
   <title>TWStockSearch App｜台股決策面板</title>
-  <link rel="stylesheet" href="app.css?v=20261024-app2">
+  <link rel="stylesheet" href="app.css?v=20261024-app3">
 </head>
 <body>
   <header class="topbar">
@@ -30,6 +30,7 @@
         <div class="filters">
           <label class="search-field"><span class="sr-only">搜尋股票</span><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="代號或名稱" autocomplete="off"></label>
           <select id="industrySelect" aria-label="產業"><option value="">所有產業</option></select>
+          <select id="futuresSelect" aria-label="股票期貨標的"><option value="">全部期貨狀態</option><option value="yes">有股票期貨</option><option value="no">無股票期貨</option></select>
           <select id="minimumSelect" aria-label="最低分數"><option value="0">不限分數</option><option value="50">50 分以上</option><option value="65">65 分以上</option><option value="80">80 分以上</option><option value="90">90 分以上</option></select>
         </div>
         <div id="stockList" class="stock-list" aria-live="polite"><div class="loading">正在讀取已發布的股票評分…</div></div>
@@ -41,6 +42,8 @@
     <section class="quick-links" aria-label="其他功能"><a href="../#themes"><span>⌁</span><strong>市場選股</strong><small>族群與篩選</small><b>↗</b></a><a id="researchShortcut" href="../#research"><span>↗</span><strong>轉折研究</strong><small>多日走勢與籌碼</small><b>↗</b></a><a href="../#scores"><span>▤</span><strong>完整評分</strong><small>分項指標與規則</small><b>↗</b></a></section>
     <footer><span id="footerStatus">研究用初版規則 · 尚未樣本外回測</span><span><a href="../">TWStockSearch 主站</a></span></footer>
   </main>
-  <script src="app.js?v=20261024-app2" defer></script>
+  <script src="../research/indicators.js" defer></script>
+  <script src="../research/advanced-indicators.js" defer></script>
+  <script src="app.js?v=20261024-app3" defer></script>
 </body>
 </html>

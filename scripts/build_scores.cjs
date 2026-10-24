@@ -19,7 +19,7 @@ function build(root=path.resolve(__dirname,'..')){
  }
  Model.rank(records);records.sort((a,b)=>(b.score??-1)-(a.score??-1)||a.code.localeCompare(b.code));
  for(const row of records){const detail=details.get(row.code);detail.rank=row.rank;atomic(path.join(root,'data/scores',row.code+'.json'),detail);}
- const snapshot={version:1,modelVersion:'1.0.0',generatedAt:new Date().toISOString(),quoteDate,marketDate:themes.quoteDate||null,sourceUpdatedAt:market.updatedAt,researchUpdatedAt:market.researchUpdatedAt||status.checkedAt||null,universe:'證交所上市盤後官方快照；不含上櫃與期貨',categories:Model.categories,eligibleCount:records.filter(r=>r.score!==null).length,totalCount:records.length,warnings:[...(themes.quoteDate!==quoteDate?['市場活躍度與行情日期不同，待同步後才可排名']:[]),...warnings],sourceWarnings:(status.warnings||[]).slice(0,10),stocks:records};
+ const snapshot={version:1,modelVersion:'1.1.0',generatedAt:new Date().toISOString(),quoteDate,marketDate:themes.quoteDate||null,sourceUpdatedAt:market.updatedAt,researchUpdatedAt:market.researchUpdatedAt||status.checkedAt||null,universe:'證交所上市盤後官方快照；不含上櫃與期貨',categories:Model.categories,eligibleCount:records.filter(r=>r.score!==null).length,totalCount:records.length,warnings:[...(themes.quoteDate!==quoteDate?['市場活躍度與行情日期不同，待同步後才可排名']:[]),...warnings],sourceWarnings:(status.warnings||[]).slice(0,10),stocks:records};
  atomic(path.join(root,'data/stock-scores.json'),snapshot);return snapshot;
 }
 if(require.main===module){const at=process.argv.indexOf('--root'),root=at>=0?path.resolve(process.argv[at+1]):undefined;const r=build(root);console.log(`Stock scores: ${r.eligibleCount}/${r.totalCount} eligible, quote date ${r.quoteDate}`);}

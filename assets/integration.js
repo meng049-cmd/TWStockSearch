@@ -7,7 +7,7 @@
  function sendScores(message){scoresFrame.contentWindow?.postMessage(message,location.origin);}
  function setWorkspace(mode,updateHash=true){const isResearch=mode==='research',isScores=mode==='scores';market.hidden=mode!=='market';research.hidden=!isResearch;scores.hidden=!isScores;document.body.dataset.workspace=mode;$('marketTab').setAttribute('aria-selected',String(mode==='market'));$('researchTab').setAttribute('aria-selected',String(isResearch));$('scoresTab').setAttribute('aria-selected',String(isScores));$('researchSideLink').classList.toggle('active',isResearch);$('scoresSideLink').classList.toggle('active',isScores);if(mode!=='market')document.querySelectorAll('.sidebar nav a:not(#researchSideLink):not(#scoresSideLink)').forEach(a=>a.classList.remove('active'));
   if(isResearch){if(!researchLoaded){researchLoaded=true;frame.src='research/index.html?v=20261024-3';}if(updateHash)history.replaceState(null,'','#research');}
-  else if(isScores){if(!scoresLoaded){scoresLoaded=true;scoresFrame.src='scoring/index.html?v=20261024-score2';}if(updateHash)history.replaceState(null,'','#scores');}
+  else if(isScores){if(!scoresLoaded){scoresLoaded=true;scoresFrame.src='scoring/index.html?v=20261024-score3';}if(updateHash)history.replaceState(null,'','#scores');}
   else if(updateHash&&['#research','#scores'].includes(location.hash))history.replaceState(null,'','#overview');
  }
  function openResearch(code){if(code)pendingCode=code;setWorkspace('research');if(researchReady&&pendingCode){status.textContent='正在載入 '+pendingCode+'…';send({type:'research-select-stock',code:pendingCode});pendingCode=null;}window.scrollTo({top:0,behavior:'smooth'});}
