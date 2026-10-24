@@ -6,6 +6,12 @@ on:
     paths:
       - scripts/sync_research.py
       - .github/workflows/update-data.yml
+      - scripts/build_scores.cjs
+      - scoring/score-model.js
+      - research/advanced-indicators.js
+      - research/analysis-core.js
+      - research/chip-structure.js
+      - research/indicators.js
   schedule:
     - cron: '30 * * * *'
 permissions:
@@ -26,6 +32,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -46,11 +55,13 @@ jobs:
         run: python scripts/sync_stock_futures.py
       - name: Sync research net flows, margin and futures snapshots
         run: python scripts/sync_research.py
+      - name: Build stock scoring snapshot
+        run: node scripts/build_scores.cjs
       - name: Commit data only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/stocks.json data/themes.json data/themes-v2.json data/company-profile.json data/stock-futures.json data/history data/research-*.json
+          git add data/stocks.json data/themes.json data/themes-v2.json data/company-profile.json data/stock-futures.json data/history data/research-*.json data/stock-scores.json data/scores
           if ! git diff --cached --quiet; then
             git commit -m 'Update official daily stock data'
             git pull --rebase origin main
@@ -63,7 +74,7 @@ jobs:
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r data assets research /tmp/site/
+          cp -r data assets research scoring /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
@@ -71,4 +82,5 @@ jobs:
       - uses: actions/deploy-pages@v4
         if: github.ref == 'refs/heads/main'
         id: deployment
+
 

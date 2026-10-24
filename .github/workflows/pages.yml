@@ -19,15 +19,21 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build complete market score snapshot
+        run: node scripts/build_scores.cjs
       - uses: actions/configure-pages@v5
       - name: Prepare public files
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r data assets research /tmp/site/
+          cp -r data assets research scoring /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: /tmp/site
       - uses: actions/deploy-pages@v4
         id: deployment
+
 

@@ -1,0 +1,39 @@
+# 股票綜合評分 V1
+
+入口：主站「股票評分」工作區（`#scores`），或 `scoring/index.html` 獨立頁面。市場股票列與個股圖表可進入單股評分；「評分目前選股結果」使用目前族群、搜尋文字、期貨標的條件與全部 `passes()` 篩選結果，包含所有分頁，不重新計算市場原始排名。
+
+## 100 分規則
+
+| 面向 | 上限 | 依據 |
+| --- | ---: | --- |
+| 市場活躍 | 10 | 市場選股 V2 熱度 × 0.1；行情日須相同 |
+| 趨勢轉折 | 25 | MA20/60結構8、近5筆MA交叉5、ADX/DMI7、先前20筆Donchian位置5 |
+| 動能強弱 | 20 | RSI5、MACD柱體5、CCI5、ROC5 |
+| 量價資金 | 15 | 量價5、MFI5、CMF5 |
+| 法人籌碼 | 20 | 外資5日淨額8、投信/自營商5、融資價格配合5、洗盤換手2 |
+| 風險位置 | 10 | ATR相對波動4、月線乖離3、支撐距離3 |
+
+每項規則的門檻、觀察值、得分直接寫入分項 JSON，頁面可逐項展開。此為多方條件與風險位置的固定規則分數，未經樣本外回測；不是上漲機率。相關指標在面向內限制總權重。Williams %R、KD、布林帶與 OBV 僅列參考數值，不額外投票。個人研究規則與私有 CSV 不進入公開市場排名。
+
+缺值維持 null，只有全部100分項目可計算且股價日與市場最新日一致時，才輸出 `score` 和 `rank`。其他股票顯示已知得分與可計分上限，不把缺值當作零分，不將剩餘項目重新放大。總分相同給相同市場名次；篩選僅改變顯示範圍。市場與評分快照日期不同時拒絕套用舊選股清單。
+
+## 技術指標
+
+`research/advanced-indicators.js` 使用 Wilder 14期DM/TR平滑與14筆DX平均初始化ADX（首值在第28筆），CCI20採典型價格平均絕對偏差，MFI14以典型價格方向區分正負成交額，CMF20採振幅內收盤位置加權量（−1～1），Williams %R14採當期14筆高低範圍。Donchian評分使用當日之前20筆高低點，避免將當日突破價放入門檻。無波動的中性值、零成交量與暖機不足有明確處理；不使用未來資料。
+
+來源公式參考：
+- https://www.tradingview.com/support/solutions/43000502250-directional-movement-dmi/
+- https://www.tradingview.com/support/solutions/43000502001-commodity-channel-index-cci/
+- https://www.tradingview.com/support/solutions/43000502348-money-flow-mfi/
+- https://www.tradingview.com/support/solutions/43000501974-chaikin-money-flow-cmf/
+- https://www.tradingview.com/support/solutions/43000502253-donchian-channels-dc/
+
+## 更新與資料口徑
+
+`node scripts/build_scores.cjs` 讀取既有官方歷史與 `themes-v2.json`，共用轉折研究的指標、法人、融資與洗盤換手模型。股票成交股數和法人股數透過現有 `stockRows` 僅轉一次為張；融資增減本來就是張。市場 V2 採目前公布的發行股數，股數出表日另列，可能與行情日不同。此頁為最新盤後快照，不宣稱是歷史當時可得的回測結果。
+
+輸出 `data/stock-scores.json` 摘要與 `data/scores/<code>.json` 分項，前端只下載選中股票的詳細資料。來源對齊失敗時不生成可排名總分；單檔完整歷史缺失會保留短快照、列為資料不足並記錄警告。
+
+官方資料更新工作在研究籌碼同步後建立分數並一併提交；網站發布工作也會重建分數，確保發布的來源與模型一致。公開目錄包含 `scoring/`；無額外 API 金鑰或前端外部爬取。
+
+驗證：指標解析值、暖機、禁止前視、權重總和、缺值不重配、舊行情排除、同分名次、原始單位轉換、頁面篩選、同來源訊息驗證、市場清單交接與研究導覽。
