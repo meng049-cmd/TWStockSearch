@@ -4,7 +4,7 @@
  const Indicators=root.TurningIndicators||(typeof require==='function'?require('../research/indicators.js'):null),Advanced=root.TurningAdvanced||(typeof require==='function'?require('../research/advanced-indicators.js'):null),Analysis=root.TurningAnalysis||(typeof require==='function'?require('../research/analysis-core.js'):null);
  const categories=[{id:'market',name:'市場活躍',max:10},{id:'trend',name:'趨勢轉折',max:25},{id:'momentum',name:'動能強弱',max:20},{id:'flow',name:'量價資金',max:15},{id:'chips',name:'法人籌碼',max:20},{id:'risk',name:'風險位置',max:10}];
  const names={adx:'ADX14 趨勢強度',plusDi:'+DI14',minusDi:'−DI14',cci:'CCI20',mfi:'MFI14',cmf:'CMF20',donchianHigh:'前20日通道上緣',donchianLow:'前20日通道下緣',williamsR:'Williams %R14',rsi:'RSI14',dif:'MACD DIF',macdHist:'MACD柱體',k:'KD K',d:'KD D',atrPct:'ATR14／收盤 %',bbWidth:'布林帶寬 %',roc:'ROC10 %',obv:'OBV（張）',ma5:'MA5',ma10:'MA10',ma20:'MA20',ma60:'MA60'};
- const formatter=new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}),f=v=>finite(v)?formatter.format(v):'—';
+ const formatter=new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}),precise=new Intl.NumberFormat('zh-TW',{maximumFractionDigits:4}),f=v=>finite(v)?formatter.format(v):'—',f4=v=>finite(v)?precise.format(v):'—';
  function prepare(input){const map=new Map();for(const r of input||[]){if(!r||typeof r.date!=='string'||!['open','high','low','close','volume'].every(k=>finite(r[k]))||r.close<=0||r.volume<0||r.high<Math.max(r.open,r.close,r.low)||r.low>Math.min(r.open,r.close))continue;map.set(r.date,{...r});}const rows=[...map.values()].sort((a,b)=>a.date.localeCompare(b.date));rows.forEach((r,i)=>{r.change=i?(r.close/rows[i-1].close-1)*100:null;const prior=rows.slice(Math.max(0,i-5),i),v=prior.reduce((s,x)=>s+x.volume,0);r.ratio=prior.length===5&&v>0?r.volume/(v/5):null;for(const n of [5,10,20])r['ma'+n]=i+1>=n?rows.slice(i+1-n,i+1).reduce((s,x)=>s+x.close,0)/n:null;});return Advanced.compute(Indicators.compute(rows));}
  function grade(score){return !finite(score)?'資料待補':score>=80?'多方條件較多':score>=65?'偏多觀察':score>=50?'訊號分歧':'偏弱觀察';}
  function scoreStock(input,context={}){const rows=prepare(input),i=rows.length-1,r=rows[i],p=rows[i-1],checks=[];const add=(category,id,label,max,points,evidence,rule)=>checks.push({category,id,label,max,points:finite(points)?round(clamp(points,0,max)):null,evidence,rule});
@@ -21,12 +21,12 @@
   const channel=[r.donchianHigh,r.donchianLow].every(finite),mid=channel?(r.donchianHigh+r.donchianLow)/2:null;
   add('trend','channel','Donchian前20日位置',5,channel?r.close>r.donchianHigh?5:r.close>=mid?3:r.close>=r.donchianLow?1:0:null,`收盤 ${f(r.close)}；前20日通道 ${f(r.donchianLow)}～${f(r.donchianHigh)}`,'收盤突破先前20筆高點5；位於通道上半3；下半1；跌破下緣0。通道不含當日，避免自我比較。');
   add('momentum','rsi','RSI強弱與過熱',5,finite(r.rsi)?r.rsi>=55&&r.rsi<=70?5:r.rsi>70&&r.rsi<=80?3:r.rsi>80?1:r.rsi>=45?3:r.rsi>=30?1:0:null,`RSI14 ${f(r.rsi)}`,'55～70給5；45～55或70～80給3；30～45或>80給1；<30給0。未把超賣直接視為轉強。');
-  add('momentum','macd','MACD柱體方向',5,[r.macdHist,p?.macdHist].every(finite)?r.macdHist>0?r.macdHist>=p.macdHist?5:3:r.macdHist>p.macdHist?2:0:null,`柱體 ${f(r.macdHist)}；前日 ${f(p?.macdHist)}`,'零軸上且擴大5、零軸上縮小3、零軸下改善2、其餘0。');
+  add('momentum','macd','MACD柱體方向',5,[r.macdHist,p?.macdHist].every(finite)?r.macdHist>0?r.macdHist>=p.macdHist?5:3:r.macdHist>p.macdHist?2:0:null,`柱體 ${f4(r.macdHist)}；前日 ${f4(p?.macdHist)}`,'零軸上且擴大5、零軸上縮小3、零軸下改善2、其餘0。');
   add('momentum','cci','CCI偏離與強度',5,finite(r.cci)?r.cci>100&&r.cci<=200?5:r.cci>=0&&r.cci<=100?4:r.cci>200?3:r.cci>=-100?2:r.cci>=-200?1:0:null,`CCI20 ${f(r.cci)}`,'100～200給5；0～100給4；>200給3；−100～0給2；−200～−100給1；更低0。');
   add('momentum','roc','ROC10動能延續',5,[r.roc,p?.roc].every(finite)?r.roc>0?r.roc>=p.roc?5:3:r.roc>p.roc?1:0:null,`ROC10 ${f(r.roc)}%；前日 ${f(p?.roc)}%`,'正值且較前日增加5；正值下降3；負值改善1；其餘0。');
   add('flow','pv','量價配合',5,[r.ratio,r.change].every(finite)?r.change>0?r.ratio>=1.2?5:r.ratio>=.8?3:2:r.change<0?r.ratio<.8?1:0:1.5:null,`漲跌 ${f(r.change)}%；前5日量比 ${f(r.ratio)} 倍`,'價漲且量比≥1.2給5、一般量3、量縮2；價跌量縮1、其他價跌0；平盤1.5。');
   add('flow','mfi','MFI量價壓力',5,finite(r.mfi)?r.mfi>50&&r.mfi<=80?5:r.mfi>80?3:r.mfi>=40?3:r.mfi>=20?1:0:null,`MFI14 ${f(r.mfi)}`,'大於50至80給5；40～50或>80給3；20～40給1；<20給0。MFI是量價指標，不是實際資金淨流入。');
-  add('flow','cmf','CMF收盤承接',5,finite(r.cmf)?r.cmf>=.1?5:r.cmf>0?4:r.cmf===0?2.5:r.cmf>-.1?1:0:null,`CMF20 ${f(r.cmf)}`,'≥0.1給5；0～0.1給4；零2.5；−0.1～0給1；≤−0.1給0。反映量價收盤壓力，非銀行資金流。');
+  add('flow','cmf','CMF收盤承接',5,finite(r.cmf)?r.cmf>=.1?5:r.cmf>0?4:r.cmf===0?2.5:r.cmf>-.1?1:0:null,`CMF20 ${f4(r.cmf)}`,'≥0.1給5；0～0.1給4；零2.5；−0.1～0給1；≤−0.1給0。反映量價收盤壓力，非銀行資金流。');
   const buys=rows.slice(-5).filter(t=>finite(t.foreign)&&t.foreign>0).length;
   add('chips','foreign','外資近5日淨額',8,finite(x.foreign5)?x.foreign5>0?buys>=3?8:5:x.foreign5===0?4:r.foreign>0?2:0:null,`近5日外資 ${f(x.foreign5)} 張；買超日數 ${buys}／5`,'5日淨買且至少3日買超8；淨買但連續性弱5；持平4；淨賣但當日轉買2；其餘0。');
   const domestic=[x.trust5,x.dealer5].every(finite)?x.trust5+x.dealer5:null;
@@ -43,7 +43,7 @@
   if(!fresh)missing.unshift('未取得市場最新交易日行情');
   const total=availableMax===100&&fresh?knownPoints:null;
   const parts=categories.map(c=>({...c,points:round(checks.filter(x=>x.category===c.id).reduce((s,x)=>s+(x.points??0),0)),availableMax:checks.filter(x=>x.category===c.id&&finite(x.points)).reduce((s,x)=>s+x.max,0)}));
-  const metrics=Object.fromEntries(Object.keys(names).map(k=>[k,finite(r[k])?round(r[k]):null]));
+  const metrics=Object.fromEntries(Object.keys(names).map(k=>[k,finite(r[k])?['macdHist','dif','cmf'].includes(k)?Math.round(r[k]*10000)/10000:round(r[k]):null]));
   return {modelVersion:'1.0.0',date:r.date,close:r.close,change:finite(r.change)?round(r.change):null,ratio:finite(r.ratio)?round(r.ratio):null,score:total,knownPoints,availableMax,coverage:availableMax,eligible:total!==null,grade:grade(total),fresh,checks,categories:parts,missing,metrics,names,research:{bias:report.bias,title:report.title,conclusion:report.today,confirmation:report.confirmation,invalidation:report.invalidation,washout:structure.washout?.conclusion||'資料不足',turnover:structure.turnover?.conclusion||'資料不足'},priceTrend:rows.slice(-20).map(t=>({date:t.date,close:t.close})),sharesAsOf:hot?.sharesAsOf||null};
  }
  function rank(records){const eligible=records.filter(r=>finite(r.score)).sort((a,b)=>b.score-a.score||a.code.localeCompare(b.code));let last=null,position=0;eligible.forEach((r,i)=>{if(last===null||r.score!==last)position=i+1;r.rank=position;last=r.score;});for(const r of records)if(!finite(r.score))r.rank=null;return records;}
