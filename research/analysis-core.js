@@ -1,5 +1,6 @@
 'use strict';
 (function(root){
+ const ChipStructure=root.TurningChipStructure||(typeof require==='function'?require('./chip-structure.js'):null);
  const valid=v=>typeof v==='number'&&Number.isFinite(v),round=v=>Math.round(v*100)/100;
  const sum=a=>a.reduce((s,v)=>s+v,0),signed=v=>v>0?1:v<0?-1:0;
  const f=(v,d=1)=>valid(v)?v.toLocaleString('zh-TW',{maximumFractionDigits:d}):'—';
@@ -23,20 +24,22 @@
    const margin=valid(x.margin5)&&valid(x.price5)?x.price5>0?(x.margin5<=0?1.5:.25):x.price5<0?(x.margin5>0?-1.5:-.25):0:null;
    add('margin','融資與槓桿',margin,1.5,margin==null?'近5日融資資料未齊，無法判定槓桿變化':x.price5>0?(x.margin5<=0?'近5日價漲資減，上漲未伴隨槓桿擴張':'近5日價漲資增，行情伴隨槓桿擴張'):x.price5<0?(x.margin5>0?'近5日價跌資增，槓桿承接風險升高':'近5日價跌資減，正在去槓桿但尚未止跌'):'價格橫向，融資變化仍需觀察',`當日融資增減 ${f(r.margin)} 張；近5日合計 ${f(x.margin5)} 張`);
   }
+  const structure=ChipStructure.analyze(rows,index,kind);
+  if(kind==='stock')add('chipStructure','洗盤與換手',structure.ready?structure.score:null,1,structure.ready?structure.summary:'洗盤與換手資料未齊，暫不判定籌碼結構',structure.ready?'洗盤／換手為量價與法人交叉推估，合計最多影響±1分。':'缺少 '+structure.missing.join('、'));
   const custom=rules.filter(r=>r.enabled).map(rule=>{const value=x[rule.metric],available=valid(value),matched=available&&compare(value,rule.op,rule.threshold);return {...rule,available,matched,value:available?value:null,contribution:matched?(rule.bias==='bullish'?1:-1)*rule.weight:0};});
   const score=sum(groups.filter(g=>g.available).map(g=>g.value))+sum(custom.map(c=>c.contribution));
   const bias=score>=2?'bullish':score<=-2?'bearish':'sideways';const complete=groups.every(g=>g.available),available=groups.filter(g=>g.available).length;
-  return {x,groups,custom,score,bias,complete,available,total:groups.length,profile:groups.map(g=>g.available?'1':'0').join('')};
+  return {x,groups,structure,custom,score,bias,complete,available,total:groups.length,profile:groups.map(g=>g.available?'1':'0').join('')};
  }
  const label=bias=>bias==='bullish'?'偏多延續':bias==='bearish'?'偏弱整理':'區間震盪';
- function horizonScore(s,h){const weights=h===1?{trend:.6,volume:1.5,momentum:.8,foreign:1,domestic:.7,margin:.7}:h===2?{trend:1,volume:.9,momentum:1,foreign:1,domestic:1,margin:1}:{trend:1.2,volume:.5,momentum:1,foreign:1.2,domestic:1,margin:1.1};return sum(s.groups.filter(g=>g.available).map(g=>g.value*weights[g.key]))+sum(s.custom.map(c=>c.contribution));}
+ function horizonScore(s,h){const weights=h===1?{trend:.6,volume:1.5,momentum:.8,foreign:1,domestic:.7,margin:.7,chipStructure:.3}:h===2?{trend:1,volume:.9,momentum:1,foreign:1,domestic:1,margin:1,chipStructure:.5}:{trend:1.2,volume:.5,momentum:1,foreign:1.2,domestic:1,margin:1.1,chipStructure:.6};return sum(s.groups.filter(g=>g.available).map(g=>g.value*weights[g.key]))+sum(s.custom.map(c=>c.contribution));}
  function horizonBias(s,h){const score=horizonScore(s,h);return score>=2?'bullish':score<=-2?'bearish':'sideways';}
  function validation(rows,index,current,kind,rules){const selected=[[],[],[]];for(let i=33;i+3<=index;i++){const s=signals(rows,i,kind,rules);if(s.profile!==current.profile)continue;for(const h of [1,2,3])if(horizonBias(s,h)===horizonBias(current,h))selected[h-1].push((rows[i+h].close/rows[i].close-1)*100);}return [1,2,3].map(h=>{const values=selected[h-1].sort((a,b)=>a-b),n=values.length;return {horizon:h,count:n,up:n?round(values.filter(x=>x>0).length/n*100):null,median:n?values[Math.floor(n/2)]:null,qualified:n>=30};});}
  function analyze(rows,index=rows.length-1,kind='stock',rules=[],options={}){if(index<0||!rows[index])return null;rules=validateRules(rules);const s=signals(rows,index,kind,rules),{x}=s,r=x.r;const weak=!valid(r.ma20)||!valid(r.change);const trend=s.groups.find(g=>g.key==='trend'),vol=s.groups.find(g=>g.key==='volume');
   const missing=s.groups.filter(g=>!g.available).map(g=>g.label),direction=weak?'資料不足，暫不形成完整三日研判':label(s.bias);
   const chips=kind==='future'?'本契約結論依價量與動能；現股融資不適用，期貨法人尚未接入。':s.complete?(s.bias==='bullish'?'量價、法人與槓桿訊號合看，買方條件較占優勢。':s.bias==='bearish'?'量價、法人與槓桿訊號合看，賣壓與轉弱條件較占優勢。':'量價、法人與槓桿方向未一致，目前以區間整理判讀。'):`${missing.join('、')}尚未齊備，目前結論只涵蓋已取得的面向。`;
   const flows=kind==='stock'&&s.complete?`外資近5日${x.foreign5>0?'整體偏買':x.foreign5<0?'整體偏賣':'買賣持平'}，投信${x.trust5>0?'偏買':x.trust5<0?'偏賣':'持平'}、自營商${x.dealer5>0?'偏買':x.dealer5<0?'偏賣':'持平'}；${s.groups.find(g=>g.key==='margin').verdict}。`:'';
-  const today=`${r.change>0?'今日收高':r.change<0?'今日收低':'今日平盤'}${valid(x.volumeChange)?x.volumeChange>0?'量增':x.volumeChange<0?'量縮':'量平':''}；${trend.verdict}。${vol.verdict}。${flows}${chips}`;
+  const today=`${r.change>0?'今日收高':r.change<0?'今日收低':'今日平盤'}${valid(x.volumeChange)?x.volumeChange>0?'量增':x.volumeChange<0?'量縮':'量平':''}；${trend.verdict}。${vol.verdict}。${flows}${s.structure.applicable&&s.structure.ready?s.structure.summary:''}${chips}`;
   const confirmation=s.bias==='bullish'?`維持 MA5 ${f(r.ma5,2)} 之上，且外資近5日仍為淨買超，偏多條件才能延續。`:s.bias==='bearish'?`需站回 MA5 ${f(r.ma5,2)}、量比至少1.2倍，並見外資近5日轉買，才構成轉強確認。`:`突破近5日高點 ${f(x.resistance,2)} 且量比至少1.2倍，才有向上脫離整理的證據。`;
   const invalidation=s.bias==='bullish'?`跌破近5日低點 ${f(x.support,2)}，或外資近5日轉為淨賣超，偏多假設失效。`:s.bias==='bearish'?`站回 MA20 ${f(r.ma20,2)} 且外資近5日轉為淨買超，偏弱假設需重評。`:`跌破近5日低點 ${f(x.support,2)} 並放量，區間整理假設轉為偏弱。`;
   const validationResult=weak||options.historical===false?[]:validation(rows,index,s,kind,rules),base=s.groups.filter(g=>g.available).map(g=>g.value),agree=base.length?Math.abs(sum(base))/Math.max(1,sum(base.map(Math.abs))):0;
@@ -47,3 +50,4 @@
  }
  root.TurningAnalysis={analyze,signals,features,validateRules,metricNames};if(typeof module!=='undefined')module.exports=root.TurningAnalysis;
 })(globalThis);
+

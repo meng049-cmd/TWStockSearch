@@ -4,7 +4,16 @@
  function rules(){return ruleOwner===currentId?activeRules:[];}
  function report(row,full=true){if(!row)return null;const config=JSON.stringify(rules());if(cacheRows!==allData||cacheConfig!==config){cacheRows=allData;cacheConfig=config;cache.clear();}const index=allData.indexOf(row),key=index+'|'+full;if(!cache.has(key))cache.set(key,TurningAnalysis.analyze(allData,index,instruments.find(i=>i.id===currentId)?.kind||'stock',rules(),{historical:full}));return cache.get(key);}
  dailyReview=row=>{const result=report(row,row===data[selected]);return result?{title:result.title,conclusion:result.today,classification:result.classification,facts:[]}:TurningDaily.conclude(row,null);};
- function drawAnalysis(){const row=data[selected],r=report(row);if(!r){$('threeDayOutlook').innerHTML='<p class="empty">所選日期沒有行情，無法研判未來三個交易日。</p>';$('dataCoverage').innerHTML='';return;}
+ function drawStructure(p){
+  if(!p){$('chipStructure').innerHTML='<p class="empty">所選日期尚無可分析資料。</p>';return;}
+  $('chipStructureDate').textContent=p.date+' · '+name;
+  if(!p.applicable){$('chipStructure').innerHTML=`<p class="structure-limit">${esc(p.summary)}</p>`;return;}
+  const states={strong:'偏強',risk:'偏弱',watch:'待確認',neutral:'未形成',insufficient:'資料不足'};
+  const card=(key,label)=>{const c=p[key];return `<article class="structure-card" data-state="${c.state}"><div class="structure-card-head"><h3>${label}</h3><span>${states[c.state]}</span></div><p class="structure-conclusion">${esc(c.conclusion)}</p><dl class="structure-impact"><dt>對籌碼影響</dt><dd>${esc(c.chipImpact)}</dd><dt>對走勢影響</dt><dd>${esc(c.trendImpact)}</dd></dl><details class="structure-details"><summary>判斷依據與驗證條件</summary><ul>${c.evidence.map(e=>`<li>${esc(e)}</li>`).join('')}</ul><p><strong>確認條件</strong>${esc(c.confirmation)}</p><p><strong>失效條件</strong>${esc(c.invalidation)}</p></details></article>`;};
+  $('chipStructure').innerHTML=`<div class="structure-grid">${card('washout','洗盤跡象')}${card('turnover','是否有換手')}</div><div class="structure-foot"><span>${p.ready?'對綜合分數的補充：'+(p.score>0?'+':'')+p.score+' 分（上限±1）':'資料未齊，暫不加入洗盤／換手分數'}</span><p>${esc(p.limits)}</p><details><summary>規則門檻與資料範圍</summary><p>${esc(p.method)}</p><p>持股結構可另查 <a href="https://www.tdcc.com.tw/portal/zh/smWeb/qryStock" target="_blank" rel="noopener">集保戶股權分散表 ↗</a>（每週資料，尚未納入本站模型）。</p></details></div>`;
+ }
+ function drawAnalysis(){const row=data[selected],r=report(row);if(!r){$('threeDayOutlook').innerHTML='<p class="empty">所選日期沒有行情，無法研判未來三個交易日。</p>';$('dataCoverage').innerHTML='';drawStructure(null);return;}
+  drawStructure(r.structure);
   $('dailySummary').innerHTML=`<p class="conclusion-only">${esc(r.today)}</p>`;
   $('evidence').innerHTML=`<div class="evidence-decision"><small>綜合結論 · ${esc(r.scope)}</small><strong>${esc(r.title)}</strong></div><div class="evidence-verdicts">${r.evidence.map(g=>`<article><span>${esc(g.label)}</span><strong class="${!g.available?'neutral':g.value>0?'up':g.value<0?'down':'neutral'}">${esc(g.conclusion)}</strong><small>${esc(g.detail)}</small></article>`).join('')}</div>`;
   const hist=r.outlook[2].historical,conflict=hist.qualified&&((r.outlook[2].bias==='bullish'&&hist.median<0)||(r.outlook[2].bias==='bearish'&&hist.median>0));
@@ -26,3 +35,4 @@
  $('checkResearchData').onclick=refreshData;$('refreshBtn').onclick=refreshData;
  renderRules();
 })();
+
