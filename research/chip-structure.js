@@ -1,6 +1,7 @@
 'use strict';
 (function(root){
- const finite=v=>typeof v==='number'&&Number.isFinite(v),fmt=(v,d=1)=>finite(v)?v.toLocaleString('zh-TW',{maximumFractionDigits:d}):'—';
+ const finite=v=>typeof v==='number'&&Number.isFinite(v),formatters=new Map();
+ const fmt=(v,d=1)=>{if(!finite(v))return '—';if(!formatters.has(d))formatters.set(d,new Intl.NumberFormat('zh-TW',{maximumFractionDigits:d}));return formatters.get(d).format(v);};
  const sum=(rows,key)=>rows.length===5&&rows.every(r=>finite(r[key]))?rows.reduce((s,r)=>s+r[key],0):null;
  const result=(state,conclusion,chipImpact,trendImpact,score=0)=>({state,conclusion,chipImpact,trendImpact,score,evidence:[]});
  function analyze(rows,index=rows.length-1,kind='stock'){

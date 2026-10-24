@@ -3,7 +3,8 @@
  const ChipStructure=root.TurningChipStructure||(typeof require==='function'?require('./chip-structure.js'):null);
  const valid=v=>typeof v==='number'&&Number.isFinite(v),round=v=>Math.round(v*100)/100;
  const sum=a=>a.reduce((s,v)=>s+v,0),signed=v=>v>0?1:v<0?-1:0;
- const f=(v,d=1)=>valid(v)?v.toLocaleString('zh-TW',{maximumFractionDigits:d}):'—';
+ const formatters=new Map();
+ const f=(v,d=1)=>{if(!valid(v))return '—';if(!formatters.has(d))formatters.set(d,new Intl.NumberFormat('zh-TW',{maximumFractionDigits:d}));return formatters.get(d).format(v);};
  const metricNames={foreign5:'外資近5日淨買賣超（張）',trust5:'投信近5日淨買賣超（張）',dealer5:'自營商近5日淨買賣超（張）',margin5:'融資近5日增減（張）',ratio:'當日量／前5日均量',change:'當日漲跌幅（%）',closeVsMa20:'收盤相對月線（%）',rsi:'RSI14',macdHist:'MACD柱體'};
  function validateRules(rules){if(!Array.isArray(rules)||rules.length>8)throw Error('最多設定8條研究規則');return rules.map(r=>{if(!r||!Object.hasOwn(metricNames,r.metric)||!['>','>=','<','<='].includes(r.op)||!valid(r.threshold)||Math.abs(r.threshold)>1e12||!['bullish','bearish'].includes(r.bias)||![1,2,3].includes(r.weight)||typeof r.enabled!=='boolean')throw Error('研究規則格式不正確');return {id:String(r.id||'').slice(0,50),name:String(r.name||metricNames[r.metric]).slice(0,60),metric:r.metric,op:r.op,threshold:r.threshold,bias:r.bias,weight:r.weight,enabled:r.enabled};});}
  function total(rows,index,key,count=5){const slice=rows.slice(Math.max(0,index-count+1),index+1);return slice.length===count&&slice.every(r=>valid(r[key]))?sum(slice.map(r=>r[key])):null;}
