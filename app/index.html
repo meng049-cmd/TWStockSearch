@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#08111f">
+  <meta name="description" content="TWStockSearch App：用最少步驟查看盤後評分、趨勢與籌碼結論。">
+  <title>TWStockSearch App｜台股決策面板</title>
+  <link rel="stylesheet" href="app.css?v=20261024-app1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="TWStockSearch App 首頁"><span class="brand-mark">T</span><span>TWStock<span class="brand-light">Search</span><small>INVESTMENT APP</small></span></a>
+    <div class="top-actions"><span id="quoteDate" class="quote-date">讀取盤後資料…</span><button id="themeButton" class="icon-button" type="button" aria-label="切換明暗主題">☼</button><a class="classic-link" href="../">完整研究面板 ↗</a></div>
+  </header>
+  <main class="app-wrap">
+    <section class="welcome-row"><div><span class="eyebrow">CLOSE-OF-DAY BRIEF</span><h1>台股決策面板</h1><p id="headline">先看結論，再查看依據。</p></div><div class="market-status"><i></i><span>官方盤後資料</span></div></section>
+    <div id="errorBox" class="error-box" role="alert" hidden></div>
+    <section class="summary-grid" aria-label="評分快照摘要">
+      <article class="summary-card"><span>可完整排名</span><strong id="eligibleCount">—</strong><small>上市股票</small></article>
+      <article class="summary-card"><span>多方條件較多</span><strong id="strongCount">—</strong><small>評分 80 分以上</small></article>
+      <article class="summary-card"><span>資料待補</span><strong id="pendingCount">—</strong><small>不納入排名</small></article>
+      <article class="summary-card"><span>行情日期</span><strong id="summaryDate" class="date-value">—</strong><small id="updatedAt">—</small></article>
+    </section>
+    <section class="brief-card" aria-live="polite"><div class="brief-icon">◎</div><div><span class="brief-label">今日盤後摘要</span><strong id="briefConclusion">正在讀取評分快照</strong></div><span class="brief-tag" id="briefTag">全市場</span></section>
+
+    <section class="content-grid">
+      <div class="list-panel">
+        <div class="section-heading"><div><span class="eyebrow">RANKING</span><h2>綜合評分</h2></div><span id="resultCount" class="result-count">—</span></div>
+        <div class="filters">
+          <label class="search-field"><span class="sr-only">搜尋股票</span><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="代號或名稱" autocomplete="off"></label>
+          <select id="industrySelect" aria-label="產業"><option value="">所有產業</option></select>
+          <select id="minimumSelect" aria-label="最低分數"><option value="0">不限分數</option><option value="50">50 分以上</option><option value="65">65 分以上</option><option value="80">80 分以上</option><option value="90">90 分以上</option></select>
+        </div>
+        <div id="stockList" class="stock-list" aria-live="polite"><div class="loading">正在讀取已發布的股票評分…</div></div>
+        <div class="list-footer"><button id="moreButton" type="button" hidden>載入更多</button><span>分數是條件吻合度，不是獲利機率</span></div>
+      </div>
+
+      <article id="detailPanel" class="detail-panel" aria-live="polite"><div class="loading">選取股票後顯示重點結論。</div></article>
+    </section>
+    <section class="quick-links" aria-label="其他功能"><a href="../#themes"><span>⌁</span><strong>市場選股</strong><small>族群與篩選</small><b>↗</b></a><a id="researchShortcut" href="../#research"><span>↗</span><strong>轉折研究</strong><small>多日走勢與籌碼</small><b>↗</b></a><a href="../#scores"><span>▤</span><strong>完整評分</strong><small>分項指標與規則</small><b>↗</b></a></section>
+    <footer><span id="footerStatus">研究用初版規則 · 尚未樣本外回測</span><span><a href="../">TWStockSearch 主站</a></span></footer>
+  </main>
+  <script src="app.js?v=20261024-app1" defer></script>
+</body>
+</html>

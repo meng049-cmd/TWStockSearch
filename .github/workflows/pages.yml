@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p /tmp/site
           cp index.html /tmp/site/
-          cp -r data assets research scoring /tmp/site/
+          cp -r app data assets research scoring /tmp/site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: /tmp/site

@@ -53,3 +53,8 @@
 
 `data/stock-futures.json` 保存名單與實際取得時間，`scripts/sync_stock_futures.py` 每四小時更新。手動工作流程或 `python3 scripts/sync_stock_futures.py --force` 可立即更新；更新失敗保留前次有效檔，不妨礙其他來源更新。沒有有效名單時停用有／無選項，缺資料不判定為無。篩選已用真實名單測試，來源區列為實際串接項目。
 
+# TWStockSearch App · Version 1
+
+簡化操作版入口：先看評分與轉折結論，再按需查看完整依據。使用同一份官方盤後快照；資料不足不補零，評分不是獲利機率。
+
+[開啟 App 版](https://meng049-cmd.github.io/TWStockSearch/app/) · [開啟完整研究面板](https://meng049-cmd.github.io/TWStockSearch/)
