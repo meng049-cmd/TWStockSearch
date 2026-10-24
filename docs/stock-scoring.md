@@ -29,6 +29,10 @@
 - https://www.tradingview.com/support/solutions/43000501974-chaikin-money-flow-cmf/
 - https://www.tradingview.com/support/solutions/43000502253-donchian-channels-dc/
 
+## App 圖表
+
+App 個股頁可展開完整日線圖，包含 OHLC 蠟燭、MA5/20/60、選擇性布林通道、成交量與可切換的 MACD、KD、RSI、ADX/DMI、OBV、ATR%、ROC、MFI、CCI、Williams %R、CMF。圖表用原始行情，不還原權息；最新日與評分日不同時會提示。
+
 ## 更新與資料口徑
 
 `node scripts/build_scores.cjs` 讀取既有官方歷史與 `themes-v2.json`，共用轉折研究的指標、法人、融資與洗盤換手模型。股票成交股數和法人股數透過現有 `stockRows` 僅轉一次為張；融資增減本來就是張。市場 V2 採目前公布的發行股數，股數出表日另列，可能與行情日不同。此頁為最新盤後快照，不宣稱是歷史當時可得的回測結果。
