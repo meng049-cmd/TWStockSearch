@@ -1,0 +1,71 @@
+name: Update research data and Chinese news
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 * * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: stock-data-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Update Chinese news and official market review
+        run: python scripts/update_news.py
+      - name: Update stock-specific official disclosures
+        run: python scripts/sync_announcements.py
+      - name: Refresh OTC names and codes
+        run: python scripts/sync_symbols.py
+      - name: Update daily prices when due
+        run: |
+          python - <<'PY'
+          import datetime, json, os, subprocess
+          from pathlib import Path
+          now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
+          stocks=json.loads(Path('data/stocks.json').read_text()).get('stocks',[])
+          if not stocks or os.environ.get('GITHUB_EVENT_NAME')=='workflow_dispatch' or (now.weekday()<5 and now.hour==18):
+              subprocess.run(['python','scripts/update_data.py'],check=True)
+          PY
+      - name: Update institutional net flows and margin
+        run: python scripts/sync_research.py
+      - name: Publish the latest data snapshot without commit history
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data assets/otc-symbols.json
+          if ! git diff --cached --quiet; then
+            git diff --cached --binary HEAD -- data assets/otc-symbols.json > "$RUNNER_TEMP/research-data.patch"
+            git fetch origin main
+            expected_head="$(git rev-parse refs/remotes/origin/main)"
+            git reset --hard "$expected_head"
+            git apply --3way "$RUNNER_TEMP/research-data.patch"
+            git add data assets/otc-symbols.json
+            snapshot_tree="$(git write-tree)"
+            snapshot_commit="$(printf '%s\n' 'Latest stock research data and Chinese news' | git commit-tree "$snapshot_tree")"
+            git push --force-with-lease="refs/heads/main:$expected_head" origin "$snapshot_commit:refs/heads/main"
+          fi
+      - uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p /tmp/site
+          cp index.html /tmp/site/
+          cp -r assets data /tmp/site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: /tmp/site
+      - uses: actions/deploy-pages@v4
+        id: deployment

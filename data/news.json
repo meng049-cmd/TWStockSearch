@@ -1,0 +1,993 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-01T01:56:03+08:00",
+  "refreshEveryMinutes": 60,
+  "headlineOnly": true,
+  "categories": {
+    "sectors": [
+      {
+        "id": "0226ecdb3d9ff756",
+        "title": "鎖定50大龍頭！它規模突破千億 10個月不到暴增135% - 三立新聞網SETN.com",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFAwVUhNUmg0TXFXYmZvSUw4UTdNeDNuR2M0a01qRjk5a1FTQXdFSjczOVFBQmdzT1dUQjVLWHY4UHpHdE5sVzNLLUczaw?oc=5",
+        "source": "三立新聞網SETN.com",
+        "sourceUrl": "https://inews.setn.com",
+        "publishedAt": "2026-10-31T17:24:34Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "57cfac173c7d3639",
+        "title": "現代汽車推進新萬金AI資料中心，拚2027年3月動工 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1aRWIxMGRLTHZnTGZmMXV5VEt5ZTlxTEdFbU1remdlb1U2RmtBTUFJMGNCMVdxaUdjRWZZSFY0aHJqVDNmbnNTOXZnLVFka28?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T15:00:06Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "9dabedc368b70210",
+        "title": "黃崇仁驟逝掀經營權風暴！力晶董監改選遭市場派突襲 公司派急發信固樁 - Yahoo股市",
+        "url": "https://news.google.com/rss/articles/CBMi0gNBVV95cUxQV2d6akRDSEdUQ2h0Z0cwWVlKbnVBRUIyd2pTbkI4UGJ0TzNOUTZMaXpuRzJRVWxIamNtSmJJQU1HLWROVHIzQThVd1Myak9hTUllVXFDZGgwRXZtOEoxb0k2SFpYY0RZMGVFWndPTGV0MGlQblVQQ0lhNzRnY3BGQUZhMy04VVlZNVFtWDhGWTJyWGdVSmV2djRaYWdvVzlFUmk1YzlBNHRoRDk4emd2Z2FxcWNJYlk3ekl2M1pNb3h0Rm9RdTZza2dVaWd4dVBvZC1JS1AtNHNHUllhUXI2WElYb0NDQW9oU3duNnRBQUxQWk9HaV82d0JYTmIxZkRPWVJYWlFrMVV6SUhkLW83VVB1TF9OTERMcTlOY3VSWk1hQ3l0QjV4anI1aHVRRVFITy1nZlYySU5LYjFRYlJUSmdJalFoaHptaUVKc2lQR015cl9iZ3JFak0wNWQ2NFl4Qmpqd05vbnBuOEMxcVJvV1YwOGpGVWhidF9nZkNuM1dlWDVoenluTmI2dmVPckJoNVM4WW02ZVNGZU9lRzJIWER3SUEzRnBRMVZhb2V5S1BLUEZabTBneDNhQWRVMkxGMC1yb0J4LVJEcEN6cjRQLTVR?oc=5",
+        "source": "Yahoo股市",
+        "sourceUrl": "https://tw.stock.yahoo.com",
+        "publishedAt": "2026-10-31T10:40:00Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "0ff425699575b6e9",
+        "title": "下班國際線》外資狂賣台股2兆，台股衝5萬有譜？張錫揭台積電這關鍵數字：最好公司不投「很笨」！ | 林庭瑤 | 新聞 - 風傳媒",
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9tdXRuMER0MjE3UUJmZ1c3aVVkWHJaanRYUUdrSHBpT3loVm5yR0ZJQjViWVRUSUxRWFF4OW82RWdyQ3hCUHR2VzZINk5hdw?oc=5",
+        "source": "風傳媒",
+        "sourceUrl": "https://www.storm.mg",
+        "publishedAt": "2026-10-31T10:30:00Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "0df8f86becaff695",
+        "title": "AI晶片需求推升韓元！第三季狂升13%創近28年新高、南韓央行示警 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1acUdWTEZBSWVVODUyZUV6QW5VZzVwV2luWnFmOUlScUZWNWRydW5tOEdBYjJMZWppMkVUeWt2QXNfSU92bHZ4bzhJWHFUenc?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T09:54:43Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "59219474d9fd16bd",
+        "title": "科技債成「待發掘鑽石」！策略師：AI巨頭舉債之際投資人迎來機會 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5nQUdGU2JBMDBFNmhHS2E0WWxFREZ3dW8zbEl3X0NndEt3cVNpR0t6bnVRcnJXSXhMNVE5a3VpQjQ4X3c5amd1T205S2xVMXM?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T07:00:04Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "5f9bb2499f2fff33",
+        "title": "科技股拋售潮愈演愈烈！那斯達克100指數陷入修正、英特爾暴跌29% - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9Od2pINjVpb0lST2puc1JnRHJOby04QXh0NEx5bXQxOVhkb3VhSGN1Ny1tLTVmZTltWDVqTm9naHV2T3pxLUVHUDFnZnNaQk0?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T06:10:02Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "dee21da84fdee0a0",
+        "title": "抄底機會來了？AI巨頭瘋狂舉債 科技債今年重挫9% - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBKY1padnJFQ3R2cTlLd0w5ZFZzT0V6QS16NkhWazVJaEdSWlA5aG92UVV4MDlMNmYwN2VsUDgtckxvR0k1N25KQmxTbw?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://m.cnyes.com",
+        "publishedAt": "2026-10-31T05:40:03Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "d36564e96c688cae",
+        "title": "AI融資問題已經顯現？巴克萊：華爾街仍陷「否認階段」、CoreWeave債券殖利率逼近15% - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IM2pQaEw5R2NTVlZvclRGdEtkdlYzdkZORkV6NFJudXRPMnpjdExzMlVKRUZCZWZEZG9RT3pYUDh5VTZiaUZ0aG9qUEJNc2M?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T05:20:03Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "67ff0e6dcf5c3ca3",
+        "title": "1303 南亞 - 台股投資人該將焦點放在美企業資本支出增加，而不是美股的股價上- 股市爆料同學會 - CMoney",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9GWV91OU9ZVEZ5OUdDQVlGSWlyaGQxTWhVOHM0TnhUUnhkUVVmSm1HVVBRSEMyd1BzYXdDZC1OTEVNWWdrc1NQWERBSWtDVEEwb3hrNGEzVUI?oc=5",
+        "source": "CMoney",
+        "sourceUrl": "https://www.cmoney.tw",
+        "publishedAt": "2026-10-31T03:11:33Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "61fd5594aad8afd9",
+        "title": "雜音干擾台股測底專家曝AI長線攻守配置- 財經新聞 - PChome Online 新聞",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNU1lIQ1BCV1JBYm5PNTBycTBFTmszX0lRbWtiUmREVV8xOEFpaDRWQlJKTE85bVZzc2tPci1YMUtRWlBURkE5bE9kbkgwaUR0RUdfQ1RodnNkcWFYTjJnMXRINU81aTZyWDlFTHBrZXcyZXkyMmxvbXpHb2dPVGlfUHBCZnZVSnNLY0ZV?oc=5",
+        "source": "PChome Online 新聞",
+        "sourceUrl": "https://news.pchome.com.tw",
+        "publishedAt": "2026-10-31T01:29:27Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "ca632974cc6237c7",
+        "title": "科技股財報拖累SpaceX跌破IPO價 沒有公司達到馬斯克的高標準 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9VQ21VY2dWZ0NBbFM5LTg2UkR4YzRVY1huSmR4V1ZXRGRiSG9uYVFZNHpfYzR2Rl9nUGpjMlYyWE1leTZmOVZNOFZxRm9PQms?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T23:08:48Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "2b5b577f2cae3139",
+        "title": "外資大撤退 出口企業卻迎匯率紅利？台積電、廣達等6檔受矚 選股還得看「這條件」 - 工商時報",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBXSkhrejdPVXlYVmNpdE5tQjl2Ml9ZM3plNGRReFY3OXUtYWo0NzdaVE9vdGRqSjFnT055TkRXSGdNYkx5UTRad2dGRlVCd2hBZDRVNlhOWVQ1S29lUk1N?oc=5",
+        "source": "工商時報",
+        "sourceUrl": "https://www.ctee.com.tw",
+        "publishedAt": "2026-10-30T23:07:00Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "45c969d296cc93f8",
+        "title": "美股亮罕見警訊！關鍵指標飆近70年新高 兩場大熊市曾出現 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5UMWxGZ0tjVlBqaVRlRWNBdUhOREhVbGJxRVlqRWVDeDlkdzVxUHd1Y1F3V3NUa2hTdEdYRHhXYnFfX0k4RElnMUM4V1R6Nm8?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T16:01:58Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "d1bb922e706a2731",
+        "title": "SanDisk淨利狂飆71倍、毛利率衝上85%股價卻回檔？豪簽939億美元AI長約 - 理財周刊",
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1EZThyRmZxM013NUFQMGNfemcySkN3X2U5Qk5sWEMyX0tRcEtJMFdGZk05Nmdrcjl1akF1ZHJBTzMzenVKamZ0dHBhbkdhOVJxUGpWMm5XN0hHRjBBbUMwSHoyUzBqNVBlYVFjaTJFOA?oc=5",
+        "source": "理財周刊",
+        "sourceUrl": "https://www.moneyweekly.com.tw",
+        "publishedAt": "2026-10-30T02:13:47Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "3a85c8acba890a02",
+        "title": "台股早盤狂瀉逾1400點！45,000點失守 台積電領跌、AI投資疑慮引爆科技股賣壓 - 理財周刊",
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9MRW5tajIwdnZDcWVWc0U5dm9YQ3dVNWxzUWR5MnNnSHdZcVM5SkFqZ1lETmRlTlJ1MG1kMXZMUnNfQ2Vlb1NkUU1VQzhiY3dnaDlzOGJ3Qm9xZHNDdjBiTUZrYWYwZE5qS0xtS1pBZw?oc=5",
+        "source": "理財周刊",
+        "sourceUrl": "https://www.moneyweekly.com.tw",
+        "publishedAt": "2026-10-30T01:52:16Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "5c0ed6f3847bc63d",
+        "title": "億萬富豪艾克曼只押少數股票！揭選股法則：鎖定20年後仍值錢的企業 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5nam5QUF9YTlBSSUxMMl96ZUEzcnNiSmlkU2tMYlA0d01IdHRTOVRiQ2hzdkF6QU1UbzEwcG1lZDh3TVJMelNISUYzMHhvVHc?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-29T19:16:05Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "844a75338bf6bd7c",
+        "title": "AI商機外溢！瑞銀按讚台股：今明年企業獲利成長皆破4成 明年更勝今年 - Yahoo股市",
+        "url": "https://news.google.com/rss/articles/CBMiswNBVV95cUxQTV9ib3g5LWlranN6eE9acGZyWUMzenkyN1pWS1RCNFFleXFTMFhQQklGZG5VbjJYOGV3VzY2WVNkWTdGOTlnZEtEWFFqYVBacmIxUzhiaWlZOHdkZU9RTlU1b0poLW01ZW1wWVVlSnhhNk8xRi02NEljOElvVHNOQmZFWWhpMFVpanJ3Qkt2V0RJQmdRMEVBbXFGblRXamRRVklvWFk1Q3RpY0dCNnNTZXJORVhLZkhhemRzTHdBaHlSRmw3RW4tOHNBNFJ0WWlKQkxLajFWMmwwOW1XNWhCMnNqc3BxeklVT2NvMkpEWG8yaGNCQm9ub29pUHJuTk9Db2JsenhqQjRTMDhfZDNIQU1zeXd2N0JLOUxKREpRSFlSUmt4bDZKRUZWQ2tzUVowSkNfSTBWRDVEQ2J5SmFpdE5DcXVQb3FKYS00OEhlbllJZ3RjMjhvNS04RTY3NG45NXFza0RjbmdYdS1OV0Z5X1hGcDhicDk0MDVVY2RYQWZ0TkM1d1o5a0V6VTdkWXp5aUtKUDd6dzdDd09VT0dTMEtpNkZNWVFKUFBjNlg1UXZ5M3M?oc=5",
+        "source": "Yahoo股市",
+        "sourceUrl": "https://tw.stock.yahoo.com",
+        "publishedAt": "2026-10-29T09:45:02Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      }
+    ],
+    "global": [
+      {
+        "id": "910f46fc040473a2",
+        "title": "股市：科技股領跌拖累風險偏好，丹斯克銀行分析 - www.tmgm.com",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOS21LeUY5WDNqaFctbXhMWU9SMVpueXBVNHkxWTZnZVhPQk1oS0FkRE03Tm5ZRTVRMXRVc0JxbUZRVXZKTUxXYkJPV1ZqTkw0M3QzNFUyay1TS1lkX010ZU5qUEdTb0Rlc2dsUmxob2FLbUJBQnZZTll1OU5xcGlCQmtlaHdFb0MxZ0ctdlBzWlVGWFdyWkx6Q2J1ZVNGNUcydUhGdm1Oalh3XzFQc0dPWDQxc09fQXFOWmR5M0pzUm9tbXVsSDBzVTBQcTEwZw?oc=5",
+        "source": "www.tmgm.com",
+        "sourceUrl": "https://www.tmgm.com",
+        "publishedAt": "2026-10-30T23:34:42Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "918b1afbf086480e",
+        "title": "英特爾盤中崩跌30%！恐寫史上最慘一天 全球晶片股跟著殺 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQLUtaT0lUZGZYcmpJSzVRQlFfQXk2d1lDeEkxVkdYS1oxaGRQeHdmT00wYmJUak52VjhTMExRQXpERUU0Rm15dmo4WEh5UFE?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T17:30:24Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "2f4e79419c3f77de",
+        "title": "〈美股早盤〉科技股又挨刀！那指重挫逾2%創兩個多月低點 台積電ADR跌逾3% - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAzYWxwLU9uVkNZZG9iNm56aENmSjlEcE5jZFNTR3B4M1F1YjZTc1BvSklETHBYbUJQSFN6UXhjTE96MFRFWUg2YzBaSWxRYnM?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T13:39:17Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "7662fe0e658398ee",
+        "title": "全球股基連六周吸金！亞洲最搶手 美股基金卻失血 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE42eVdPXzBWR3ZFenZiS24zZ0lwYjNpU0hMZ3VNc202MVMzQS1Wblh3dGdSOFpFRDNLOVdLem9zdnMycDZEa1h5ekM3VQ?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://m.cnyes.com",
+        "publishedAt": "2026-10-30T12:30:03Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "dc0d5b18e9d2ece2",
+        "title": "2026美股投資行事曆！美股休市時間、美股開盤時間（含美股期貨）、那斯達克23小時交易新制。台灣時間、美股夏令冬令時間交易對照表｜豐雲學堂2026 年 10 月 - 永豐金證券",
+        "url": "https://news.google.com/rss/articles/CBMi8gVBVV95cUxPREQxdG80cWx3VUU3b09zNHhKV3plUFhpeUF0Y3pUTU9tcUdIbDJEVlNEb0ptUkUzQUx5dUpfZFdqNzlpMnh2SEI3Y2hGa3BNOTZUdlRoU0dZSWVUQ1FROGRQMFRYM292TzA0ZGdaZi1XM25hY3F3ZHdrZ1hJMjdCbTQ3dUVyWlhZNnFTd3pvT0QwdEFfaWtCTEN2Vk5ySkdveHk3LVJNWmxrb1RqZXpuYnFxU21faWN2X3VSQVAzTG44YnR5M3A5V1ZjM0hBNWU2M0psN0NIZi1NSWZQQWhPcUZzakxSdkV0QnE4Smx6NndxdmlfMkNHVXlNQ0V4UUtGaU93cUpCOE5PYzM0dlRUZzU2a3I4VU5MeVpudzR6OFVFamwta2phVlF4amZzLVZrM01vQ0EzR1MtR05yWlBWZUxzRld2VElPZnpGbDA4MVRSdTlYQ1h1Q1pLR3pObW5VZk9MLWMyN1dSaXc0c1N1VGdOY1BKWTdmTDNtMUZtWE1wcjJyaXJhVFFBQzJJQTAxRU5xZVBwNno0N2ZSQVlhRVRuOXJzUHVOTndPU3RZM0tud3ZlM3JVT2hhaFFoX2Fkbmk0WHNXSVAwS2k1d3JDdVg1WmJsZ1U5Q1UyS2g5WFl4b0d0V19fel80Mm9fcV9FVDNlRjN3T1pzX2JLRlV3czhHb0NEaTBpYzRRbnhsblNiS0dVY1F6enpGVTVfc3BTZDlaVi1MelFHNGdfWjZBUGFFcWRNdFRhLVVzUkE5UnVQVHlYQVVZNUNsQ2RpbXM5a2FtQVdCdldyNlJuUk05RG1MdUZCc0d3cEhTV0IzZWRVS0ZwMjFjUkh2ZWgybWJ0TWxDMXVwc0N5M1o4VnVicmVPb2xNNExiOTlRNVFXR0ZkZzJ1MjZLMG1aN1RKQlFZZEk3TC04OHlSYzVXTUVzLThOLWdrVHQtamxlSjhhcDdNekNVUk9ZaUVGRGZOZ0xkRFBNS21pMEFXVWRDTjYwMDln?oc=5",
+        "source": "永豐金證券",
+        "sourceUrl": "https://www.sinotrade.com.tw",
+        "publishedAt": "2026-10-30T11:59:20Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "4e6cf0328918d4c2",
+        "title": "美科技股財報引爆AI支出疑慮 亞股與美股期貨周五全面承壓 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE15M2Q3Z3NvX1I2SURVOG1Db1RqVVhLYWpHQXJXamkxMGt1eF94WFFiYmJaMzE3VWFvTUx4QkFjSjRCRW9SemwzSVNydWxtSW8?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T10:20:03Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "d4ae5e4285cb2503",
+        "title": "亞洲股市慘兮兮！韓股暴跌5％ 日經指數狂瀉近2000點 | TVBS - LINE TODAY",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBZX2JxdWNBeU9MWm1hVkM5NjhBVWJHcEhabWFLWEhiRnVSU2g1QTFzSGg2OU5fQTFXeU5EekxwZGp5bS1Mbi1tenZwOW1fXzA0UUtkZWR3?oc=5",
+        "source": "LINE TODAY",
+        "sourceUrl": "https://today.line.me",
+        "publishedAt": "2026-10-30T08:42:39Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "658e1d74357b59a5",
+        "title": "科技巨頭AI支出嚇壞市場 全球股市重挫資金狂湧債券 - 四季線上4gTV",
+        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBhOU1yMWdmR1JBeFJxLXdxTVBockRGVXgwM3YzMURGa1NCQWNQNldTNFdWOE4wcUJpbVJ6VEVVdGZUdF80LVNITHF3Yy1HVTROQXpMTw?oc=5",
+        "source": "四季線上4gTV",
+        "sourceUrl": "https://m.4gtv.tv",
+        "publishedAt": "2026-10-30T07:00:00Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "fcbcea42244a5735",
+        "title": "日賺近2億！美伊衝突阻航道推升航運景氣 中遠海控今年前三季淨利年增13% AH股齊創史高 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE91bDZVbWU0N1lfeUFOaHZsenVuNVNhOEdPNWpsX3U0N0EzcmtIY3FYYVV5N0RSZ3E3SEx5ZzhIUEtPNVFWUFBlSTNUbw?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://m.cnyes.com",
+        "publishedAt": "2026-10-30T05:20:06Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "38b1426a4d7f002b",
+        "title": "AI投資獲利疑慮再起！亞股跟隨美股重挫 日經跌逾1,600點、韓股續摔逾5％ - 工商時報",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBIOHR6WnJ0X0U4VHVONHdmRmNyWWNNZkRGb0VLRWR3eVkxanR1Q19oNjR6Ym53dTlTanJNdUpaUjR6X1J4QWt0STVjbTFwR2RMYWF4QUwzSldzZGRBeTk4?oc=5",
+        "source": "工商時報",
+        "sourceUrl": "https://www.ctee.com.tw",
+        "publishedAt": "2026-10-30T03:28:00Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "9905157647c1766c",
+        "title": "《歐股》企業財報優、歐股收高 ECB按兵不動 - 台視全球資訊網",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOVldLM3c1dng0ZHlfbTZERXlBVTRkZE9rMG5SR3FKM1lwV3BUMC1PSnJhWWtfdlpFSkkycHl4TkYtRGhubzdHVnJHSVZFVF9QSXFLMlQzX1Nyb2FRRGNDVFVZSVJzZkNOc05ENDJSYXZhQ25tRzRza054MkUtZVpTVEJJdzVfWFJRbl9QX1h5eDNvNlM4QmJQbG9wbHg?oc=5",
+        "source": "台視全球資訊網",
+        "sourceUrl": "https://www.ttv.com.tw",
+        "publishedAt": "2026-10-30T01:03:27Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "befae3dc82ccfe08",
+        "title": "一夜4790億美元沒了！谷歌暴跌12%、邁威爾崩13% 日股開低1.3% KOSPI跌逾4% - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE52T242Y1otNGJ0eVBBTENDOW52SUc4Q09QMWRkT2tRYXZaMThla3V1ZWFBNmRCYUhzZkhWRVJYOGF3aklJRVRabjdUNHBwNE0?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-30T00:56:21Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "ca0304551eb58eee",
+        "title": "《歐股》企業財報優、歐股收高 ECB按兵不動 - MoneyDJ",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObGJPeWhBZmNGbjFtajRxUWx4c29nOXRCcndSS19WeDJXUWlocDA2bTV4d2xQODFlYVJIMFRYZU1CQzU4OExtSG9hMVNYMUNOb2VodmNfNWdFeFZWQ2F2U3NkUU00UDRQaU9pNnYtVzRacXBnSHJEYWE4VUVldmxoTGIybWIwWVBiaURibFhhWE9zZXA4MWVubzZ5aHo4N0sy?oc=5",
+        "source": "MoneyDJ",
+        "sourceUrl": "https://www.moneydj.com",
+        "publishedAt": "2026-10-29T22:50:00Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "1cd18ae8c957f101",
+        "title": "聯準會與歐洲央行維持利率不變歐股收高| 全球財經| 全球 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBaQWx2U2QySWZmeXJVTnlUT25ZcVh1Tk9Gblhwd0ZQenhvZzBHaW0waDhyYUtvODlwOHZQT2V3V01zM2ZJNHp1S3NaUi1scGRf?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-29T19:59:04Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "dea2282b5aa339ee",
+        "title": "告別8成台股集中度！摩根首推日、歐股主動+月配ETF 00421A、00422A搶啖3大紅利 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQWGlYaWx6dWM0VXF3a3FWSHRqOFZ1QUUwdFBQTE1teDcyYlg2c2N1S3hTMUF4VnJZWmc3Q0ZqRWZobTlDVmZ0Tl9zRmd5aFk?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-29T11:47:54Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "b6eb6fd116b31568",
+        "title": "摩根「鑫收益」再進階！日、歐股月配息ETF雙登場 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9wSnd6dG9CZ0h2TFBvTTRReE5UMS1xRzBENlJDSUluQ2JMRGFoVUFqeGxsUjVZVjVaNWpmWFhDUkJhWTh2Q1NydExUOGpaWS1HOUxB0gFYQVVfeXFMTnMzdjQxSUY3YlBjRWxBZGR2eVVhX0NNWFBienNyYmg5M1ZRYXRDLWZIeWVJLWU3aFMtUUotLWtiemN3RTZlRnp0LVQtYmMtNldRVElUdmR3Qg?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-29T08:47:50Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "9bee2793c7a95fc3",
+        "title": "市場關注日銀貨幣政策會議 日股收高 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5weHppaURfU1RhaWliT012WmdGRjFyaXpwRHdkSFN4MDlsZ0dVc2VVVU96ek5oVWJ4UzVKYkc0b0txT3ZOOGhxMHZ0SXhvMGZyaVBEMW5zU0ZIUdIBX0FVX3lxTFBuaHBqOGlrR0J0ZHR1ejlRblhKTml4UTJwUmVXSzBqcjZXT0R4UTFhcERDVzVzSXpSZkNJbEc2NWJHYjN4cXVQNmtNSFhOOTVfRzMwTFNmU2Rkb1U5aHg4?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-29T07:23:11Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "d66f49571f10bd9b",
+        "title": "〈財經週報-國際展望〉市場嚴格檢視AI變現能力 全球股市震盪未歇 - 自由時報",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1sWUl4R2x4NW8wZHZzU1U0bW83RURLaTFxeHV3QnFKYXNSQkhWaF93YlNJcS1GekNtUjNlZ0x3dHpmVW5pd2k3WGxDWk5HcUxHbTAxZVljUTk?oc=5",
+        "source": "自由時報",
+        "sourceUrl": "https://stock.ltn.com.tw",
+        "publishedAt": "2026-10-28T21:28:37Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "1cec71c3e1dc296f",
+        "title": "市場靜待聯準會利率決策 歐股多收高 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5fUk5WaTdaeXk0cThNVDBjTTBqUmV0MjlKa2NZMF90WmhtT0U3TFJNY3pkQlZpWjRwQnpDT0x5VnpHT0VMQV9QU2xudDlETGJwMVpLaUdZWkUzQdIBX0FVX3lxTE4xUTNTVEw5WDQ4ejFLcFA1SERlVlV0ME1jb0NwX3hneWhqNnNhM255QVk4UXRHeFYzYmMxQmxZanYyaVFfTnBVMFhRNGtBOGd4MGhmZ0FaNVZ5ek5QMl93?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-28T17:30:28Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "290ad62d758d90ec",
+        "title": "股市：AI 熱潮推動全球科技股延續漲勢－德意志銀行 - www.tmgm.com",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQVVpTS1NOakJQSzFvYzl4cGptT0IwbkZSSnZ4SUJzN3lyMVI1MUgydmRmOU9GTl9Ga3FyOEFka3ZONHpfZVpPbXUtZWFuQmxKZVJYV3pNU2F4eUVpcHJnRHdscThUbGJKcGZmTGREOWJ5ZEJiajZNNTQ3X1pOZ2lSMFJ4RGphTzNrakJsYm53aFQzTlFrajV2ZU9zYUliRnNWd1p6eFBWQU9qZml0M1pXS19WbndJNUprVUZBeHM1aXh2eUJHbGl4aGZIcW9xWDg?oc=5",
+        "source": "www.tmgm.com",
+        "sourceUrl": "https://www.tmgm.com",
+        "publishedAt": "2026-10-28T17:06:32Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "c1a54644b4c92001",
+        "title": "歷史經驗 美股ETF下月有戲 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9iVzN5VkttODVtVmVmSlVkT2ZfanFVelROdG5HMmYzQ1lXMFZHUFZweGF5Q2pLZGliOGczMWM5Y3U3UDQ4Rm51cVZPRlRWa2lfazllNzc5UWE4UdIBX0FVX3lxTFB1dWdtSXRaaEEzWkdKWTdqeS1VNmlJMkJPZ09tZ2RkNHJPSGxYVE9DSGxhOGt3ay15akxKY29EbjVkejRGNHg1WjM4MHVGY0VUQ0xEQ0JybFFXYUFkTGkw?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-28T16:29:36Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "2159346aafe2bcaf",
+        "title": "股市教練 - 鉅亨號",
+        "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE8zTmtJVG9MNnhTX0ZwajR5cXcyakdUSkVqVFJ5WE1yUHdwYlFXR1p0RE4zWkdlU1dwelVYaW4zTFBBYWktX3BSRg?oc=5",
+        "source": "鉅亨號",
+        "sourceUrl": "https://hao.cnyes.com",
+        "publishedAt": "2026-10-28T06:16:31Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "67aab27e776c42f0",
+        "title": "市場權衡歐洲企業財報 歐股收盤走勢不一 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4ySTUwamRZWUhyaHhaT2FMTUpTN2NQVU5nWjhaT09McmJseV9ISk41V2J0M3VWRVNYRERWRlRIZDlKX2RXS1d5WWVOQXRDWmlYeTd2bGZ5eGppUdIBX0FVX3lxTE9DcUh2OVhnOXRQYzNObS1UTXRlQzR2YnZ2RDFmMVNmdnJkdDZLNWZuYTFsYThHZjQwand1WTJkdVd5MmNfU3oyaEUySVl1aExwVWdjbHQ4Qi1kTFAtby1Z?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-27T17:21:32Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "2a97418fd3be8879",
+        "title": "美伊有望重啟談判》國際油價跌破100美元 股市滿血復活 - 自由時報",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBHMVI3RFZuaTcxVXRyVGlaTktKR00wcGRkYmNRTVpqSjh4QmhsOHJKNGNKazBMYzBfc2Z0TnB5NktlM3k5a210cFUwQ3NaUzZZa0t6ajRDNEo?oc=5",
+        "source": "自由時報",
+        "sourceUrl": "https://stock.ltn.com.tw",
+        "publishedAt": "2026-10-27T15:08:57Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      }
+    ],
+    "usMarkets": [],
+    "economy": [
+      {
+        "id": "a6f1acb9bfb33ab0",
+        "title": "缺乏廉價資金成為AI榮景的最新瓶頸| 全球財經| 全球 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE95a0UzQmVSSGJfWGlsMXM1Sjl0RVFMYjlwZDJ1akFDNExLSlFMM092bGJlYkxaZEVzWlB4cUY3NnQ3SUlPTklpTExCU0tnRDBoZWdLYVQ4czgxN2ZHR3pQTVpGZFdpR3VDTWdJNFlNR0ZhdDdT?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-31T15:20:45Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "afdfcec6697780b4",
+        "title": "財經事務及庫務局局長在上海出席滬港金融合作第十次工作會議開場發言 - 風火輪傳媒有限公司",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9tQWQ2a09zSTdRSXhqa3YtM1JLMUk2cnNnUWZHeFRJejdUZHJSTW40Mjd5aDM4SXE1VXBwcGhxU1pueVJ3Qzc0NGw2VTJwMV9rRHc5S3kyemxNSVhnaXM3UG00c0JUWEx3OUFWRmEzcld5WGc0?oc=5",
+        "source": "風火輪傳媒有限公司",
+        "sourceUrl": "https://www.flamingwheels.online",
+        "publishedAt": "2026-10-31T14:10:02Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "8b28da58d94ca151",
+        "title": "瑞士企業擬擴大在華投資 深化醫藥金融等合作 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMi1wJBVV95cUxPd0R3ZmxwQVNtWmluaVdrVlAwRVVfdWlibjBiclJPZTI3ZDJKMDRGSEt2bzBmVmNPM25ndXdabXptcTNjOGdzMTRLWTEtOEY4N2Z5YUljYmVzcEpYSG5RNDlEY0VLZ3c2cC1UTkl0a1dRa3JNY3kzLThiMEM1TmZNZFg1TkVMVzFqRDJxNkhLc0FveFo1RGk2bDhpaWZHUXpacy1VZHNTSHIwbE1zQWhvZTBmX2NYTzlxcTVYSzVmVy02ZVk4c2xaX2dvYXlHelJlVlZhOVdTNUZ0aXlpTlpubEdoSlVRZHczRXE1V2hFQTB1bTI0QkV4Y3RPbW9XWmhjVy1jYTBzUnJUQ0lEaEgzdEJSeWdOcW5mYXNHQWluaXExRFROUlltOWc2R3ctYXo3M3E0YUVQeWMxNkNRTERxcklyQ1BkdVlvODY2WjBaZUdWUl9BdUNB?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-31T09:48:34Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "789bfd065adf9135",
+        "title": "聯儲局丨洛根:仍料需再加息2次 但節奏可循序漸進 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxOQzY2dmctVE8yaW52ZFduTmMxYm12My01Q3pRUDgyUURCTUh5ckwweWg1MnFZb21NRnpLZFFqSURCcGg0T29LN0MzVVdYdG4tcnpTSk53eXVSVG9YeXdJOGJ2Q3ZiNmRzcjhXWEYzTHk1VDRhcFhSMWxpQTNfbnVMYnlmVXl4VHdmMldGY1p5dko4czNQSHlwY1p1WGs4ME9JMUpMX2Zxdl9HNUEyNDF2b0xmN0RlaFJCOTlHYkVZdEFvZVY3cktQelBwTC1BcXJhV2hYSUt3RE85Q2xaaWRoY21zaU5MUTdtNm9nS0tPYk5UX1FVVGNhS2FZZklnQUpxb25pcjNHTkRGdEEyUE5jd3hRYmZzd1JoRlJVcTFnNHR3X3c5bDhiTi1Ld1E3MzFhRW5VZ2JjTXlRRUNsTFBoVFBMaWdaanctcm5fN0o5TnhfV0RSY2doRUhQaFdJWEd5SmFDWDk4M0NnYzB5cHZhWjJIcw?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-30T18:56:30Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "3602cf3cb95b600b",
+        "title": "歐洲防禦不能只靠預算專家籲整合戰略資產- 財經新聞 - PChome Online 新聞",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNTDYxcGpMTkNXcEZIOFhIai15Y2UxMDRENi1Fa0trcW5UMXEwSHA1ODJvOHA5NWRNLUVQLWJiTW5GaEpRUDc4bGlKZHI5UmVIM1M2aUxVVEVDZ2FEc1NtNW9yd3BBTS11aHZoQVZrcENzNV9JWXQ4SGZFQVlFS3d4aENwc1YwZmRlaDFBTA?oc=5",
+        "source": "PChome Online 新聞",
+        "sourceUrl": "https://news.pchome.com.tw",
+        "publishedAt": "2026-10-30T12:01:12Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "74bb5b02be1efb5d",
+        "title": "人行:續實施適度寬鬆貨幣政策 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxNUTdOTmZYYjk5dTF4NUNocXZQZy1vbTRmQVZwVTcwWndJak9tUjFJU1oxT2IwWGhKeFZsVXdkdzBjN3ZvMTNZX1NjWmh4Yjd1RmpyVTljYlk0M1BjTTQ3SEE3TDA3dzhIZGRnYTB1aF9Qc1FfOXVTaFZ2SE5OTTVIeGpXeG44QWgtZnNXZ1FZaWNUYm1IMEFPbHc5WXAteWNVUTdrdW9Ed1JiU2lEZlZMajc3SDd3NDJmblBxN1E4a2xlN01abk1XVFY2eW11ZzBJT082dlpDV3FjYklRNm1RZUs2VTI3OFV4NFFWOHktb2FMQ2UwbVBkSmJoSWxLckNiSHAzbGtR?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-30T12:00:55Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "6964a71f6e88fabd",
+        "title": "最新總經數據與台股脫鉤！Q3經濟成長飆14%，外資大舉提款聯發科等權值標的-財經焦點情報站 - CMoney投資網誌",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQR3UzNGd4SWRFd1JZVGFuNkpvS2taR2tNS0xNdDVSTGVfVWhLSzFBb0dwZzE4MEl6XzRnNEdqLUNRRkV5dnJpdl9yRTdGQk1lNFlSd2czaHhPZ2dENGctLTQ5YXBLam1aWjM4WHZMUVkyTlhFYk5tMUctQzlha0R0dXVn?oc=5",
+        "source": "CMoney投資網誌",
+        "sourceUrl": "https://cmnews.com.tw",
+        "publishedAt": "2026-10-30T11:10:29Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "92bd8b190544977c",
+        "title": "金融存股進入淘汰賽！13家金控僅5家守住高峰 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1JWkFBRWpkNEFRY3U3Nm5ocUhNUGFFSWk2Z2FyNE44UVRxeGQwZEFkdWxPdlZVMHVKQVpEYm50Q3RSeWN6QTFXcUNwOXVWX2RmVEliWkJsOEtSQdIBX0FVX3lxTE9fMVR3MHhhQkdiemJlNkhWM3ZVTDJiOEo2Zm1QOGlSY0NPbFo4LWtENFFwUVJycGdvMncwc0oyZXZfeU5Bb3htZV9mUkYzbHEzZnB1d3djVU9vMlVVakg0?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-30T09:00:00Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "ff7e439ff8c2c00c",
+        "title": "財庫局局長率金融監管機構與滬方舉行會議加強金融合作（附圖） - 香港政府資訊中心",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE8tZTl0Q1NRenhwRWpFY2RDbmQ5eU9HMDdJdVpuNlJWWUJUa2JheGE4Q1FRS2pzRC1mT0JSUm9VaTdVQTFXbE9ndGFpUXhoMFhuRnVmNENOV09uQ2hnQ0hvNXZpMDN0UkVYakJRRG1sdFdhZw?oc=5",
+        "source": "香港政府資訊中心",
+        "sourceUrl": "https://www.info.gov.hk",
+        "publishedAt": "2026-10-30T05:16:45Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "8a5e8a1d68e2e76f",
+        "title": "歐洲央行維持利率不變 符預期 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPSmg4c0E5QURtd1VFWkNVS3k2M19XajhySGp2MmZ5UW5UMEJZTEMtQVQyRDRwaFJjR1h6dkltSmhWdEh5MEtZS2FGekNSaTFucGlXM0VNUTRGejVxNVlhR3BRRDA4cWthLWh5Um1ZTDUzVjhRNTRabDFFZ0FZcDZIb0FobnJfVXNqZW1qN0JaMXJqbHpvcU1Oend3eVowMTFycU1pX3BZXzNQWXg3cXlKUF9qbHFSRFE5OW4wYzk1RWZmR1ZlWFlaUFRaX2ppTE9BY25yelNERlM2NmNJc3IyR3owMEV0YXFHcEtGWURrd3l6dzJGTU9xdTZnRFptM1d1WTNaaGZkd3ZWbDZrelE?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-29T13:17:24Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "11138e4c3618b13c",
+        "title": "Fed宣布重大改革：2027年起逐步減少利率決策會議次數 - 自由財經",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE44MVNoWE9sajJibjdFNGd1Z0FPaXpoRnN4aWdHMm9zdzBnZ2Q0UzBMSWZkRDVOcEZOWjJoMkExMnowTmxHRTlnTEI0X0N5RnI4WXhBU3hOY1NrN0pqb3RkTUZWQzPSAWRBVV95cUxOODFTaFhPbGoyYm43RTRndWdBT2l6aEZzeGlnRzJvc3cwZ2dkNFMwTElmZEQ1TnBGTloyaDJBMTJ6ME5sR0U5Z0xCNF9DeUZyOFl4QVN4TmNTazdKam90ZE1GVkMz?oc=5",
+        "source": "自由財經",
+        "sourceUrl": "https://ec.ltn.com.tw",
+        "publishedAt": "2026-10-29T04:07:25Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "395f9aee83779a88",
+        "title": "經部：整合技術金融與拓銷資源 助我扣件業者穩定營運切入高值市場 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1pZDJYcmJDa0lUUWJjcmtFdG1NQWZiNTNfQXhQTVY0cUJVUlRfRXB5YlM3anVsZENOaGt6ejFwUFlXSVdKWTBqQlQxUDlDTXY50gFWQVVfeXFMTWpxTE43VDRsR0ZIeEhYV1hMa0F3MUN6eU1ZbEp6dXFmTEhjNnJobG0xckE5R1Bya29OLTZOd1p1UXhEQ3pYVEp1dTBMVjU1Qlc1cjEwc1E?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-29T03:12:34Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "cf428edf3eb5c2ef",
+        "title": "內地8000億元新型政策性金融工具兩個月投放完畢 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxPMjNaM3JoRHgxMTVIUW8xZkZUTHh4MVNVSGNrdmItWnN2SmZheHZwTUo1NDgyRFgwQk03SElVbWt6WS1hZG9rLV80Zkhvd21seGxldmVSUV9DR0lHR1c5LTdOUEc4ZjZHZHljd3A5YUQwMHpPU2hpN21Kb3pyTHo5ZUZUM0hJdUxRcncza3R4ci03aDVkRU1hb3VnVlhMak1BWWFBTEl2WnZZTmdUZ0pvd2lhWmNibnBOVGRpX0xtZTZidWVuRjJaWGZlS2tjNVRiNTc2dlZhTTNBX2pvR2J0cFpWY1FwbExjWG9fOWZOVEd4X3JfSW1LamtkMUFmZDZnbEllM3l0X2JXZVlXaG1ZQV85UUlVbk42b19WOW5idE9YczltWnVXM050ekFLdUc5NWJqWTZHMUFnR1AzMkZralVfb1pHVlJQclE5MTZocml1d2ZRbkRCNnhrQQ?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-28T15:21:28Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "b33bb76a575f2dee",
+        "title": "台積電進駐效益龐大九州金融集團：3縣近14兆日圓| 全球財經| 全球 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE04ZkhzNGd2YW1tVlBLZ1p6R0k5Tmt5VVpteFQ2ZjRNa3dxNEVmSVB3TDJLTVh2NXUwR19BbXpfZG5pdkZpa0tBdFpaZ2dncVEt?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-28T08:44:44Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "185381f52bc5c436",
+        "title": "擴內需，財政金融這樣協同（財經深一度） --經濟·科技--人民網 - 人民网财经",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1TNXBYakt6VVpMbS1oaXQyNHJ1R0lkTXczVnNveC1nc3M0aHRBVFU2X2tyallTV2ZSdlE0NEppUnVubTVDUFZqRXh0Xy1oMjNjbnJvSlFKcUhINzJhNmJyZEk1WER3aUNrSFk3ZGVDMTNlbzN4?oc=5",
+        "source": "人民网财经",
+        "sourceUrl": "http://finance.people.com.cn",
+        "publishedAt": "2026-10-27T22:08:00Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "f88ab890e05b9525",
+        "title": "曾預言2008金融海嘯！專家揭「美股暴跌警訊」 點名3資產避險 - TVBS新聞網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5GaDlJT0pUTncxNWY0M2dLOU1ONDdETmlhc09LNnQwU0FQT0VhOFdRclhvQTNlbUJTY1NiVm1IeFI0ak0zM0pSX3BxTjBSeUk?oc=5",
+        "source": "TVBS新聞網",
+        "sourceUrl": "https://news.tvbs.com.tw",
+        "publishedAt": "2026-10-27T11:14:00Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "64677c6d39be0ca4",
+        "title": "2026全球財經情勢與兩岸經貿走向 - 海基會兩岸經貿網",
+        "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5KVm5CMnVBYi1EcGd2UkhqeWt5Mnp6Sm96RUxaYV9ZcUZlSHhZVkVFcGpBRW9JYy1ITGx5YzZ2aXV4QnM2V1JJQ1ExbnNFejJxNklCeENIQQ?oc=5",
+        "source": "海基會兩岸經貿網",
+        "sourceUrl": "https://www.seftb.org",
+        "publishedAt": "2026-10-27T07:00:00Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "697ee5707d199117",
+        "title": "投資峰會丨下周舉行 280位國際金融領袖雲集香港 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1ieXBHWlBsS2lseGJpb3pSeUtFTVJVbzhpcDBRanBWN1RKdG5LcWR3TGNqQUowQ2RWUTFzQmgxVzh1UldRX1JiaEJoQzlLb1lFSWNJWV9STlNiSTFZRXc?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://m.hkej.com",
+        "publishedAt": "2026-10-26T05:44:41Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "f42359afe278b920",
+        "title": "最新數位金融創新掀開戶潮！TISA免稅與美元定存齊發，帶動逾6萬新戶-財經焦點情報站 - CMoney投資網誌",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNV1U2dmJjTWloYUtLbkpJT0ExT3JDTXc4N3RCOUxka1J4dTFPczFKSjdoeWI3bS1oZFNXV1V1b0FkMTJSU1I3VlVidlpDMTYtX3ZJZlVkU3JOeE5kc1Brblc5Q3N4aHJlb0xlSXRkc2VRQXY2akFHd2M1Z3lKbGxoX3Zn?oc=5",
+        "source": "CMoney投資網誌",
+        "sourceUrl": "https://cmnews.com.tw",
+        "publishedAt": "2026-10-26T05:39:16Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 1,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "0fac8452ad7abe3a",
+        "title": "台灣狂賺錢新台幣卻越走弱！錢都去哪了？謝金河曝背後真相 - TVBS新聞網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5yT3N5UEw1RHlBazk4ZDBZTWRucG9rVlF3VzZ1VlBvbVZRbTdqakU5LXZTMkw5V21zTGYtN3RoeUQtTGo3c1AwWTlhN2c5Snc?oc=5",
+        "source": "TVBS新聞網",
+        "sourceUrl": "https://news.tvbs.com.tw",
+        "publishedAt": "2026-10-26T03:13:00Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 0,
+        "impact": "市場觀察"
+      }
+    ],
+    "major": [
+      {
+        "id": "0df8f86becaff695",
+        "title": "AI晶片需求推升韓元！第三季狂升13%創近28年新高、南韓央行示警 - 鉅亨網",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1acUdWTEZBSWVVODUyZUV6QW5VZzVwV2luWnFmOUlScUZWNWRydW5tOEdBYjJMZWppMkVUeWt2QXNfSU92bHZ4bzhJWHFUenc?oc=5",
+        "source": "鉅亨網",
+        "sourceUrl": "https://news.cnyes.com",
+        "publishedAt": "2026-10-31T09:54:43Z",
+        "category": "sectors",
+        "feedId": "tw-industries",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "1cd18ae8c957f101",
+        "title": "聯準會與歐洲央行維持利率不變歐股收高| 全球財經| 全球 - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBaQWx2U2QySWZmeXJVTnlUT25ZcVh1Tk9Gblhwd0ZQenhvZzBHaW0waDhyYUtvODlwOHZQT2V3V01zM2ZJNHp1S3NaUi1scGRf?oc=5",
+        "source": "UDN",
+        "sourceUrl": "https://udn.com",
+        "publishedAt": "2026-10-29T19:59:04Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "8a5e8a1d68e2e76f",
+        "title": "歐洲央行維持利率不變 符預期 - 信報網站",
+        "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPSmg4c0E5QURtd1VFWkNVS3k2M19XajhySGp2MmZ5UW5UMEJZTEMtQVQyRDRwaFJjR1h6dkltSmhWdEh5MEtZS2FGekNSaTFucGlXM0VNUTRGejVxNVlhR3BRRDA4cWthLWh5Um1ZTDUzVjhRNTRabDFFZ0FZcDZIb0FobnJfVXNqZW1qN0JaMXJqbHpvcU1Oend3eVowMTFycU1pX3BZXzNQWXg3cXlKUF9qbHFSRFE5OW4wYzk1RWZmR1ZlWFlaUFRaX2ppTE9BY25yelNERlM2NmNJc3IyR3owMEV0YXFHcEtGWURrd3l6dzJGTU9xdTZnRFptM1d1WTNaaGZkd3ZWbDZrelE?oc=5",
+        "source": "信報網站",
+        "sourceUrl": "https://www.hkej.com",
+        "publishedAt": "2026-10-29T13:17:24Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "11138e4c3618b13c",
+        "title": "Fed宣布重大改革：2027年起逐步減少利率決策會議次數 - 自由財經",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE44MVNoWE9sajJibjdFNGd1Z0FPaXpoRnN4aWdHMm9zdzBnZ2Q0UzBMSWZkRDVOcEZOWjJoMkExMnowTmxHRTlnTEI0X0N5RnI4WXhBU3hOY1NrN0pqb3RkTUZWQzPSAWRBVV95cUxOODFTaFhPbGoyYm43RTRndWdBT2l6aEZzeGlnRzJvc3cwZ2dkNFMwTElmZEQ1TnBGTloyaDJBMTJ6ME5sR0U5Z0xCNF9DeUZyOFl4QVN4TmNTazdKam90ZE1GVkMz?oc=5",
+        "source": "自由財經",
+        "sourceUrl": "https://ec.ltn.com.tw",
+        "publishedAt": "2026-10-29T04:07:25Z",
+        "category": "economy",
+        "feedId": "economic-data",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      },
+      {
+        "id": "1cec71c3e1dc296f",
+        "title": "市場靜待聯準會利率決策 歐股多收高 - 經濟日報",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5fUk5WaTdaeXk0cThNVDBjTTBqUmV0MjlKa2NZMF90WmhtT0U3TFJNY3pkQlZpWjRwQnpDT0x5VnpHT0VMQV9QU2xudDlETGJwMVpLaUdZWkUzQdIBX0FVX3lxTE4xUTNTVEw5WDQ4ejFLcFA1SERlVlV0ME1jb0NwX3hneWhqNnNhM255QVk4UXRHeFYzYmMxQmxZanYyaVFfTnBVMFhRNGtBOGd4MGhmZ0FaNVZ5ek5QMl93?oc=5",
+        "source": "經濟日報",
+        "sourceUrl": "https://money.udn.com",
+        "publishedAt": "2026-10-28T17:30:28Z",
+        "category": "global",
+        "feedId": "world-finance",
+        "impactScore": 2,
+        "impact": "市場觀察"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "tw-industries",
+      "name": "台股個股新聞",
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%E5%8F%B0%E8%82%A1+%E5%80%8B%E8%82%A1+%E4%BC%81%E6%A5%AD+when%3A7d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant"
+    },
+    {
+      "id": "world-finance",
+      "name": "國際股市中文新聞",
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%E5%9C%8B%E9%9A%9B%E8%82%A1%E5%B8%82+%E7%BE%8E%E8%82%A1+%E6%AD%90%E8%82%A1+%E6%97%A5%E8%82%A1+when%3A7d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant"
+    },
+    {
+      "id": "economic-data",
+      "name": "最新財經新聞",
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%E6%9C%80%E6%96%B0+%E8%B2%A1%E7%B6%93+%E7%B6%93%E6%BF%9F+%E9%87%91%E8%9E%8D+when%3A7d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant"
+    }
+  ],
+  "staleFeeds": [],
+  "notice": "僅整理標題、來源、時間與原文連結；重大關注標籤依標題關鍵字篩選，請開啟原文核對。",
+  "marketReview": {
+    "checkedAt": "2026-11-01T01:56:03.839208+08:00",
+    "datasets": [
+      {
+        "name": "加權指數歷史收盤",
+        "url": "https://openapi.twse.com.tw/v1/indicesReport/MI_5MINS_HIST",
+        "rows": [
+          {
+            "Date": "1151001",
+            "OpeningIndex": "47961.98",
+            "HighestIndex": "48353.49",
+            "LowestIndex": "47893.42",
+            "ClosingIndex": "48353.49"
+          },
+          {
+            "Date": "1151002",
+            "OpeningIndex": "48390.65",
+            "HighestIndex": "48491.62",
+            "LowestIndex": "48205.81",
+            "ClosingIndex": "48475.74"
+          },
+          {
+            "Date": "1151005",
+            "OpeningIndex": "48574.95",
+            "HighestIndex": "49770.66",
+            "LowestIndex": "48574.95",
+            "ClosingIndex": "49712.04"
+          },
+          {
+            "Date": "1151006",
+            "OpeningIndex": "49736.37",
+            "HighestIndex": "49968.92",
+            "LowestIndex": "49479.69",
+            "ClosingIndex": "49822.55"
+          },
+          {
+            "Date": "1151007",
+            "OpeningIndex": "49857.32",
+            "HighestIndex": "49966.89",
+            "LowestIndex": "49567.52",
+            "ClosingIndex": "49806.37"
+          },
+          {
+            "Date": "1151008",
+            "OpeningIndex": "49783.06",
+            "HighestIndex": "49783.06",
+            "LowestIndex": "49189.77",
+            "ClosingIndex": "49313.44"
+          },
+          {
+            "Date": "1151012",
+            "OpeningIndex": "49272.08",
+            "HighestIndex": "49412.90",
+            "LowestIndex": "48768.82",
+            "ClosingIndex": "49301.96"
+          },
+          {
+            "Date": "1151013",
+            "OpeningIndex": "49126.27",
+            "HighestIndex": "49126.27",
+            "LowestIndex": "48066.36",
+            "ClosingIndex": "48341.31"
+          },
+          {
+            "Date": "1151014",
+            "OpeningIndex": "48382.64",
+            "HighestIndex": "49059.12",
+            "LowestIndex": "48382.64",
+            "ClosingIndex": "48625.83"
+          },
+          {
+            "Date": "1151015",
+            "OpeningIndex": "48382.75",
+            "HighestIndex": "48382.75",
+            "LowestIndex": "46795.38",
+            "ClosingIndex": "46969.87"
+          },
+          {
+            "Date": "1151016",
+            "OpeningIndex": "46995.03",
+            "HighestIndex": "47520.60",
+            "LowestIndex": "46995.03",
+            "ClosingIndex": "47111.26"
+          },
+          {
+            "Date": "1151019",
+            "OpeningIndex": "46844.64",
+            "HighestIndex": "46844.64",
+            "LowestIndex": "46170.00",
+            "ClosingIndex": "46822.08"
+          },
+          {
+            "Date": "1151020",
+            "OpeningIndex": "46712.57",
+            "HighestIndex": "46967.91",
+            "LowestIndex": "46163.03",
+            "ClosingIndex": "46292.93"
+          },
+          {
+            "Date": "1151021",
+            "OpeningIndex": "46454.33",
+            "HighestIndex": "47254.93",
+            "LowestIndex": "46454.33",
+            "ClosingIndex": "46887.77"
+          },
+          {
+            "Date": "1151022",
+            "OpeningIndex": "46942.75",
+            "HighestIndex": "47332.18",
+            "LowestIndex": "46041.43",
+            "ClosingIndex": "46041.43"
+          },
+          {
+            "Date": "1151027",
+            "OpeningIndex": "46211.20",
+            "HighestIndex": "46585.45",
+            "LowestIndex": "45676.67",
+            "ClosingIndex": "46096.23"
+          },
+          {
+            "Date": "1151028",
+            "OpeningIndex": "46402.79",
+            "HighestIndex": "47060.46",
+            "LowestIndex": "46402.79",
+            "ClosingIndex": "47035.58"
+          },
+          {
+            "Date": "1151029",
+            "OpeningIndex": "47014.87",
+            "HighestIndex": "47015.45",
+            "LowestIndex": "46055.07",
+            "ClosingIndex": "46368.33"
+          },
+          {
+            "Date": "1151030",
+            "OpeningIndex": "46139.79",
+            "HighestIndex": "46139.79",
+            "LowestIndex": "44726.26",
+            "ClosingIndex": "45211.83"
+          }
+        ]
+      },
+      {
+        "name": "三大法人買賣金額（元）",
+        "url": "https://openapi.twse.com.tw/v1/fund/BFI82U",
+        "rows": [],
+        "error": "Expecting value: line 1 column 1 (char 0)"
+      }
+    ]
+  }
+}
