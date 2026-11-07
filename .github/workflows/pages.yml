@@ -1,0 +1,41 @@
+name: Publish stock research panel
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify retained research functionality
+        run: node --test tests/*.test.cjs
+      - name: Build daily industry institutional flow summaries
+        run: python scripts/build_industry_flows.py
+      - uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p /tmp/site
+          cp index.html .nojekyll /tmp/site/
+          cp -r assets data /tmp/site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: /tmp/site
+      - uses: actions/deploy-pages@v4
+        id: deployment
